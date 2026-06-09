@@ -1,5 +1,5 @@
 const NAV_LINKS = [
-  { label: '工程证据', href: '#evidence' },
+  { label: '工程记录', href: '#evidence' },
   { label: '系统架构', href: '#system' },
   { label: '项目', href: '#projects' },
   { label: '联系', href: '#contact' },

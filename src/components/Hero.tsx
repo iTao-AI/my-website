@@ -1,27 +1,41 @@
+import heroGraphic from '../assets/hero.png'
+
 export function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-white px-6 pb-16 pt-28 text-zinc-950 sm:px-12 lg:pb-24 lg:pt-36"
+      className="relative overflow-hidden bg-white px-6 pb-16 pt-28 text-zinc-950 sm:px-12 lg:pb-24 lg:pt-32"
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
-        <div>
-          <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-700">
-            AI Agent 工程师
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)] bg-[size:72px_72px] opacity-35" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-emerald-50/70" />
+
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="max-w-4xl">
+          <p className="font-mono text-sm uppercase tracking-[0.22em] text-emerald-700">
+            Yang Tao · AI Agent Engineer
           </p>
-          <h1 className="mt-5 max-w-4xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl lg:text-7xl">
-            我主要做 AI Agent 工程
+          <h1 className="mt-5 text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl lg:text-8xl">
+            AI Agent
+            <span className="block text-emerald-700">Engineering</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600 sm:text-xl">
-            关注怎么把大模型能力转化成可追踪、可审计、
-            可接入业务系统的工程链路。
-          </p>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-700">
-            当前作品集围绕三个方向：深度研究 Agent、多模态 RAG-OCR、
-            OpenClaw 多 Agent 工作流编排。
+          <p className="mt-7 max-w-3xl break-all text-lg leading-8 text-zinc-700 sm:break-words sm:text-2xl sm:leading-9">
+            把大模型能力转化成可追踪的任务执行、可验证的来源记录、
+            可拒答的知识检索和可编排的业务流程。
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 grid max-w-3xl grid-cols-1 gap-3 text-sm font-medium text-zinc-700 sm:grid-cols-3">
+            <span className="border-l-2 border-emerald-600 bg-white/75 px-4 py-3">
+              深度研究 Agent
+            </span>
+            <span className="border-l-2 border-emerald-600 bg-white/75 px-4 py-3">
+              多模态 RAG-OCR
+            </span>
+            <span className="border-l-2 border-emerald-600 bg-white/75 px-4 py-3">
+              多 Agent 工作流
+            </span>
+          </div>
+
+          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <a
               href="#projects"
               className="inline-flex items-center justify-center rounded-md bg-zinc-950 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
@@ -39,33 +53,66 @@ export function Hero() {
           </div>
         </div>
 
-        <aside className="rounded-lg border border-zinc-200 bg-zinc-950 p-5 text-zinc-100 shadow-2xl">
+        <aside className="relative overflow-hidden rounded-lg border border-zinc-200 bg-zinc-950 p-5 text-zinc-100 shadow-2xl">
+          <img
+            src={heroGraphic}
+            alt=""
+            loading="lazy"
+            className="absolute -right-10 -top-12 w-44 opacity-55"
+          />
           <div className="flex items-center gap-2 border-b border-white/10 pb-4">
             <span className="h-3 w-3 rounded-full bg-red-400" />
             <span className="h-3 w-3 rounded-full bg-amber-400" />
             <span className="h-3 w-3 rounded-full bg-emerald-400" />
-            <span className="ml-3 font-mono text-xs text-zinc-500">agent-run.json</span>
+            <span className="ml-3 font-mono text-xs text-zinc-500">agent-system.trace</span>
           </div>
-          <dl className="mt-5 space-y-4 font-mono text-sm">
-            <div className="flex items-center justify-between gap-6">
-              <dt className="text-zinc-500">状态</dt>
-              <dd className="text-emerald-300">已完成</dd>
+          <div className="relative mt-6">
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-emerald-300">
+              execution chain
+            </p>
+            <h2 className="mt-3 break-all text-2xl font-semibold tracking-tight text-white sm:break-words sm:text-3xl">
+              从任务到报告，每一步都能回看
+            </h2>
+          </div>
+          <dl className="relative mt-7 space-y-4 font-mono text-sm">
+            <div className="flex min-w-0 items-center justify-between gap-4">
+              <dt className="shrink-0 text-zinc-500">01. run state</dt>
+              <dd className="min-w-0 break-words text-right text-emerald-300">ResearchRun</dd>
             </div>
-            <div className="flex items-center justify-between gap-6">
-              <dt className="text-zinc-500">审计</dt>
-              <dd>ResearchRun</dd>
+            <div className="flex min-w-0 items-center justify-between gap-4">
+              <dt className="shrink-0 text-zinc-500">02. source log</dt>
+              <dd className="min-w-0 break-words text-right">EvidenceLedger</dd>
             </div>
-            <div className="flex items-center justify-between gap-6">
-              <dt className="text-zinc-500">来源</dt>
-              <dd>EvidenceLedger</dd>
+            <div className="flex min-w-0 items-center justify-between gap-4">
+              <dt className="shrink-0 text-zinc-500">03. knowledge gate</dt>
+              <dd className="min-w-0 break-words text-right">DocumentQualityReport</dd>
             </div>
-            <div className="flex items-center justify-between gap-6">
-              <dt className="text-zinc-500">知识</dt>
-              <dd>DocumentQualityReport</dd>
+            <div className="flex min-w-0 items-center justify-between gap-4">
+              <dt className="shrink-0 text-zinc-500">04. workflow</dt>
+              <dd className="min-w-0 break-words text-right">Router / HiTL</dd>
             </div>
-            <div className="flex items-center justify-between gap-6">
-              <dt className="text-zinc-500">路由</dt>
-              <dd>5/5 验证</dd>
+          </dl>
+          <dl className="relative mt-8 grid grid-cols-3 border-t border-white/10 pt-5 text-center">
+            <div>
+              <dt className="sr-only">Deep Search Agent 测试</dt>
+              <dd>
+                <span className="block text-2xl font-semibold text-white">325</span>
+                <span className="mt-1 block text-xs text-zinc-500">tests</span>
+              </dd>
+            </div>
+            <div>
+              <dt className="sr-only">RAG-OCR 测试</dt>
+              <dd>
+                <span className="block text-2xl font-semibold text-white">55</span>
+                <span className="mt-1 block text-xs text-zinc-500">RAG checks</span>
+              </dd>
+            </div>
+            <div>
+              <dt className="sr-only">OpenClaw 路由验证</dt>
+              <dd>
+                <span className="block text-2xl font-semibold text-white">5/5</span>
+                <span className="mt-1 block text-xs text-zinc-500">routes</span>
+              </dd>
             </div>
           </dl>
         </aside>

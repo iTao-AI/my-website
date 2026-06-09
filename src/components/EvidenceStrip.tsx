@@ -9,7 +9,7 @@ export function EvidenceStrip() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-7 max-w-3xl">
           <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-300">
-            工程证据
+            工程记录
           </p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
             用可复验结果说明当前工程完成度

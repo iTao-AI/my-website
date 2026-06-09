@@ -13,12 +13,11 @@ export function ProjectSection() {
             项目案例
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">
-            不只展示功能，更展示可靠性、证据和边界
+            三个主项目，覆盖 Agent 工程的关键链路
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-600">
-            这三个主项目不是简单罗列功能，而是分别对应外部研究、内部知识检索、
-            业务流程编排三个工程层次。每个项目都尽量把「怎么做、怎么验证、下一步是什么」
-            讲清楚。
+            从开放式研究、内部知识检索到业务流程编排，项目展示重点放在系统结构、
+            工程实现和可复验运行记录。
           </p>
         </div>
 

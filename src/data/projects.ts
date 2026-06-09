@@ -1,4 +1,5 @@
 export interface Project {
+  slug: string
   title: string
   eyebrow: string
   description: string
@@ -13,6 +14,7 @@ export interface Project {
   evidence: string[]
   boundary: string
   tags: string[]
+  videoUrl?: string
 }
 
 export interface EvidenceMetric {
@@ -74,6 +76,7 @@ export const systemLayers: SystemLayer[] = [
 
 export const projects: Project[] = [
   {
+    slug: 'deep-search-agent',
     title: 'Deep Search Agent',
     eyebrow: '可审计研究 Agent',
     description: '多 Agent 深度研究系统，把复杂问题转成可追踪的任务执行、来源证据和结构化报告。',
@@ -114,6 +117,7 @@ export const projects: Project[] = [
     tags: ['Agent', '证据链', '工具调用', 'FastAPI'],
   },
   {
+    slug: 'rag-ocr',
     title: 'RAG-OCR',
     eyebrow: 'Agent 可调用知识工具',
     description: '多模态文档检索服务，支持 PDF、扫描件、Markdown chunk、来源元数据和低置信拒答。',
@@ -154,6 +158,7 @@ export const projects: Project[] = [
     tags: ['RAG', 'OCR', '质量门禁', 'Milvus'],
   },
   {
+    slug: 'openclaw-hr',
     title: 'OpenClaw HR',
     eyebrow: '多 Agent 工作流编排',
     description: '本地多 Agent HR 工作流系统，负责请求路由、工具调用和人工升级边界。',
