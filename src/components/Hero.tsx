@@ -18,7 +18,7 @@ export function Hero() {
             AI Agent
             <span className="block text-emerald-700">Engineering</span>
           </h1>
-          <p className="mt-7 max-w-3xl break-all text-lg leading-8 text-zinc-700 sm:break-words sm:text-2xl sm:leading-9">
+          <p className="mt-7 max-w-3xl break-words text-lg leading-8 text-zinc-700 sm:text-2xl sm:leading-9">
             把大模型能力转化成可追踪的任务执行、可验证的来源记录、
             可拒答的知识检索和可编排的业务流程。
           </p>
@@ -70,7 +70,7 @@ export function Hero() {
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-emerald-300">
               execution chain
             </p>
-            <h2 className="mt-3 break-all text-2xl font-semibold tracking-tight text-white sm:break-words sm:text-3xl">
+            <h2 className="mt-3 break-words text-2xl font-semibold tracking-tight text-white sm:text-3xl">
               从任务到报告，每一步都能回看
             </h2>
           </div>
