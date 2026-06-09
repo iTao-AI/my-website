@@ -3,16 +3,7 @@ export type Theme = 'dark' | 'light';
 const STORAGE_KEY = 'theme-preference';
 
 /**
- * Detect system theme preference.
- */
-function getSystemPreference(): Theme {
-  return window.matchMedia('(prefers-color-scheme: light)').matches
-    ? 'light'
-    : 'dark';
-}
-
-/**
- * Read theme from localStorage, falling back to system preference, then dark.
+ * Read theme from localStorage, falling back to the portfolio's light canvas.
  */
 export function getInitialTheme(): Theme {
   try {
@@ -23,7 +14,7 @@ export function getInitialTheme(): Theme {
   } catch {
     // localStorage unavailable — fall through
   }
-  return getSystemPreference();
+  return 'light';
 }
 
 /**

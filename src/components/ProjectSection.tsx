@@ -5,23 +5,24 @@ export function ProjectSection() {
   return (
     <section
       id="projects"
-      className="min-h-screen px-6 sm:px-12 py-20
-                 bg-zinc-50 dark:bg-zinc-950
-                 transition-colors duration-300"
+      className="bg-zinc-50 px-6 py-20 text-zinc-950 sm:px-12"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Section header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-5xl font-bold text-zinc-900 dark:text-zinc-100">
-            项目
+        <div className="mb-12 max-w-3xl">
+          <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-700">
+            项目案例
+          </p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">
+            不只展示功能，更展示可靠性、证据和边界
           </h2>
-          <p className="mt-4 text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
-            以下是我近期参与或独立构建的项目，每个项目都代表了一次技术探索。
+          <p className="mt-5 text-lg leading-8 text-zinc-600">
+            这三个主项目不是简单罗列功能，而是分别对应外部研究、内部知识检索、
+            业务流程编排三个工程层次。每个项目都尽量把「怎么做、怎么验证、下一步是什么」
+            讲清楚。
           </p>
         </div>
 
-        {/* Project grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="space-y-8">
           {projects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
