@@ -33,7 +33,7 @@ export interface SystemLayer {
 export const evidenceMetrics: EvidenceMetric[] = [
   {
     label: 'Deep Search Agent',
-    value: '325 项通过',
+    value: '46 文件 / 325 项通过',
     note: 'ResearchRun、EvidenceLedger、超时审计',
   },
   {
@@ -49,7 +49,7 @@ export const evidenceMetrics: EvidenceMetric[] = [
   {
     label: '路由验证',
     value: '5/5 路由',
-    note: 'OpenClaw HR 子会话路由验证',
+    note: 'OpenClaw HR：五类请求均路由到预期子 Agent',
   },
 ]
 
@@ -67,10 +67,10 @@ export const systemLayers: SystemLayer[] = [
     proof: 'DocumentQualityReport',
   },
   {
-    title: 'OpenClaw HR',
+    title: 'OpenClaw HR 多 Agent 编排与 Skills 工具体系',
     label: '流程编排',
-    description: '把 HR 请求路由到不同子 Agent，并连接内部知识检索与外部研究工具。',
-    proof: 'Router + Tool Client E2E',
+    description: '设计 Router + 5 业务子 Agent 编排，通过 Skills 工具体系连接内部知识检索与外部研究工具。',
+    proof: 'Router + Skills E2E',
   },
 ]
 
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     proofPoints: [
       {
         label: '测试证据',
-        value: '325 项通过',
+        value: '46 文件 / 325 项通过',
         note: '后端回归测试',
       },
       {
@@ -109,7 +109,7 @@ export const projects: Project[] = [
       '通过 SharedContext 扩展子 Agent 搜索证据采集，并对 URL 做去重',
     ],
     evidence: [
-      '本地后端测试 325 项通过',
+      '本地后端测试：46 个测试文件，325 项通过',
       '已准备 benchmark runner 和 5 条查询快照，用于重复分析延迟、成本和 fallback',
       '已验证上游编排器通过 Tool Client 调用 research-run API 的链路',
     ],
@@ -159,11 +159,11 @@ export const projects: Project[] = [
   },
   {
     slug: 'openclaw-hr',
-    title: 'OpenClaw HR',
-    eyebrow: '多 Agent 工作流编排',
-    description: '本地多 Agent HR 工作流系统，负责请求路由、工具调用和人工升级边界。',
-    summaryZh: '不只编排，更关注路由正确性、工具调用边界和人工升级时机。',
-    role: '核心开发 / 集成验证',
+    title: 'OpenClaw HR 多 Agent 编排与 Skills 工具体系',
+    eyebrow: '多 Agent 编排与工具接入',
+    description: '基于 OpenClaw 设计 HR 场景多 Agent 编排方案，围绕 Router、业务子 Agent、Skills、内部知识工具和外部研究工具构建可验证的本机工作流。',
+    summaryZh: '不只编排，更关注路由正确性、Skills 工具设计和人工升级边界。',
+    role: 'Agent 编排设计 / Skills 开发 / 工具接入验证',
     stack: ['OpenClaw', 'Multi-Agent', 'Skills', 'Lobster', 'Cron', 'Python', 'RAG-OCR'],
     proofPoints: [
       {
@@ -182,19 +182,20 @@ export const projects: Project[] = [
         note: '需要时升级给人工',
       },
     ],
-    problem: '业务 Agent 不能只靠一个大助手回答所有问题，它需要路由、专业子工作区、政策检索和人工升级机制。',
-    architecture: 'Router 将 HR 请求分发给招聘、入职、培训、绩效和行政 Agent。RAG-OCR 提供内部知识检索，Deep Search Agent 提供外部研究能力。',
+    problem: '业务 Agent 不能只靠一个大助手回答所有问题，需要设计路由策略、Skills 工具体系、内外部知识工具接入和人工升级边界。',
+    architecture: 'Router 统一入口分发到招聘、入职、培训、绩效、行政 5 个业务子 Agent。RAG-OCR 通过 er-admin Skill 提供内部知识检索，Deep Search Agent 通过 external research Skill 提供外部研究能力。',
     built: [
-      '配置隔离本地 profile，包含 Router 和五个 HR 专项 Agent',
-      '验证五类 HR 请求的 childSessionKey 路由，以及歧义请求下的澄清行为',
-      '接入 RAG-OCR 作为内部知识工具，接入 Deep Search Agent 作为外部研究工具，并配置 API 鉴权',
+      '设计 Router + 5 业务子 Agent 编排，配置本机隔离 profile 和路由规则',
+      '设计 er-admin Skill，将 RAG-OCR 封装为内部知识工具，支持政策检索、来源引用和无依据拒答',
+      '设计 external research Skill，将 Deep Search Agent 接入 Router，完成鉴权、任务创建和 ResearchRun 审计',
+      '使用"脚本管数字、LLM 管语义"方式约束风险：月报由 CSV 生成并回核，360 反馈只聚合不定级',
     ],
     evidence: [
-      '5/5 类 HR 请求路由到预期子会话',
-      '本地工具链完成 API 鉴权、健康检查、任务创建和 ResearchRun 审计验证',
-      '月度数据和反馈流程区分脚本负责的数字与 LLM 负责的语言生成',
+      '5/5 类 HR 请求通过 childSessionKey 路由到预期子 Agent',
+      '本机 E2E 验证覆盖 Router、内部知识工具和外部研究工具接入',
+      '保留人工升级、合规红线、来源引用和无依据拒答机制',
     ],
     boundary: '已完成本机多 Agent 集成验证，后续可扩展到企业知识库和流程自动化。',
-    tags: ['OpenClaw', 'Router', '流程编排', 'HiTL'],
+    tags: ['OpenClaw', 'Skills', '编排', 'Tool E2E'],
   },
 ]

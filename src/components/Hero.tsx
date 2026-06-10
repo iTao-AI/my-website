@@ -94,17 +94,17 @@ export function Hero() {
           </dl>
           <dl className="relative mt-8 grid grid-cols-3 border-t border-white/10 pt-5 text-center">
             <div>
-              <dt className="sr-only">Deep Search Agent 测试</dt>
+              <dt className="sr-only">Deep Search Agent 测试：46 个测试文件，325 项通过</dt>
               <dd>
                 <span className="block text-2xl font-semibold text-white">325</span>
-                <span className="mt-1 block text-xs text-zinc-500">tests</span>
+                <span className="mt-1 block text-xs text-zinc-500">passed · 46 files</span>
               </dd>
             </div>
             <div>
-              <dt className="sr-only">RAG-OCR 测试</dt>
+              <dt className="sr-only">RAG-OCR 测试：55 项通过，6 项因环境跳过</dt>
               <dd>
                 <span className="block text-2xl font-semibold text-white">55</span>
-                <span className="mt-1 block text-xs text-zinc-500">RAG checks</span>
+                <span className="mt-1 block text-xs text-zinc-500">passed · 6 skipped</span>
               </dd>
             </div>
             <div>
