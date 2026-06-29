@@ -104,7 +104,7 @@ const forbiddenPatterns = [
   ['active RAG-OCR identity', /\bRAG-OCR\b/],
   ['multimodal-rag-ocr link or slug', /multimodal-rag-ocr/],
   ['private local path', /\/Users\/[A-Za-z0-9._-]+/],
-  ['env file reference', /\.env(?:\b|_)/],
+  ['env file reference', /(^|[^A-Za-z0-9_.])\.env(?:\b|_)/],
   ['likely GitHub token', /ghp_[A-Za-z0-9_]{20,}/],
   ['likely OpenAI key', /sk-[A-Za-z0-9_-]{20,}/],
   ['generic secret assignment', /\b(?:SECRET|TOKEN|PASSWORD|API_KEY)\s*[:=]\s*['"][^'"]+['"]/i],

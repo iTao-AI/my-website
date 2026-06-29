@@ -11,14 +11,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <p className="font-mono text-xs tracking-[0.18em] text-emerald-700">
           {project.eyebrow}
         </p>
-        <h3 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950">
+        <h3 className="mt-3 break-words text-3xl font-semibold tracking-tight text-zinc-950 [overflow-wrap:anywhere]">
           {project.title}
         </h3>
         <p className="mt-4 text-base leading-7 text-zinc-600">
           {project.description}
         </p>
         <p className="mt-5 text-sm font-medium text-zinc-500">
-          {project.role}
+          {project.role} · {project.status}
         </p>
       </div>
 
@@ -64,6 +64,14 @@ export function ProjectCard({ project }: ProjectCardProps) {
           >
             查看系统拆解
           </a>
+          {project.videoUrl ? (
+            <a
+              href={`#/projects/${project.slug}`}
+              className="inline-flex items-center justify-center rounded-md border border-emerald-700 px-4 py-2 text-sm font-medium text-emerald-800 transition-colors hover:border-emerald-900 hover:text-emerald-950"
+            >
+              观看演示
+            </a>
+          ) : null}
           {project.githubUrl ? (
             <a
               href={project.githubUrl}

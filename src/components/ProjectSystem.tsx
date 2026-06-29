@@ -12,7 +12,7 @@ export function ProjectSystem() {
             三个项目，对应一条 Agent 工程链路
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-600">
-            三个项目分别对应外部研究、内部知识检索、
+            三个项目分别对应外部研究服务、内部 Evidence engine、
             业务工作流编排三个工程层次，组成一条清晰的 Agent 工程链路。
           </p>
         </div>
@@ -31,7 +31,7 @@ export function ProjectSystem() {
                   {layer.label}
                 </span>
               </div>
-              <h3 className="mt-8 text-2xl font-semibold tracking-tight">
+              <h3 className="mt-8 break-words text-2xl font-semibold tracking-tight [overflow-wrap:anywhere]">
                 {layer.title}
               </h3>
               <p className="mt-4 text-base leading-7 text-zinc-600">

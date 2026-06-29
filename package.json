@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "videos": "node scripts/generate-project-videos.mjs",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

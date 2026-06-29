@@ -6,7 +6,7 @@ interface ProjectDetailPageProps {
 
 export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
   return (
-    <main className="bg-white pt-24 text-zinc-950">
+    <main className="overflow-x-hidden bg-white pt-24 text-zinc-950">
       <section className="px-6 pb-16 pt-8 sm:px-12">
         <div className="mx-auto max-w-7xl">
           <a
@@ -17,17 +17,17 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
           </a>
 
           <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-            <div>
+            <div className="min-w-0">
               <p className="font-mono text-sm uppercase tracking-[0.2em] text-emerald-700">
                 {project.eyebrow}
               </p>
-              <h1 className="mt-5 text-5xl font-semibold leading-tight tracking-tight sm:text-7xl">
+              <h1 className="mt-5 break-words text-5xl font-semibold leading-tight tracking-tight [overflow-wrap:anywhere] sm:text-7xl">
                 {project.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-xl leading-9 text-zinc-700">
+              <p className="mt-6 max-w-3xl break-words text-xl leading-9 text-zinc-700 [overflow-wrap:anywhere]">
                 {project.description}
               </p>
-              <p className="mt-6 max-w-3xl border-l-2 border-emerald-600 pl-5 text-lg leading-8 text-zinc-800">
+              <p className="mt-6 max-w-3xl break-words border-l-2 border-emerald-600 pl-5 text-lg leading-8 text-zinc-800 [overflow-wrap:anywhere]">
                 {project.summaryZh}
               </p>
 
@@ -35,7 +35,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                 {project.stack.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-zinc-200 px-3 py-1 text-xs font-medium text-zinc-700"
+                    className="max-w-full min-w-0 break-words rounded-full border border-zinc-200 px-3 py-1 text-xs font-medium text-zinc-700 [overflow-wrap:anywhere]"
                   >
                     {item}
                   </span>
@@ -43,7 +43,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
               </div>
             </div>
 
-            <aside className="border border-zinc-200 bg-zinc-50 p-6">
+            <aside className="min-w-0 border border-zinc-200 bg-zinc-50 p-6">
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-zinc-500">
                 project profile
               </p>
@@ -52,6 +52,12 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
                   <dt className="text-sm font-medium text-zinc-500">角色</dt>
                   <dd className="mt-1 text-lg font-semibold text-zinc-950">
                     {project.role}
+                  </dd>
+                </div>
+                <div className="border-t border-zinc-200 pt-5">
+                  <dt className="text-sm font-medium text-zinc-500">状态</dt>
+                  <dd className="mt-1 break-words text-lg font-semibold text-zinc-950 [overflow-wrap:anywhere]">
+                    {project.status}
                   </dd>
                 </div>
                 {project.proofPoints.map((point) => (
@@ -91,11 +97,18 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
         <section className="border-t border-zinc-200 px-6 py-16 sm:px-12">
           <div className="mx-auto max-w-7xl">
             <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-700">
-              walkthrough
+              项目演示
+            </p>
+            <h2 className="mt-4 max-w-3xl break-words text-3xl font-semibold tracking-tight text-zinc-950 [overflow-wrap:anywhere] sm:text-5xl">
+              90 秒内看清系统链路和工程证据
+            </h2>
+            <p className="mt-4 max-w-3xl break-words text-base leading-7 text-zinc-600 [overflow-wrap:anywhere]">
+              无音频短片，适合快速浏览；现场讲解时可以结合代码、Release 和运行记录展开。
             </p>
             <div className="mt-6 aspect-video overflow-hidden border border-zinc-200 bg-zinc-950">
               <video
                 src={project.videoUrl}
+                poster={project.videoPoster}
                 controls
                 preload="metadata"
                 className="h-full w-full"
@@ -146,11 +159,13 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
 
 function NarrativeBlock({ title, body }: { title: string; body: string }) {
   return (
-    <section>
+    <section className="min-w-0">
       <h2 className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-700">
         {title}
       </h2>
-      <p className="mt-5 text-xl leading-9 text-zinc-700">{body}</p>
+      <p className="mt-5 break-words text-xl leading-9 text-zinc-700 [overflow-wrap:anywhere]">
+        {body}
+      </p>
     </section>
   )
 }
@@ -170,8 +185,8 @@ function DetailList({
     <section
       className={
         dark
-          ? 'bg-zinc-950 p-6 text-zinc-100'
-          : 'border border-zinc-200 bg-white p-6 text-zinc-950'
+          ? 'min-w-0 bg-zinc-950 p-6 text-zinc-100'
+          : 'min-w-0 border border-zinc-200 bg-white p-6 text-zinc-950'
       }
     >
       <h2
@@ -189,8 +204,8 @@ function DetailList({
             key={item}
             className={
               dark
-                ? 'border-l border-emerald-400/50 pl-4 text-base leading-7 text-zinc-300'
-                : 'border-l border-emerald-600 pl-4 text-base leading-7 text-zinc-700'
+                ? 'break-words border-l border-emerald-400/50 pl-4 text-base leading-7 text-zinc-300 [overflow-wrap:anywhere]'
+                : 'break-words border-l border-emerald-600 pl-4 text-base leading-7 text-zinc-700 [overflow-wrap:anywhere]'
             }
           >
             {item}

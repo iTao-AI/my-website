@@ -6,6 +6,7 @@ export interface Project {
   summaryZh: string
   githubUrl?: string
   role: string
+  status: string
   stack: string[]
   proofPoints: EvidenceMetric[]
   problem: string
@@ -15,6 +16,7 @@ export interface Project {
   boundary: string
   tags: string[]
   videoUrl?: string
+  videoPoster?: string
 }
 
 export interface EvidenceMetric {
@@ -30,172 +32,225 @@ export interface SystemLayer {
   proof: string
 }
 
+const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path}`
+
 export const evidenceMetrics: EvidenceMetric[] = [
   {
-    label: 'Deep Search Agent',
-    value: '46 文件 / 325 项通过',
-    note: 'ResearchRun、EvidenceLedger、超时审计',
+    label: 'Decision Research Agent',
+    value: 'v0.1.0',
+    note: 'backend-and-CLI release',
   },
   {
-    label: 'RAG-OCR',
-    value: '55 通过 / 6 跳过',
-    note: 'DocumentQualityReport 和低置信拒答',
+    label: 'Durable HITL',
+    value: '13/13',
+    note: 'single-node SQLite feasibility gates',
   },
   {
-    label: '知识库样本',
-    value: '761 个 chunks',
-    note: '5 个样本，100 条 Top5 检索记录',
+    label: 'multimodal-knowledge-engine',
+    value: 'Active Development',
+    note: 'local CLI, stdio MCP, active Publications',
   },
   {
-    label: '路由验证',
-    value: '5/5 路由',
-    note: 'OpenClaw HR：五类请求均路由到预期子 Agent',
+    label: 'OpenClaw HR',
+    value: 'orchestration layer',
+    note: 'Router, Skills, human escalation boundary',
   },
 ]
 
 export const systemLayers: SystemLayer[] = [
   {
-    title: 'Deep Search Agent',
+    title: 'Decision Research Agent',
     label: '外部研究',
-    description: '把开放式研究任务转成可审计的执行记录，包含状态、来源证据、fallback 和 token 使用情况。',
-    proof: 'ResearchRun + EvidenceLedger',
+    description:
+      '把开放式研究任务收敛成可审计的 ResearchRun、EvidenceLedger 和 canonical result。',
+    proof: 'LangChain + DeepAgents + LangGraph',
   },
   {
-    title: 'RAG-OCR',
-    label: '内部知识',
-    description: '解析文档、检索来源片段，并在低置信场景下先拒答，避免无依据调用 LLM。',
-    proof: 'DocumentQualityReport',
+    title: 'multimodal-knowledge-engine',
+    label: '内部证据',
+    description:
+      '将文档和媒体转成 active Publications，让 Agent 只能检索、引用和询问已发布 Evidence。',
+    proof: 'CLI / MCP / evidence-only Ask',
   },
   {
-    title: 'OpenClaw HR 多 Agent 编排与 Skills 工具体系',
+    title: 'OpenClaw HR',
     label: '流程编排',
-    description: '设计 Router + 5 业务子 Agent 编排，通过 Skills 工具体系连接内部知识检索与外部研究工具。',
-    proof: 'Router + Skills E2E',
+    description:
+      '用 Router 和 Skills 把业务请求分配到 HR 子工作流，并连接研究服务、证据检索和人工升级边界。',
+    proof: 'Router + Skills + HiTL',
   },
 ]
 
 export const projects: Project[] = [
   {
-    slug: 'deep-search-agent',
-    title: 'Deep Search Agent',
-    eyebrow: '可审计研究 Agent',
-    description: '多 Agent 深度研究系统，把复杂问题转成可追踪的任务执行、来源证据和结构化报告。',
-    summaryZh: '工程重心不在"能回答"，而在回答可追踪、可审计、失败可诊断。',
-    githubUrl: 'https://github.com/iTao-AI/deep-search-agent',
+    slug: 'decision-research-agent',
+    title: 'Decision Research Agent',
+    eyebrow: '可审计研究服务',
+    description:
+      '基于 LangChain Agent Framework、DeepAgents research harness 和 LangGraph durable workflow runtime 的研究服务。',
+    summaryZh:
+      '工程重点是把开放式研究变成可追踪运行、可复核证据、可审查交付，而不是只生成一次性答案。',
+    githubUrl: 'https://github.com/iTao-AI/decision-research-agent',
     role: '独立开发 / 核心开发',
-    stack: ['LangGraph', 'DeepAgents', 'FastAPI', 'WebSocket', 'SQLite', 'Tavily', 'RAGFlow'],
+    status: 'v0.1.0 backend-and-CLI release',
+    stack: [
+      'LangChain Agent Framework',
+      'DeepAgents research harness',
+      'LangGraph durable workflow runtime',
+      'FastAPI',
+      'SQLite',
+      'LangSmith diagnostics',
+    ],
     proofPoints: [
       {
-        label: '测试证据',
-        value: '46 文件 / 325 项通过',
-        note: '后端回归测试',
+        label: 'Release',
+        value: 'v0.1.0',
+        note: 'backend-and-CLI surface',
       },
       {
-        label: '运行审计',
-        value: 'ResearchRun',
-        note: '任务状态、token、超时',
+        label: 'State authority',
+        value: 'application DB',
+        note: 'ResearchRun / EvidenceLedger',
       },
       {
-        label: '来源链路',
-        value: 'EvidenceLedger',
-        note: 'URL、片段、引用状态',
+        label: 'Durable HITL',
+        value: '13/13',
+        note: 'controlled single-node gate',
       },
     ],
-    problem: '开放式研究 Agent 很容易做出一次看起来不错的结果，但难点在于持续可信：任务状态、来源证据、失败诊断和可查询审计链路都必须补齐。',
-    architecture: '主 Agent 负责拆解和委派任务，网络搜索、数据库和知识库子 Agent 负责不同能力。后端提供任务 API、WebSocket 状态事件、健康检查和 research-run 查询接口。',
+    problem:
+      '研究型 Agent 的风险不只是答错，还包括运行状态不可回看、证据链丢失、人工审查结果和业务交付状态混在运行框架里。',
+    architecture:
+      'FastAPI 和 Tool Client 进入 ResearchExecutionService；DeepAgents research harness 执行研究，LangChain 负责 agent framework，LangGraph 提供 durable workflow runtime。application DB business authority 持有 ResearchRun、EvidenceLedger、review、verification、publication 和 canonical result state，LangSmith 只做 privacy-first diagnostics。',
     built: [
-      '实现 ResearchRun 和 EvidenceLedger 持久化，记录任务状态、token 使用、fallback、超时、来源 URL、引用状态和质量门禁',
-      '使用 ContextVar 隔离并发请求中的 thread、workspace 和 callback 状态',
-      '通过 SharedContext 扩展子 Agent 搜索证据采集，并对 URL 做去重',
+      '定义 LangChain Agent Framework、DeepAgents research harness、LangGraph durable workflow runtime、application DB business authority 的分层边界',
+      '实现 canonical run_id scoped execution、ResearchRun / EvidenceLedger persistence 和 GET /api/runs/{run_id}/result canonical result delivery',
+      '交付 Talent Hiring Signal 作为 bounded research profile，并通过 Talent value gate 验证固定样本流程',
+      '将 durable review 和 evidence verification 保持为 controlled features default off，限定在 single-node SQLite feasibility boundary',
     ],
     evidence: [
-      '本地后端测试：46 个测试文件，325 项通过',
-      '已准备 benchmark runner 和 5 条查询快照，用于重复分析延迟、成本和 fallback',
-      '已验证上游编排器通过 Tool Client 调用 research-run API 的链路',
+      'Public v0.1.0 GitHub Release and repository VERSION record the backend-and-CLI release',
+      'docs/architecture.md records framework/runtime/service ownership and application DB authority',
+      'docs/evidence/README.md records 13/13 durable HITL gate scope and the fixed-sample proof boundary',
     ],
-    boundary: '当前定位是可重复测量的评测框架，下一步会扩展更多查询样本和多轮运行对比。',
-    tags: ['Agent', '证据链', '工具调用', 'FastAPI'],
+    boundary:
+      'v0.1.0 has no bundled frontend, no public production deployment, and controlled features default off. Talent and real-source fixed samples are not market accuracy, production readiness, or automatic truth verification.',
+    tags: ['Agent', 'ResearchRun', 'EvidenceLedger', 'HiTL'],
+    videoUrl: assetUrl('videos/decision-research-agent-showcase.mp4'),
+    videoPoster: assetUrl('videos/decision-research-agent-poster.png'),
   },
   {
-    slug: 'rag-ocr',
-    title: 'RAG-OCR',
-    eyebrow: 'Agent 可调用知识工具',
-    description: '多模态文档检索服务，支持 PDF、扫描件、Markdown chunk、来源元数据和低置信拒答。',
-    summaryZh: '不止检索，更关注来源质量、何时拒答、以及如何被 Agent 安全调用。',
-    githubUrl: 'https://github.com/iTao-AI/multimodal-rag-ocr',
+    slug: 'multimodal-knowledge-engine',
+    title: 'multimodal-knowledge-engine',
+    eyebrow: '本地优先 Evidence engine',
+    description:
+      'local-first Evidence engine，用 observable Runs、active Publications、Search 和 evidence-only Ask 支撑 Agent 可引用知识。',
+    summaryZh:
+      '它不是泛化问答平台，而是先保证成功发布的 Evidence 能被稳定检索、引用和询问，失败或部分处理结果不会进入 active surface。',
+    githubUrl: 'https://github.com/iTao-AI/multimodal-knowledge-engine',
     role: '独立开发 / 核心开发',
-    stack: ['FastAPI', 'Milvus', 'BM25', 'RRF', 'Reranker', 'Redis', 'OCR/VLM'],
+    status: 'Active Development',
+    stack: [
+      'Python',
+      'SQLite',
+      'FTS5',
+      'PyMuPDF',
+      'stdio MCP',
+      'CLI',
+      'local transcription',
+    ],
     proofPoints: [
       {
-        label: '测试证据',
-        value: '55 项通过',
-        note: '6 项因环境跳过',
+        label: 'Status',
+        value: 'Active Development',
+        note: 'merged public main only',
       },
       {
-        label: '质量门禁',
-        value: '拒答链路',
-        note: '弱检索不调用 LLM',
+        label: 'Surface',
+        value: 'CLI + MCP',
+        note: 'HTTP and workspace UI are not implemented',
       },
       {
-        label: '知识库样本',
-        value: '761 个 chunks',
-        note: '5 个样本文档',
+        label: 'Evidence',
+        value: 'active Publications',
+        note: 'page / timestamp locators',
       },
     ],
-    problem: '很多 RAG 系统在检索结果很弱时仍然会回答。作为 Agent 工具，它必须暴露来源质量，并且知道什么时候不该回答。',
-    architecture: '文档解析和 chunking 进入 Milvus 检索链路。问答侧组合 query rewrite、向量召回、BM25 融合、RRF、可选 rerank、缓存和生成前置信门禁。',
+    problem:
+      'Agent 可调用知识工具不能把失败、过期或来源不明的中间结果暴露给上层工作流；Search 和 Ask 只能读取已成功发布的 Evidence。',
+    architecture:
+      'Source 经 immutable Asset、observable Run、candidate Evidence、validated Run 和 atomic Publication switch 进入 active Search projection。SQLite 是 domain truth，FTS5 是 rebuildable projection；CLI 和 stdio MCP 共用同一 application contract。',
     built: [
-      '实现 Header-Recursive chunking，保留标题路径、页码标记、跨页桥接 chunk 和来源元数据',
-      '新增 DocumentQualityReport 和独立 min_confidence_threshold，覆盖空召回、弱召回和缓存低置信场景',
-      '把解析和检索包装成安全 HTTP Tool Service，加入 API key 鉴权和文件系统根目录约束',
+      '实现 text-layer PDF 和 documented short local video fixture 的 ingest、Run inspection、active Evidence Search 与 evidence-only Ask',
+      '保证 failed、partial、superseded output 不进入 active Publications，retry 生成新的 immutable Run',
+      '交付 deterministic local product proof、offline retrieval evaluation、numeric grouping query policy，以及 bounded CJK active scan owner-startup strategy',
+      '实现可选 cache-only local transcription runtime；model acquisition 仍是显式 opt-in preparation step',
     ],
     evidence: [
-      '本地测试 55 项通过，6 项因环境跳过',
-      '5 个样本处理为 761 个 chunks',
-      '记录 100 条 Top5 检索结果，并保留弱命中边界',
+      'README records deterministic local product proof for PDF/video lifecycle and stdio MCP interface',
+      'docs/explanation/architecture.md records Publication semantics, transcript protocol, retrieval evaluation, numeric grouping, and bounded CJK active scan',
+      'docs/README.md links the current proof, MCP, retrieval, numeric, Chinese, and CJK operation guides',
     ],
-    boundary: '下一步扩展复杂扫描件回归覆盖，并继续补充更多文档类型的检索质量记录。',
-    tags: ['RAG', 'OCR', '质量门禁', 'Milvus'],
+    boundary:
+      'Active Development claims are limited to merged public main. HTTP and workspace UI are not implemented, and the current proof does not claim scanned-PDF OCR, arbitrary video support, hosted coordination, bundled model weights, embeddings, vector search, hybrid retrieval, reranking, or broad CJK retrieval quality.',
+    tags: ['Evidence', 'MCP', 'Publication', 'Retrieval'],
+    videoUrl: assetUrl('videos/multimodal-knowledge-engine-showcase.mp4'),
+    videoPoster: assetUrl('videos/multimodal-knowledge-engine-poster.png'),
   },
   {
     slug: 'openclaw-hr',
-    title: 'OpenClaw HR 多 Agent 编排与 Skills 工具体系',
+    title: 'OpenClaw HR',
     eyebrow: '多 Agent 编排与工具接入',
-    description: '基于 OpenClaw 设计 HR 场景多 Agent 编排方案，围绕 Router、业务子 Agent、Skills、内部知识工具和外部研究工具构建可验证的本机工作流。',
-    summaryZh: '不只编排，更关注路由正确性、Skills 工具设计和人工升级边界。',
+    description:
+      'HR 场景编排层项目，用 Router、业务子 Agent、Skills 和人工升级边界连接研究服务与证据检索工具。',
+    summaryZh:
+      '展示重点是业务请求如何被路由、何时调用内部 Evidence 或外部研究工具，以及哪些决策必须交给人工。',
     role: 'Agent 编排设计 / Skills 开发 / 工具接入验证',
-    stack: ['OpenClaw', 'Multi-Agent', 'Skills', 'Lobster', 'Cron', 'Python', 'RAG-OCR'],
+    status: 'local orchestration proof',
+    stack: [
+      'OpenClaw',
+      'Multi-Agent',
+      'Skills',
+      'Router',
+      'HiTL',
+      'Decision Research Agent',
+      'multimodal-knowledge-engine',
+    ],
     proofPoints: [
       {
-        label: '路由检查',
-        value: '5/5 路由',
-        note: '子会话验证',
+        label: 'Layer',
+        value: 'orchestration',
+        note: 'not a production platform',
       },
       {
-        label: '工具链',
-        value: 'API auth',
-        note: '健康检查和任务创建',
+        label: 'Tools',
+        value: 'DRA / MKE',
+        note: 'research and Evidence services',
       },
       {
-        label: '边界',
+        label: 'Boundary',
         value: 'HiTL',
-        note: '需要时升级给人工',
+        note: 'human escalation remains explicit',
       },
     ],
-    problem: '业务 Agent 不能只靠一个大助手回答所有问题，需要设计路由策略、Skills 工具体系、内外部知识工具接入和人工升级边界。',
-    architecture: 'Router 统一入口分发到招聘、入职、培训、绩效、行政 5 个业务子 Agent。RAG-OCR 通过 er-admin Skill 提供内部知识检索，Deep Search Agent 通过 external research Skill 提供外部研究能力。',
+    problem:
+      'HR Agent 不能把所有问题交给一个通用助手；招聘、入职、培训、绩效和行政流程需要不同子工作流、工具权限和人工升级规则。',
+    architecture:
+      'Router 负责识别请求类型并选择业务子 Agent；Skills 层封装 Decision Research Agent 的外部研究能力和 multimodal-knowledge-engine 的内部 Evidence 检索能力；人工升级边界用于合规、定级和高影响决策。',
     built: [
-      '设计 Router + 5 业务子 Agent 编排，配置本机隔离 profile 和路由规则',
-      '设计 er-admin Skill，将 RAG-OCR 封装为内部知识工具，支持政策检索、来源引用和无依据拒答',
-      '设计 external research Skill，将 Deep Search Agent 接入 Router，完成鉴权、任务创建和 ResearchRun 审计',
-      '使用"脚本管数字、LLM 管语义"方式约束风险：月报由 CSV 生成并回核，360 反馈只聚合不定级',
+      '设计 Router + HR 子 Agent 编排，把研究服务、Evidence 检索和人工升级拆成明确职责',
+      '更新工具引用到 Decision Research Agent 和 multimodal-knowledge-engine 的 canonical identities',
+      '保留脚本管数字、LLM 管语义的风险边界，避免把自动生成文本当作最终业务判断',
     ],
     evidence: [
-      '5/5 类 HR 请求通过 childSessionKey 路由到预期子 Agent',
-      '本机 E2E 验证覆盖 Router、内部知识工具和外部研究工具接入',
-      '保留人工升级、合规红线、来源引用和无依据拒答机制',
+      'This website presents OpenClaw HR as an orchestration layer, not as a hosted production platform',
+      'Tool-layer references point to the public DRA and MKE repositories when a public code source exists',
+      'No public repository URL is advertised for OpenClaw HR because no public repository is available for this layer',
     ],
-    boundary: '已完成本机多 Agent 集成验证，后续可扩展到企业知识库和流程自动化。',
-    tags: ['OpenClaw', 'Skills', '编排', 'Tool E2E'],
+    boundary:
+      'OpenClaw HR is not expanded into a production platform, real enterprise adoption claim, or complete original product. Without a public repository, the site does not invent a GitHub link for this orchestration layer.',
+    tags: ['OpenClaw', 'Router', 'Skills', 'HiTL'],
+    videoUrl: assetUrl('videos/openclaw-hr-showcase.mp4'),
+    videoPoster: assetUrl('videos/openclaw-hr-poster.png'),
   },
 ]
