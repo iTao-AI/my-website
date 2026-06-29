@@ -16,7 +16,7 @@ export function ProjectSection() {
             三个主项目，覆盖 Agent 工程的关键链路
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-600">
-            从开放式研究、内部知识检索到业务流程编排，项目展示重点放在系统结构、
+            从开放式研究、内部 Evidence 检索到业务流程编排，项目展示重点放在系统结构、
             工程实现和可复验运行记录。
           </p>
         </div>

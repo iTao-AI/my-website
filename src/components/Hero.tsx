@@ -19,16 +19,16 @@ export function Hero() {
             <span className="block text-emerald-700">Engineering</span>
           </h1>
           <p className="mt-7 max-w-3xl break-words text-lg leading-8 text-zinc-700 sm:text-2xl sm:leading-9">
-            把大模型能力转化成可追踪的任务执行、可验证的来源记录、
-            可拒答的知识检索和可编排的业务流程。
+            把大模型能力转化成可追踪的 ResearchRun、可复核的 Evidence、
+            可发布的本地知识和可编排的业务流程。
           </p>
 
           <div className="mt-8 grid max-w-3xl grid-cols-1 gap-3 text-sm font-medium text-zinc-700 sm:grid-cols-3">
             <span className="border-l-2 border-emerald-600 bg-white/75 px-4 py-3">
-              深度研究 Agent
+              Decision Research Agent
             </span>
             <span className="border-l-2 border-emerald-600 bg-white/75 px-4 py-3">
-              多模态 RAG-OCR
+              multimodal-knowledge-engine
             </span>
             <span className="border-l-2 border-emerald-600 bg-white/75 px-4 py-3">
               多 Agent 工作流
@@ -94,24 +94,24 @@ export function Hero() {
           </dl>
           <dl className="relative mt-8 grid grid-cols-3 border-t border-white/10 pt-5 text-center">
             <div>
-              <dt className="sr-only">Deep Search Agent 测试：46 个测试文件，325 项通过</dt>
+              <dt className="sr-only">Decision Research Agent v0.1.0 release</dt>
               <dd>
-                <span className="block text-2xl font-semibold text-white">325</span>
-                <span className="mt-1 block text-xs text-zinc-500">passed · 46 files</span>
+                <span className="block text-2xl font-semibold text-white">v0.1.0</span>
+                <span className="mt-1 block text-xs text-zinc-500">backend · CLI</span>
               </dd>
             </div>
             <div>
-              <dt className="sr-only">RAG-OCR 测试：55 项通过，6 项因环境跳过</dt>
+              <dt className="sr-only">multimodal-knowledge-engine active development</dt>
               <dd>
-                <span className="block text-2xl font-semibold text-white">55</span>
-                <span className="mt-1 block text-xs text-zinc-500">passed · 6 skipped</span>
+                <span className="block text-2xl font-semibold text-white">MKE</span>
+                <span className="mt-1 block text-xs text-zinc-500">Active Development</span>
               </dd>
             </div>
             <div>
-              <dt className="sr-only">OpenClaw 路由验证</dt>
+              <dt className="sr-only">OpenClaw orchestration boundary</dt>
               <dd>
-                <span className="block text-2xl font-semibold text-white">5/5</span>
-                <span className="mt-1 block text-xs text-zinc-500">routes</span>
+                <span className="block text-2xl font-semibold text-white">HiTL</span>
+                <span className="mt-1 block text-xs text-zinc-500">orchestration</span>
               </dd>
             </div>
           </dl>

@@ -1,8 +1,8 @@
 const links = [
   { label: 'Email', href: 'mailto:tao.i@outlook.com' },
   { label: 'GitHub', href: 'https://github.com/iTao-AI' },
-  { label: 'Deep Search Agent', href: 'https://github.com/iTao-AI/deep-search-agent' },
-  { label: 'RAG-OCR', href: 'https://github.com/iTao-AI/multimodal-rag-ocr' },
+  { label: 'Decision Research Agent', href: 'https://github.com/iTao-AI/decision-research-agent' },
+  { label: 'multimodal-knowledge-engine', href: 'https://github.com/iTao-AI/multimodal-knowledge-engine' },
 ]
 
 export function ContactSection() {
