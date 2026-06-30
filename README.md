@@ -66,5 +66,5 @@ scripts/         内容契约与视频生成脚本
 - 项目事实、release、指标和验证结果必须来自公开仓库、公开 README 或可复验的机器报告。
 - 不提交 secret、token、cookie、私有路径、未公开材料或未验证指标。
 - 内容更新与视觉或架构变更分开 review，避免在仓库清理中混入项目事实改写。
-- Decision Research Agent 当前写作边界是 v0.1.0 backend-and-CLI release：no bundled frontend、no public production deployment、controlled features default off，fixed samples are not market accuracy。
+- Decision Research Agent v0.1.0 release boundary is backend-and-CLI. The React demo console and portfolio videos are post-release demo surfaces, not public production deployment; controlled features remain default off, and fixed samples are not market accuracy.
 - multimodal-knowledge-engine 当前状态是 Active Development：只描述 merged public main，HTTP and workspace UI are not implemented。
