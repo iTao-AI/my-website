@@ -5,6 +5,21 @@ interface ProjectDetailPageProps {
 }
 
 export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
+  const demos =
+    project.demos ??
+    (project.videoUrl && project.videoPoster
+      ? [
+          {
+            label: 'Project demo',
+            title: '90 秒内看清系统链路和工程证据',
+            description:
+              '无音频短片，适合快速浏览；现场讲解时可以结合代码、Release 和运行记录展开。',
+            videoUrl: project.videoUrl,
+            posterUrl: project.videoPoster,
+          },
+        ]
+      : [])
+
   return (
     <main className="overflow-x-hidden bg-white pt-24 text-zinc-950">
       <section className="px-6 pb-16 pt-8 sm:px-12">
@@ -93,26 +108,42 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
         </div>
       </section>
 
-      {project.videoUrl ? (
+      {demos.length > 0 ? (
         <section className="border-t border-zinc-200 px-6 py-16 sm:px-12">
           <div className="mx-auto max-w-7xl">
             <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-700">
               项目演示
             </p>
             <h2 className="mt-4 max-w-3xl break-words text-3xl font-semibold tracking-tight text-zinc-950 [overflow-wrap:anywhere] sm:text-5xl">
-              90 秒内看清系统链路和工程证据
+              演示视频与技术讲解
             </h2>
             <p className="mt-4 max-w-3xl break-words text-base leading-7 text-zinc-600 [overflow-wrap:anywhere]">
-              无音频短片，适合快速浏览；现场讲解时可以结合代码、Release 和运行记录展开。
+              {project.demoIntro ??
+                '无音频短片，适合快速浏览；现场讲解时可以结合代码、Release 和运行记录展开。'}
             </p>
-            <div className="mt-6 aspect-video overflow-hidden border border-zinc-200 bg-zinc-950">
-              <video
-                src={project.videoUrl}
-                poster={project.videoPoster}
-                controls
-                preload="metadata"
-                className="h-full w-full"
-              />
+            <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-2">
+              {demos.map((demo) => (
+                <article key={demo.videoUrl} className="min-w-0">
+                  <p className="font-mono text-xs tracking-[0.16em] text-emerald-700">
+                    {demo.label}
+                  </p>
+                  <h3 className="mt-3 break-words text-2xl font-semibold tracking-tight text-zinc-950 [overflow-wrap:anywhere]">
+                    {demo.title}
+                  </h3>
+                  <p className="mt-3 break-words text-sm leading-6 text-zinc-600 [overflow-wrap:anywhere]">
+                    {demo.description}
+                  </p>
+                  <div className="mt-5 aspect-video overflow-hidden border border-zinc-200 bg-zinc-950">
+                    <video
+                      src={demo.videoUrl}
+                      poster={demo.posterUrl}
+                      controls
+                      preload="metadata"
+                      className="h-full w-full"
+                    />
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>

@@ -17,12 +17,24 @@ export interface Project {
   tags: string[]
   videoUrl?: string
   videoPoster?: string
+  demoIntro?: string
+  demos?: ProjectDemo[]
 }
 
 export interface EvidenceMetric {
   label: string
   value: string
   note: string
+}
+
+export interface ProjectDemo {
+  label: string
+  title: string
+  description: string
+  videoUrl: string
+  posterUrl: string
+  ctaLabel?: string
+  primary?: boolean
 }
 
 export interface SystemLayer {
@@ -121,7 +133,7 @@ export const projects: Project[] = [
     problem:
       '研究型 Agent 的风险不只是答错，还包括运行状态不可回看、证据链丢失、人工审查结果和业务交付状态混在运行框架里。',
     architecture:
-      'FastAPI 和 Tool Client 进入 ResearchExecutionService；DeepAgents research harness 执行研究，LangChain 负责 agent framework，LangGraph 提供 durable workflow runtime。application DB business authority 持有 ResearchRun、EvidenceLedger、review、verification、publication 和 canonical result state，LangSmith 只做 privacy-first diagnostics。',
+      'FastAPI 和 Tool Client 进入 ResearchExecutionService；DeepAgents research harness 执行研究，LangChain 负责 agent framework，LangGraph 提供 durable workflow runtime。application DB business authority 持有 ResearchRun、EvidenceLedger、review、verification、publication 和 canonical result state，LangSmith 只做 privacy-first diagnostics。Agent-first research capability service 的展示重点是 evidence-led execution、canonical result 和 human-governed delivery。',
     built: [
       '定义 LangChain Agent Framework、DeepAgents research harness、LangGraph durable workflow runtime、application DB business authority 的分层边界',
       '实现 canonical run_id scoped execution、ResearchRun / EvidenceLedger persistence 和 GET /api/runs/{run_id}/result canonical result delivery',
@@ -134,10 +146,37 @@ export const projects: Project[] = [
       'docs/evidence/README.md records 13/13 durable HITL gate scope and the fixed-sample proof boundary',
     ],
     boundary:
-      'v0.1.0 has no bundled frontend, no public production deployment, and controlled features default off. Talent and real-source fixed samples are not market accuracy, production readiness, or automatic truth verification.',
+      'v0.1.0 has no bundled frontend, no public production deployment, and controlled features default off. Talent and real-source fixed samples are not market accuracy, production readiness, or automatic truth verification. The videos are deterministic loopback contract demo assets for portfolio review, not a real provider run or live research recording.',
     tags: ['Agent', 'ResearchRun', 'EvidenceLedger', 'HiTL'],
-    videoUrl: assetUrl('videos/decision-research-agent-showcase.mp4'),
-    videoPoster: assetUrl('videos/decision-research-agent-poster.png'),
+    videoUrl: assetUrl('videos/decision-research-agent-hr-demo-720p.mp4'),
+    videoPoster: assetUrl('videos/decision-research-agent-hr-demo-poster.png'),
+    demoIntro:
+      '这组视频用于作品集展示，呈现 Agent-first research capability service 如何围绕 EvidenceLedger、canonical result 和 human-governed delivery 收敛研究交付。它们是 deterministic loopback contract demo，不是真实 provider 运行或 live research 录屏。',
+    demos: [
+      {
+        label: 'HR / portfolio demo',
+        title: '90 秒作品集演示',
+        description:
+          '面向作品集浏览的快速版本，突出 ResearchRun、EvidenceLedger、canonical result 与人工治理交付边界。',
+        videoUrl: assetUrl('videos/decision-research-agent-hr-demo-720p.mp4'),
+        posterUrl: assetUrl('videos/decision-research-agent-hr-demo-poster.png'),
+        ctaLabel: '观看 90 秒演示',
+        primary: true,
+      },
+      {
+        label: '技术讲解 / Technical walkthrough',
+        title: '技术讲解：120 秒系统 walkthrough',
+        description:
+          '面向技术面试讨论的 walkthrough，展开 LangChain、DeepAgents、LangGraph、application DB authority 和 contract proof 的职责边界。',
+        videoUrl: assetUrl(
+          'videos/decision-research-agent-technical-walkthrough-720p.mp4',
+        ),
+        posterUrl: assetUrl(
+          'videos/decision-research-agent-technical-walkthrough-poster.png',
+        ),
+        ctaLabel: '技术讲解 / Technical walkthrough',
+      },
+    ],
   },
   {
     slug: 'multimodal-knowledge-engine',
