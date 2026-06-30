@@ -11,7 +11,7 @@
 - 系统架构：外部研究服务、内部 Evidence engine 与工作流编排的关系
 - 项目案例：Decision Research Agent、multimodal-knowledge-engine、OpenClaw HR
 - 项目详情：问题、架构、关键实现、验证记录和公开边界
-- 项目演示：由 `npm run videos` 生成的无音频 MP4 和 poster
+- 项目演示：公开展示用 MP4 和 poster，包括脚本生成的项目 overview 与人工接入的 DRA 双版本 demo
 - 联系方式：Email、GitHub 与公开项目入口
 
 ## 技术栈
@@ -40,7 +40,7 @@ npm run videos
 npm run preview
 ```
 
-`npm run preview` 需要先完成 build。
+`npm run videos` 会重新生成项目 overview 视频。手动接入的展示视频不由该脚本生成；`npm run preview` 需要先完成 build。
 
 ## 目录
 
@@ -49,7 +49,7 @@ src/components/  页面区块与项目详情组件
 src/data/        公开项目内容与工程记录
 src/assets/      当前站点使用的本地资源
 public/          GitHub Pages 静态资源
-public/videos/   生成的项目演示视频和 poster
+public/videos/   项目演示视频和 poster
 scripts/         内容契约与视频生成脚本
 ```
 

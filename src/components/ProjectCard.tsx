@@ -5,6 +5,9 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const primaryDemo = project.demos?.find((demo) => demo.primary) ?? project.demos?.[0]
+  const demoCta = primaryDemo?.ctaLabel ?? (project.videoUrl ? '观看演示' : undefined)
+
   return (
     <article className="grid gap-6 border-t border-zinc-200 py-8 first:border-t-0 lg:grid-cols-[0.85fr_1.15fr]">
       <div>
@@ -64,12 +67,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
           >
             查看系统拆解
           </a>
-          {project.videoUrl ? (
+          {demoCta ? (
             <a
               href={`#/projects/${project.slug}`}
               className="inline-flex items-center justify-center rounded-md border border-emerald-700 px-4 py-2 text-sm font-medium text-emerald-800 transition-colors hover:border-emerald-900 hover:text-emerald-950"
             >
-              观看演示
+              {demoCta}
             </a>
           ) : null}
           {project.githubUrl ? (

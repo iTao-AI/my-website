@@ -55,8 +55,33 @@ const checks = [
   [
     'DRA video paths match slug',
     () =>
-      projectsText.includes("videoUrl: assetUrl('videos/decision-research-agent-showcase.mp4')") &&
-      projectsText.includes("videoPoster: assetUrl('videos/decision-research-agent-poster.png')"),
+      projectsText.includes("videoUrl: assetUrl('videos/decision-research-agent-hr-demo-720p.mp4')") &&
+      projectsText.includes("videoPoster: assetUrl('videos/decision-research-agent-hr-demo-poster.png')"),
+  ],
+  [
+    'DRA primary HR demo path exists',
+    () =>
+      projectsText.includes("videoUrl: assetUrl('videos/decision-research-agent-hr-demo-720p.mp4')") &&
+      projectsText.includes("posterUrl: assetUrl('videos/decision-research-agent-hr-demo-poster.png')"),
+  ],
+  [
+    'DRA technical walkthrough path exists',
+    () =>
+      projectsText.includes('videos/decision-research-agent-technical-walkthrough-720p.mp4') &&
+      projectsText.includes('videos/decision-research-agent-technical-walkthrough-poster.png'),
+  ],
+  ['DRA 90 second demo CTA exists', () => allPublicText.includes('观看 90 秒演示')],
+  ['DRA technical walkthrough CTA exists', () => allPublicText.includes('技术讲解 / Technical walkthrough')],
+  ['DRA agent-first service wording exists', () => allPublicText.includes('Agent-first research capability service')],
+  ['DRA canonical result demo wording exists', () => allPublicText.includes('canonical result')],
+  ['DRA human-governed delivery demo wording exists', () => allPublicText.includes('human-governed delivery')],
+  [
+    'DRA deterministic demo boundary exists',
+    () => allPublicText.includes('deterministic loopback contract demo'),
+  ],
+  [
+    'DRA demo is not presented as provider recording',
+    () => allPublicText.includes('not a real provider run or live research recording'),
   ],
   [
     'MKE canonical slug exists',
@@ -95,7 +120,7 @@ const checks = [
       projectsText.includes("videoPoster: assetUrl('videos/openclaw-hr-poster.png')"),
   ],
   ['ProjectCard demo entry exists', () => fileText.get('src/components/ProjectCard.tsx').includes('观看演示')],
-  ['ProjectDetailPage video poster exists', () => fileText.get('src/components/ProjectDetailPage.tsx').includes('poster={project.videoPoster}')],
+  ['ProjectDetailPage video poster exists', () => fileText.get('src/components/ProjectDetailPage.tsx').includes('poster={demo.posterUrl}')],
 ]
 
 const forbiddenPatterns = [
