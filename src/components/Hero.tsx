@@ -28,7 +28,7 @@ export function Hero() {
               Decision Research Agent
             </span>
             <span className="border-l-2 border-emerald-600 bg-white/75 px-4 py-3">
-              multimodal-knowledge-engine
+              Multimodal Knowledge Engine
             </span>
             <span className="border-l-2 border-emerald-600 bg-white/75 px-4 py-3">
               多 Agent 工作流
@@ -101,7 +101,7 @@ export function Hero() {
               </dd>
             </div>
             <div>
-              <dt className="sr-only">multimodal-knowledge-engine active development</dt>
+              <dt className="sr-only">Multimodal Knowledge Engine active development</dt>
               <dd>
                 <span className="block text-2xl font-semibold text-white">MKE</span>
                 <span className="mt-1 block text-xs text-zinc-500">Active Development</span>

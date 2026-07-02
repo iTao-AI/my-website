@@ -10,7 +10,7 @@ Add two Decision Research Agent demo videos to the public portfolio site without
 - The HR / portfolio demo is the primary project-card and detail-page entry.
 - The technical walkthrough is a secondary detail-page entry.
 - Public copy must describe the videos as deterministic loopback contract demos, not real provider runs, live research recordings, production usage, or user outcome proof.
-- Committed files must not include private local paths, `.env`, API keys, or Career-private material.
+- Committed files must not include private local paths, `.env`, API keys, or private workflow material.
 
 ## Data model
 

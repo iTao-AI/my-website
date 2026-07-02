@@ -91,7 +91,7 @@ const checks = [
   ],
   [
     'MKE canonical title exists',
-    () => projectsText.includes("title: 'multimodal-knowledge-engine'"),
+    () => projectsText.includes("title: 'Multimodal Knowledge Engine'"),
   ],
   [
     'MKE canonical GitHub URL exists',

@@ -58,7 +58,7 @@ export const evidenceMetrics: EvidenceMetric[] = [
     note: 'single-node SQLite feasibility gates',
   },
   {
-    label: 'multimodal-knowledge-engine',
+    label: 'Multimodal Knowledge Engine',
     value: 'Active Development',
     note: 'local CLI, stdio MCP, active Publications',
   },
@@ -78,7 +78,7 @@ export const systemLayers: SystemLayer[] = [
     proof: 'LangChain + DeepAgents + LangGraph',
   },
   {
-    title: 'multimodal-knowledge-engine',
+    title: 'Multimodal Knowledge Engine',
     label: '内部证据',
     description:
       '将文档和媒体转成 active Publications，让 Agent 只能检索、引用和询问已发布 Evidence。',
@@ -167,7 +167,7 @@ export const projects: Project[] = [
         label: '技术讲解 / Technical walkthrough',
         title: '技术讲解：120 秒系统 walkthrough',
         description:
-          '面向技术面试讨论的 walkthrough，展开 LangChain、DeepAgents、LangGraph、application DB authority 和 contract proof 的职责边界。',
+          '面向技术讨论的 walkthrough，展开 LangChain、DeepAgents、LangGraph、application DB authority 和 contract proof 的职责边界。',
         videoUrl: assetUrl(
           'videos/decision-research-agent-technical-walkthrough-720p.mp4',
         ),
@@ -180,7 +180,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'multimodal-knowledge-engine',
-    title: 'multimodal-knowledge-engine',
+    title: 'Multimodal Knowledge Engine',
     eyebrow: '本地优先 Evidence engine',
     description:
       'local-first Evidence engine，用 observable Runs、active Publications、Search 和 evidence-only Ask 支撑 Agent 可引用知识。',
@@ -283,7 +283,7 @@ export const projects: Project[] = [
     ],
     evidence: [
       'The portfolio presents OpenClaw HR as a bounded local deployment and integration validation project',
-      'Decision Research Agent and multimodal-knowledge-engine are presented separately; this case does not claim a current three-project end-to-end proof',
+      'Decision Research Agent and Multimodal Knowledge Engine are presented separately; this case does not claim a current three-project end-to-end proof',
       'No public repository URL is advertised because this local validation layer has no independent public repository',
     ],
     boundary:
