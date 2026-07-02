@@ -6,6 +6,7 @@ const root = resolve(import.meta.dirname, '..')
 const publicFiles = [
   'README.md',
   'index.html',
+  'src/App.tsx',
   'src/data/projects.ts',
   'src/components/ContactSection.tsx',
   'src/components/EvidenceStrip.tsx',
@@ -21,6 +22,7 @@ const fileText = new Map(
 )
 
 const allPublicText = [...fileText.values()].join('\n')
+const appText = fileText.get('src/App.tsx')
 const projectsText = fileText.get('src/data/projects.ts')
 
 const checks = [
@@ -121,6 +123,14 @@ const checks = [
   ],
   ['ProjectCard demo entry exists', () => fileText.get('src/components/ProjectCard.tsx').includes('观看演示')],
   ['ProjectDetailPage video poster exists', () => fileText.get('src/components/ProjectDetailPage.tsx').includes('poster={demo.posterUrl}')],
+  [
+    'Canonical project hash route remains supported',
+    () => appText.includes('projects'),
+  ],
+  [
+    'Legacy project hash route is supported',
+    () => appText.includes('#project'),
+  ],
 ]
 
 const forbiddenPatterns = [

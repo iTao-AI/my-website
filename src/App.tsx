@@ -8,16 +8,46 @@ import { ProjectSection } from './components/ProjectSection'
 import { ProjectSystem } from './components/ProjectSystem'
 import { projects } from './data/projects'
 
-function getProjectSlugFromHash() {
-  const match = window.location.hash.match(/^#\/projects\/([^/?#]+)/)
-  return match ? decodeURIComponent(match[1]) : null
+function getProjectRouteFromHash() {
+  const canonicalMatch = window.location.hash.match(/^#\/projects\/([^/?#]+)/)
+
+  if (canonicalMatch) {
+    return {
+      canonicalHash: null,
+      slug: decodeURIComponent(canonicalMatch[1]),
+    }
+  }
+
+  const legacyMatch = window.location.hash.match(/^#project\/([^/?#]+)/)
+
+  if (legacyMatch) {
+    return {
+      canonicalHash: `#/projects/${legacyMatch[1]}`,
+      slug: decodeURIComponent(legacyMatch[1]),
+    }
+  }
+
+  return {
+    canonicalHash: null,
+    slug: null,
+  }
+}
+
+function syncProjectRouteFromHash() {
+  const route = getProjectRouteFromHash()
+
+  if (route.canonicalHash) {
+    window.history.replaceState(null, '', route.canonicalHash)
+  }
+
+  return route.slug
 }
 
 function App() {
-  const [projectSlug, setProjectSlug] = useState(getProjectSlugFromHash)
+  const [projectSlug, setProjectSlug] = useState(syncProjectRouteFromHash)
 
   useEffect(() => {
-    const onHashChange = () => setProjectSlug(getProjectSlugFromHash())
+    const onHashChange = () => setProjectSlug(syncProjectRouteFromHash())
     window.addEventListener('hashchange', onHashChange)
     return () => window.removeEventListener('hashchange', onHashChange)
   }, [])
