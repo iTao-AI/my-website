@@ -108,10 +108,10 @@ export function Hero() {
               </dd>
             </div>
             <div>
-              <dt className="sr-only">OpenClaw orchestration boundary</dt>
+              <dt className="sr-only">OpenClaw HR local validation boundary</dt>
               <dd>
                 <span className="block text-2xl font-semibold text-white">HiTL</span>
-                <span className="mt-1 block text-xs text-zinc-500">orchestration</span>
+                <span className="mt-1 block text-xs text-zinc-500">local validation</span>
               </dd>
             </div>
           </dl>

@@ -64,8 +64,8 @@ export const evidenceMetrics: EvidenceMetric[] = [
   },
   {
     label: 'OpenClaw HR',
-    value: 'orchestration layer',
-    note: 'Router, Skills, human escalation boundary',
+    value: 'local validation',
+    note: 'Router, Subagents, Skills, Memory, human escalation',
   },
 ]
 
@@ -88,8 +88,8 @@ export const systemLayers: SystemLayer[] = [
     title: 'OpenClaw HR',
     label: '流程编排',
     description:
-      '用 Router 和 Skills 把业务请求分配到 HR 子工作流，并连接研究服务、证据检索和人工升级边界。',
-    proof: 'Router + Skills + HiTL',
+      '在本机验证 Router、HR 子 Agent、Skills、Memory、Tool Client、无依据拒答和人工升级边界。',
+    proof: 'local Router + Subagents + Skills',
   },
 ]
 
@@ -239,32 +239,32 @@ export const projects: Project[] = [
   {
     slug: 'openclaw-hr',
     title: 'OpenClaw HR',
-    eyebrow: '多 Agent 编排与工具接入',
+    eyebrow: '本机多 Agent 编排与工具接入验证',
     description:
-      'HR 场景编排层项目，用 Router、业务子 Agent、Skills 和人工升级边界连接研究服务与证据检索工具。',
+      '基于现有 OpenClaw HR 材料完成的本机部署、配置与集成验证，覆盖 Router、业务子 Agent、Skills、Memory、Tool Client 和人工升级边界。',
     summaryZh:
-      '展示重点是业务请求如何被路由、何时调用内部 Evidence 或外部研究工具，以及哪些决策必须交给人工。',
-    role: 'Agent 编排设计 / Skills 开发 / 工具接入验证',
-    status: 'local orchestration proof',
+      '展示重点是业务请求如何被路由、知识检索何时应拒答、工具如何接入，以及哪些高影响决策必须交给人工；不把课程或示例基线包装成从零原创平台。',
+    role: '本机部署 / 配置 / Skills 与工具接入验证',
+    status: 'local validation project',
     stack: [
       'OpenClaw',
       'Multi-Agent',
       'Skills',
       'Router',
+      'Memory',
+      'Tool Client',
       'HiTL',
-      'Decision Research Agent',
-      'multimodal-knowledge-engine',
     ],
     proofPoints: [
       {
         label: 'Layer',
-        value: 'orchestration',
-        note: 'not a production platform',
+        value: 'local orchestration',
+        note: 'Router + five HR subagents',
       },
       {
         label: 'Tools',
-        value: 'DRA / MKE',
-        note: 'research and Evidence services',
+        value: 'Skills / Memory',
+        note: 'Tool Client integration validation',
       },
       {
         label: 'Boundary',
@@ -275,21 +275,33 @@ export const projects: Project[] = [
     problem:
       'HR Agent 不能把所有问题交给一个通用助手；招聘、入职、培训、绩效和行政流程需要不同子工作流、工具权限和人工升级规则。',
     architecture:
-      'Router 负责识别请求类型并选择业务子 Agent；Skills 层封装 Decision Research Agent 的外部研究能力和 multimodal-knowledge-engine 的内部 Evidence 检索能力；人工升级边界用于合规、定级和高影响决策。',
+      '在隔离的本机 OpenClaw profile 中，Router 负责识别请求类型并选择业务子 Agent；Skills、Memory 和 Tool Client 承担知识检索与工具接入；无依据问题安全拒答，合规、定级和高影响决策升级人工。当前不声称已与最新 Decision Research Agent 和 multimodal-knowledge-engine 完整重联调。',
     built: [
-      '设计 Router + HR 子 Agent 编排，把研究服务、Evidence 检索和人工升级拆成明确职责',
-      '更新工具引用到 Decision Research Agent 和 multimodal-knowledge-engine 的 canonical identities',
-      '保留脚本管数字、LLM 管语义的风险边界，避免把自动生成文本当作最终业务判断',
+      '在隔离 profile 中部署并验证 Router 与招聘、入职、培训、绩效、行政五类 HR 子 Agent 路由',
+      '验证 Skills、Memory、Tool Client、知识检索和本机工具接入路径',
+      '使用 synthetic demo data 验证无依据拒答、红线升级和“脚本管数字、LLM 管语义”的风险边界',
     ],
     evidence: [
-      'This website presents OpenClaw HR as an orchestration layer, not as a hosted production platform',
-      'Tool-layer references point to the public DRA and MKE repositories when a public code source exists',
-      'No public repository URL is advertised for OpenClaw HR because no public repository is available for this layer',
+      'The portfolio presents OpenClaw HR as a bounded local deployment and integration validation project',
+      'Decision Research Agent and multimodal-knowledge-engine are presented separately; this case does not claim a current three-project end-to-end proof',
+      'No public repository URL is advertised because this local validation layer has no independent public repository',
     ],
     boundary:
-      'OpenClaw HR is not expanded into a production platform, real enterprise adoption claim, or complete original product. Without a public repository, the site does not invent a GitHub link for this orchestration layer.',
+      'OpenClaw HR starts from existing course/demo material and is presented only as local deployment, configuration, and integration validation with synthetic data. It is not a from-scratch original platform, production HR system, real enterprise adoption claim, or proof that the latest DRA, MKE, and OpenClaw versions are fully connected. Without a public repository, the site does not invent a GitHub link.',
     tags: ['OpenClaw', 'Router', 'Skills', 'HiTL'],
     videoUrl: assetUrl('videos/openclaw-hr-showcase.mp4'),
     videoPoster: assetUrl('videos/openclaw-hr-poster.png'),
+    demoIntro:
+      '无音频短片，展示本机 Router、HR 子 Agent 与人工升级边界；它是 local validation walkthrough，不对应公开 Release 或当前三项目完整联调。',
+    demos: [
+      {
+        label: 'Local validation demo',
+        title: '本机 HR 工作流编排验证',
+        description:
+          '快速浏览 Router-led HR workflow、子 Agent 分工和人工升级边界，不作为生产系统或原创平台证明。',
+        videoUrl: assetUrl('videos/openclaw-hr-showcase.mp4'),
+        posterUrl: assetUrl('videos/openclaw-hr-poster.png'),
+      },
+    ],
   },
 ]

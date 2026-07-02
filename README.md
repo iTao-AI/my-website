@@ -9,7 +9,7 @@
 - Hero：工程方向与核心能力概览
 - 工程记录：当前公开项目的 Release、状态和验证摘要
 - 系统架构：外部研究服务、内部 Evidence engine 与工作流编排的关系
-- 项目案例：Decision Research Agent、multimodal-knowledge-engine、OpenClaw HR
+- 项目案例：Decision Research Agent、multimodal-knowledge-engine、OpenClaw HR 本机验证项目
 - 项目详情：问题、架构、关键实现、验证记录和公开边界
 - 项目演示：公开展示用 MP4 和 poster，包括脚本生成的项目 overview 与人工接入的 DRA 双版本 demo
 - 联系方式：Email、GitHub 与公开项目入口
@@ -68,3 +68,4 @@ scripts/         内容契约与视频生成脚本
 - 内容更新与视觉或架构变更分开 review，避免在仓库清理中混入项目事实改写。
 - Decision Research Agent v0.1.0 release boundary is backend-and-CLI. The React demo console and portfolio videos are post-release demo surfaces, not public production deployment; controlled features remain default off, and fixed samples are not market accuracy.
 - multimodal-knowledge-engine 当前状态是 Active Development：只描述 merged public main，HTTP and workspace UI are not implemented。
+- OpenClaw HR 只作为基于现有课程/示例材料完成的本机部署、配置和集成验证项目展示，不声称从零原创平台、真实企业采用或当前三项目完整联通，也不提供虚构的公开仓库链接。
