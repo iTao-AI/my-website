@@ -47,7 +47,7 @@
 
 - 仓库是公开个人作品集，内容必须保持公开中性。
 - 项目事实只能来自公开仓库、release、README 或可复验的机器报告。
-- 禁止写入私有本机路径、求职包装话术、secret、凭证和未验证指标。
+- 禁止写入私有本机路径、私人动机、secret、凭证和未验证指标。
 - React + TypeScript 函数式组件、PascalCase 文件名和 Tailwind CSS 样式规范。
 - 固定浅色画布；除非未来用户明确要求，不引入暗色模式或主题切换。
 - `npm ci`、`npm run lint`、`npm run build`、`npm run dev`、`npm run preview`。
