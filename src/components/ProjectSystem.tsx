@@ -9,11 +9,11 @@ export function ProjectSystem() {
             系统架构
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">
-            三个项目，对应一条 Agent 工程链路
+            三个项目，对应三层 Agent 工程能力
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-600">
             三个项目分别对应外部研究服务、内部 Evidence engine、
-            业务工作流编排三个工程层次，组成一条清晰的 Agent 工程链路。
+            业务工作流编排三个工程层次，形成可组合的职责边界；不代表当前最新版本已经完整联通。
           </p>
         </div>
 
