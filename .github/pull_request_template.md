@@ -2,6 +2,10 @@
 
 说明最终结果和核心改动。
 
+## Completion
+
+- 说明实际完成的验收项。
+
 ## Verification
 
 - `command` — 实际结果

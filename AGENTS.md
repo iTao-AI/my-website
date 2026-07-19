@@ -22,12 +22,14 @@
 npm ci
 npm run lint
 npm run build
+npm run verify:public
 npm run dev
 npm run preview
 ```
 
 - 使用 `npm ci` 按 lockfile 安装依赖，不手工改写 lockfile。
 - 交付前至少运行与改动相关的 lint 和 build；没有实际运行成功时不得声称通过。
+- 涉及公开内容、链接、route 或 deploy workflow 时，同时运行 `npm run verify:public`。
 
 ## 变更流程
 
