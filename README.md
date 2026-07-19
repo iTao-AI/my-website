@@ -36,11 +36,13 @@ npm run dev
 ```bash
 npm run lint
 npm run build
+npm run verify:public
 npm run videos
 npm run preview
 ```
 
-`npm run videos` 会重新生成项目 overview 视频。手动接入的展示视频不由该脚本生成；`npm run preview` 需要先完成 build。
+`npm run verify:public` 会核对公开项目身份、关键边界、canonical links / routes，并拒绝私有路径、凭据模式和已停用项目标识。`npm run videos` 会重新生成项目 overview 视频。手动接入的展示视频不由该脚本生成；`npm run preview` 需要先完成
+build。
 
 ## 目录
 
