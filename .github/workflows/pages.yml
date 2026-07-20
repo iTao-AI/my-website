@@ -39,7 +39,7 @@ jobs:
         run: npm run build
 
       - name: Verify public content
-        run: node scripts/verify-public-content.mjs
+        run: npm run verify:public
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v5

@@ -36,11 +36,12 @@ npm run dev
 ```bash
 npm run lint
 npm run build
+npm run verify:public
 npm run videos
 npm run preview
 ```
 
-`npm run videos` 会重新生成项目 overview 视频。手动接入的展示视频不由该脚本生成；`npm run preview` 需要先完成 build。
+`npm run verify:public` 会核对公开项目身份、关键边界、canonical links / routes，并拒绝私有路径、凭据模式和已停用项目标识。`npm run videos` 会重新生成项目 overview 视频。手动接入的展示视频不由该脚本生成；`npm run preview` 需要先完成 build。
 
 ## 目录
 
@@ -55,7 +56,7 @@ scripts/         内容契约与视频生成脚本
 
 ## 部署
 
-`vite.config.ts` 将 base 设置为 `/my-website/`。推荐部署路径是 GitHub Actions Pages workflow：push 到 `main` 或手动触发 `Deploy GitHub Pages` workflow 后，CI 会执行 `npm ci`、`npm run build`、`node scripts/verify-public-content.mjs`，并将 `dist/` 作为 Pages artifact 发布。
+`vite.config.ts` 将 base 设置为 `/my-website/`。推荐部署路径是 GitHub Actions Pages workflow：push 到 `main` 或手动触发 `Deploy GitHub Pages` workflow 后，CI 会执行 `npm ci`、`npm run build`、`npm run verify:public`，并将 `dist/` 作为 Pages artifact 发布。
 
 仓库仍保留 `npm run deploy` / `gh-pages` 作为 legacy/manual fallback，但不再作为推荐路径。切换 GitHub Pages source 或执行发布都属于显式发布动作，需要单独授权和验证。
 

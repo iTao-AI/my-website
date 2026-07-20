@@ -22,12 +22,14 @@
 npm ci
 npm run lint
 npm run build
+npm run verify:public
 npm run dev
 npm run preview
 ```
 
 - 使用 `npm ci` 按 lockfile 安装依赖，不手工改写 lockfile。
 - 交付前至少运行与改动相关的 lint 和 build；没有实际运行成功时不得声称通过。
+- 涉及公开内容、链接、route 或 deploy workflow 时，同时运行 `npm run verify:public`。
 
 ## 变更流程
 
@@ -53,7 +55,7 @@ npm run preview
 
 - 修改前后检查 `git status` 和 diff；不得覆盖、回滚或删除用户已有改动。
 - 明确区分 base diff 与当前任务 diff，避免把无关修改带入 PR。
-- commit、push、创建 PR、merge 和 deploy 均需用户明确授权。
+- 面向 `main` 的改动使用短期 `codex/` 分支并通过 PR 合并；完成任务、检查 diff 并运行必要验证后，local commit 是正常收尾。push、创建 PR、merge 和 deploy 仍需用户明确授权。
 - PR 正文只写实际完成项和实际验证结果；未运行的检查必须明确说明。
 - PR 合并前进行一次最终 PR body reconciliation，使正文与实际 diff、commit、checks、文档影响和剩余边界一致；只有对应 gate 已被实际满足后，才能勾选其完成项。
 - merge 后如执行收口，需在 PR 正文中同步 checks 结果、merge 状态、deploy 状态、cleanup 状态和明确的 non-claims，并区分已完成、未运行、未授权与不适用，不得把 merge 等同于 deploy 或 live verification。
