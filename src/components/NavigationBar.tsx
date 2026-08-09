@@ -26,7 +26,7 @@ export function NavigationBar() {
             <a
               key={href}
               href={href}
-              className={`${mobile ? 'inline-flex' : 'hidden sm:inline-flex'} min-h-11 items-center px-2 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-950 sm:px-3`}
+              className={`public-link ${mobile ? 'inline-flex' : 'hidden sm:inline-flex'} min-h-11 items-center px-2 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-950 sm:px-3`}
             >
               {label}
             </a>

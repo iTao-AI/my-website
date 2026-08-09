@@ -17,7 +17,7 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
         <div className="mx-auto max-w-7xl">
           <a
             href="#projects"
-            className="inline-flex min-h-11 items-center text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
+            className="public-link inline-flex min-h-11 items-center text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
           >
             ← 返回项目列表
           </a>

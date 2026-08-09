@@ -31,12 +31,8 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-a {
-  color: inherit;
-}
-
-a:visited {
-  color: inherit;
+.public-link:visited {
+  color: #166534;
 }
 
 a:focus-visible,
