@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..')
@@ -6,143 +6,156 @@ const root = resolve(import.meta.dirname, '..')
 const publicFiles = [
   'README.md',
   'index.html',
+  'package.json',
   'src/App.tsx',
+  'src/index.css',
   'src/data/projects.ts',
-  'src/components/ContactSection.tsx',
-  'src/components/EvidenceStrip.tsx',
+  'src/components/NavigationBar.tsx',
   'src/components/Hero.tsx',
+  'src/components/FlagshipProject.tsx',
+  'src/components/CapabilityLoop.tsx',
   'src/components/ProjectCard.tsx',
   'src/components/ProjectDetailPage.tsx',
   'src/components/ProjectSection.tsx',
-  'src/components/ProjectSystem.tsx',
+  'src/components/EngineeringProof.tsx',
+  'src/components/AINativeEngineering.tsx',
+  'src/components/AboutSection.tsx',
+  'src/components/ContactSection.tsx',
 ]
 
 const fileText = new Map(
-  publicFiles.map((file) => [file, readFileSync(join(root, file), 'utf8')]),
+  publicFiles.map((file) => {
+    const path = join(root, file)
+    return [file, existsSync(path) ? readFileSync(path, 'utf8') : '']
+  }),
 )
 
 const allPublicText = [...fileText.values()].join('\n')
-const appText = fileText.get('src/App.tsx')
 const projectsText = fileText.get('src/data/projects.ts')
+const appText = fileText.get('src/App.tsx')
+const packageText = fileText.get('package.json')
+
+const expectedProjects = [
+  {
+    slug: 'night-voyager',
+    title: 'Night Voyager',
+    githubUrl: 'https://github.com/iTao-AI/night-voyager',
+    releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.5',
+    releaseLabel: 'v0.1.5',
+  },
+  {
+    slug: 'decision-research-agent',
+    title: 'Decision Research Agent',
+    githubUrl: 'https://github.com/iTao-AI/decision-research-agent',
+    releaseUrl:
+      'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.8',
+    releaseLabel: 'v0.1.8',
+  },
+  {
+    slug: 'multimodal-knowledge-engine',
+    title: 'Multimodal Knowledge Engine',
+    githubUrl: 'https://github.com/iTao-AI/multimodal-knowledge-engine',
+    releaseUrl:
+      'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.6',
+    releaseLabel: 'v0.1.6',
+  },
+]
 
 const checks = [
   [
-    'DRA canonical slug exists',
-    () => projectsText.includes("slug: 'decision-research-agent'"),
+    'canonical project order is Night Voyager, DRA, MKE',
+    () => {
+      const slugs = [...projectsText.matchAll(/slug:\s*'([^']+)'/g)].map(
+        ([, slug]) => slug,
+      )
+      return JSON.stringify(slugs) === JSON.stringify(expectedProjects.map(({ slug }) => slug))
+    },
   ],
+  ...expectedProjects.flatMap((project) => [
+    [`${project.title} canonical title exists`, () => projectsText.includes(`title: '${project.title}'`)],
+    [`${project.title} GitHub URL exists`, () => projectsText.includes(project.githubUrl)],
+    [`${project.title} Release URL exists`, () => projectsText.includes(project.releaseUrl)],
+    [`${project.title} stable Release label exists`, () => projectsText.includes(project.releaseLabel)],
+  ]),
   [
-    'DRA canonical title exists',
-    () => projectsText.includes("title: 'Decision Research Agent'"),
-  ],
-  [
-    'DRA canonical GitHub URL exists',
+    'all projects have first-class normal/failure/reproducible paths',
     () =>
-      projectsText.includes(
-        "githubUrl: 'https://github.com/iTao-AI/decision-research-agent'",
+      expectedProjects.every(({ slug }) => {
+        const start = projectsText.indexOf(`slug: '${slug}'`)
+        const end = projectsText.indexOf('\n  },', start)
+        const block = projectsText.slice(start, end)
+        return ['normalPath', 'failurePath', 'reproduciblePath'].every((field) =>
+          block.includes(`${field}:`),
+        )
+      }),
+  ],
+  [
+    'Night Voyager flagship and AI-native sections exist',
+    () =>
+      ['id="flagship"', '旗舰项目', 'AI-native Engineering', '目标约束', '最终交付'].every(
+        (marker) => allPublicText.includes(marker),
       ),
   ],
-  ['DRA v0.1.0 release is visible', () => allPublicText.includes('v0.1.0')],
-  ['DRA LangChain framework claim exists', () => allPublicText.includes('LangChain Agent Framework')],
-  ['DRA DeepAgents harness claim exists', () => allPublicText.includes('DeepAgents research harness')],
-  ['DRA LangGraph runtime claim exists', () => allPublicText.includes('LangGraph durable workflow runtime')],
-  ['DRA application DB authority exists', () => allPublicText.includes('application DB business authority')],
-  ['DRA ResearchRun exists', () => allPublicText.includes('ResearchRun')],
-  ['DRA EvidenceLedger exists', () => allPublicText.includes('EvidenceLedger')],
-  ['DRA Talent value gate exists', () => allPublicText.includes('Talent value gate')],
-  ['DRA durable HITL result exists', () => allPublicText.includes('13/13 durable HITL')],
-  ['DRA no bundled frontend boundary exists', () => allPublicText.includes('no bundled frontend')],
-  ['DRA no public production deployment boundary exists', () => allPublicText.includes('no public production deployment')],
-  ['DRA controlled features disabled boundary exists', () => allPublicText.includes('controlled features default off')],
-  ['DRA fixed sample boundary exists', () => allPublicText.includes('fixed samples are not market accuracy')],
   [
-    'DRA video paths match slug',
+    'capability loop names duties and consumer seams',
     () =>
-      projectsText.includes("videoUrl: assetUrl('videos/decision-research-agent-hr-demo-720p.mp4')") &&
-      projectsText.includes("videoPoster: assetUrl('videos/decision-research-agent-hr-demo-poster.png')"),
-  ],
-  [
-    'DRA primary HR demo path exists',
-    () =>
-      projectsText.includes("videoUrl: assetUrl('videos/decision-research-agent-hr-demo-720p.mp4')") &&
-      projectsText.includes("posterUrl: assetUrl('videos/decision-research-agent-hr-demo-poster.png')"),
-  ],
-  [
-    'DRA technical walkthrough path exists',
-    () =>
-      projectsText.includes('videos/decision-research-agent-technical-walkthrough-720p.mp4') &&
-      projectsText.includes('videos/decision-research-agent-technical-walkthrough-poster.png'),
-  ],
-  ['DRA 90 second demo CTA exists', () => allPublicText.includes('观看 90 秒演示')],
-  ['DRA technical walkthrough CTA exists', () => allPublicText.includes('技术讲解 / Technical walkthrough')],
-  ['DRA agent-first service wording exists', () => allPublicText.includes('Agent-first research capability service')],
-  ['DRA canonical result demo wording exists', () => allPublicText.includes('canonical result')],
-  ['DRA human-governed delivery demo wording exists', () => allPublicText.includes('human-governed delivery')],
-  [
-    'DRA deterministic demo boundary exists',
-    () => allPublicText.includes('deterministic loopback contract demo'),
-  ],
-  [
-    'DRA demo is not presented as provider recording',
-    () => allPublicText.includes('not a real provider run or live research recording'),
-  ],
-  [
-    'MKE canonical slug exists',
-    () => projectsText.includes("slug: 'multimodal-knowledge-engine'"),
-  ],
-  [
-    'MKE canonical title exists',
-    () => projectsText.includes("title: 'Multimodal Knowledge Engine'"),
-  ],
-  [
-    'MKE canonical GitHub URL exists',
-    () =>
-      projectsText.includes(
-        "githubUrl: 'https://github.com/iTao-AI/multimodal-knowledge-engine'",
+      ['Evidence & Context', 'Research & Delivery', 'Decision & Action', 'consumer seam'].every(
+        (marker) => allPublicText.includes(marker),
       ),
   ],
-  ['MKE Active Development status exists', () => allPublicText.includes('Active Development')],
-  ['MKE active Publications claim exists', () => allPublicText.includes('active Publications')],
-  ['MKE evidence-only Ask claim exists', () => allPublicText.includes('evidence-only Ask')],
-  ['MKE CJK active scan claim exists', () => allPublicText.includes('bounded CJK active scan')],
-  ['MKE no HTTP/UI boundary exists', () => allPublicText.includes('HTTP and workspace UI are not implemented')],
   [
-    'MKE video paths match slug',
+    'engineering proof names normal, failure, reproducible',
     () =>
-      projectsText.includes("videoUrl: assetUrl('videos/multimodal-knowledge-engine-showcase.mp4')") &&
-      projectsText.includes("videoPoster: assetUrl('videos/multimodal-knowledge-engine-poster.png')"),
+      ['normal', 'failure', 'reproducible', 'Engineering Proof'].every((marker) =>
+        allPublicText.includes(marker),
+      ),
   ],
   [
-    'OpenClaw has no invented GitHub URL',
-    () => /slug: 'openclaw-hr'[\s\S]*?githubUrl:/m.test(projectsText) === false,
+    'legacy and canonical project hash routes remain supported',
+    () => appText.includes('#/projects/') && appText.includes('#project/'),
   ],
   [
-    'OpenClaw video paths match slug',
+    'old video CTA and npm script are gone',
     () =>
-      projectsText.includes("videoUrl: assetUrl('videos/openclaw-hr-showcase.mp4')") &&
-      projectsText.includes("videoPoster: assetUrl('videos/openclaw-hr-poster.png')"),
-  ],
-  ['ProjectCard demo entry exists', () => fileText.get('src/components/ProjectCard.tsx').includes('观看演示')],
-  ['ProjectDetailPage video poster exists', () => fileText.get('src/components/ProjectDetailPage.tsx').includes('poster={demo.posterUrl}')],
-  [
-    'Canonical project hash route remains supported',
-    () => appText.includes('projects'),
+      !allPublicText.includes('观看演示') &&
+      !allPublicText.includes('npm run videos') &&
+      !packageText.includes('"videos"') &&
+      !projectsText.includes('videoUrl') &&
+      !projectsText.includes('videoPoster') &&
+      !projectsText.includes('demos'),
   ],
   [
-    'Legacy project hash route is supported',
-    () => appText.includes('#project'),
+    'Night Voyager visual records exact public source commit',
+    () =>
+      projectsText.includes('54b78ebda9fea263de68b5e3f623aef31c5ffe48') &&
+      projectsText.includes('collaboration-confirmed-fact.webp') &&
+      projectsText.includes('m5-advisor-ledger.webp') &&
+      projectsText.includes('m5-family-receipt-timeline.webp'),
+  ],
+  [
+    'social preview and favicon are declared',
+    () =>
+      allPublicText.includes('social-preview.svg') &&
+      allPublicText.includes('/favicon.svg'),
   ],
 ]
 
 const forbiddenPatterns = [
-  ['active Deep Search Agent identity', /\bDeep Search Agent\b/],
-  ['deep-search-agent link or slug', /deep-search-agent/],
-  ['active RAG-OCR identity', /\bRAG-OCR\b/],
-  ['multimodal-rag-ocr link or slug', /multimodal-rag-ocr/],
-  ['private local path', /\/Users\/[A-Za-z0-9._-]+/],
+  ['OpenClaw HR current identity', /\bOpenClaw HR\b/],
+  ['DRA v0.1.0 current status', /\bv0\.1\.0\b/],
+  ['MKE Active Development current status', /\bActive Development\b/],
+  ['old Deep Search Agent identity', /\bDeep Search Agent\b/],
+  ['old deep-search-agent slug', /deep-search-agent/],
+  ['old RAG-OCR identity', /\bRAG-OCR\b/],
+  ['old multimodal-rag-ocr slug', /multimodal-rag-ocr/],
+  ['private local path', /\/Users\/[A-Za-z0-9._-]+|\/home\/[A-Za-z0-9._-]+/],
   ['env file reference', /(^|[^A-Za-z0-9_.])\.env(?:\b|_)/],
-  ['likely GitHub token', /ghp_[A-Za-z0-9_]{20,}/],
+  ['likely GitHub token', /gh[pousr]_[A-Za-z0-9_]{20,}/],
   ['likely OpenAI key', /sk-[A-Za-z0-9_-]{20,}/],
-  ['generic secret assignment', /\b(?:SECRET|TOKEN|PASSWORD|API_KEY)\s*[:=]\s*['"][^'"]+['"]/i],
+  [
+    'generic secret assignment',
+    /\b(?:SECRET|TOKEN|PASSWORD|API_KEY)\s*[:=]\s*['"][^'"]+['"]/i,
+  ],
 ]
 
 const failures = []
@@ -159,6 +172,32 @@ for (const [label, pattern] of forbiddenPatterns) {
       failures.push(`${label} in ${file}`)
     }
   }
+}
+
+const visualPaths = [...projectsText.matchAll(/src:\s*assetUrl\('([^']+\.webp)'\)/g)].map(
+  ([, path]) => path,
+)
+for (const path of visualPaths) {
+  if (!existsSync(join(root, 'public', path))) {
+    failures.push(`missing local visual asset public/${path}`)
+  }
+}
+
+for (const project of expectedProjects) {
+  for (const url of [project.githubUrl, project.releaseUrl]) {
+    try {
+      const parsed = new URL(url)
+      if (parsed.protocol !== 'https:' || parsed.hostname !== 'github.com') {
+        failures.push(`non-public URL ${url}`)
+      }
+    } catch {
+      failures.push(`invalid URL ${url}`)
+    }
+  }
+}
+
+if (!existsSync(join(root, 'public', 'social-preview.svg'))) {
+  failures.push('missing local social preview public/social-preview.svg')
 }
 
 if (failures.length > 0) {
