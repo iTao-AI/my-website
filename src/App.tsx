@@ -1,11 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
+import { AboutSection } from './components/AboutSection'
+import { AINativeEngineering } from './components/AINativeEngineering'
+import { CapabilityLoop } from './components/CapabilityLoop'
 import { ContactSection } from './components/ContactSection'
-import { EvidenceStrip } from './components/EvidenceStrip'
+import { EngineeringProof } from './components/EngineeringProof'
+import { FlagshipProject } from './components/FlagshipProject'
 import { Hero } from './components/Hero'
 import { NavigationBar } from './components/NavigationBar'
 import { ProjectDetailPage } from './components/ProjectDetailPage'
 import { ProjectSection } from './components/ProjectSection'
-import { ProjectSystem } from './components/ProjectSystem'
 import { projects } from './data/projects'
 
 function getProjectRouteFromHash() {
@@ -85,9 +88,12 @@ function App() {
       <NavigationBar />
       <main>
         <Hero />
-        <EvidenceStrip />
-        <ProjectSystem />
+        <FlagshipProject />
+        <CapabilityLoop />
         <ProjectSection />
+        <EngineeringProof />
+        <AINativeEngineering />
+        <AboutSection />
         <ContactSection />
       </main>
     </>

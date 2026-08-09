@@ -1,9 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  background: #ffffff;
-  color: #09090b;
+  --paper: #ffffff;
+  --paper-muted: #fafafa;
+  --ink: #09090b;
+  --muted: #52525b;
+  --line: #d4d4d8;
+  --signal: #047857;
+  background: var(--paper);
+  color: var(--ink);
   color-scheme: light;
+  font-family: "Trebuchet MS", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
 html {
@@ -12,6 +21,52 @@ html {
 
 body {
   margin: 0;
-  background: #ffffff;
-  color: #09090b;
+  min-width: 320px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+a:visited {
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 3px;
+}
+
+.display-heading {
+  font-family: Georgia, "Times New Roman", "Songti SC", serif;
+  text-wrap: balance;
+}
+
+.page-grid {
+  background-image:
+    linear-gradient(to right, #e4e4e7 1px, transparent 1px),
+    linear-gradient(to bottom, #e4e4e7 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

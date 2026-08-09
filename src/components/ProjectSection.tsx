@@ -7,17 +7,16 @@ export function ProjectSection() {
       id="projects"
       className="bg-zinc-50 px-6 py-20 text-zinc-950 sm:px-12"
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="mx-auto max-w-7xl">
         <div className="mb-12 max-w-3xl">
           <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-700">
-            项目案例
+            selected projects
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">
-            三个主项目，覆盖 Agent 工程的关键链路
+            三个项目，三种工程责任
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-600">
-            从开放式研究、内部 Evidence 检索到业务流程编排，项目展示重点放在系统结构、
-            工程实现和可复验运行记录。
+            从多人决策、研究交付到本地知识入口，按价值、判断和边界快速进入源码与 Release。
           </p>
         </div>
 

@@ -92,8 +92,8 @@ const checks = [
   [
     'Night Voyager flagship and AI-native sections exist',
     () =>
-      ['id="flagship"', '旗舰项目', 'AI-native Engineering', '目标约束', '最终交付'].every(
-        (marker) => allPublicText.includes(marker),
+      ['id="flagship"', '旗舰项目', 'ai-native engineering', '目标约束', '最终交付'].every(
+        (marker) => allPublicText.toLowerCase().includes(marker.toLowerCase()),
       ),
   ],
   [
@@ -112,7 +112,10 @@ const checks = [
   ],
   [
     'legacy and canonical project hash routes remain supported',
-    () => appText.includes('#/projects/') && appText.includes('#project/'),
+    () =>
+      appText.includes('canonicalMatch') &&
+      appText.includes('legacyMatch') &&
+      appText.includes('history.replaceState'),
   ],
   [
     'old video CTA and npm script are gone',
@@ -136,7 +139,7 @@ const checks = [
     'social preview and favicon are declared',
     () =>
       allPublicText.includes('social-preview.svg') &&
-      allPublicText.includes('/favicon.svg'),
+      allPublicText.includes('%BASE_URL%favicon.svg'),
   ],
 ]
 
@@ -174,7 +177,7 @@ for (const [label, pattern] of forbiddenPatterns) {
   }
 }
 
-const visualPaths = [...projectsText.matchAll(/src:\s*assetUrl\('([^']+\.webp)'\)/g)].map(
+const visualPaths = [...projectsText.matchAll(/assetUrl\('([^']+\.webp)'\)/g)].map(
   ([, path]) => path,
 )
 for (const path of visualPaths) {
