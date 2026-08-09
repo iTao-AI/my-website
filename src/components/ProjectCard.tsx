@@ -5,12 +5,9 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const primaryDemo = project.demos?.find((demo) => demo.primary) ?? project.demos?.[0]
-  const demoCta = primaryDemo?.ctaLabel ?? (project.videoUrl ? '观看演示' : undefined)
-
   return (
-    <article className="grid gap-6 border-t border-zinc-200 py-8 first:border-t-0 lg:grid-cols-[0.85fr_1.15fr]">
-      <div>
+    <article className="grid gap-8 border-t border-zinc-200 py-10 first:border-t-0 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+      <div className="min-w-0">
         <p className="font-mono text-xs tracking-[0.18em] text-emerald-700">
           {project.eyebrow}
         </p>
@@ -20,21 +17,22 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <p className="mt-4 text-base leading-7 text-zinc-600">
           {project.description}
         </p>
-        <p className="mt-5 text-sm font-medium text-zinc-500">
-          {project.role} · {project.status}
-        </p>
+        <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-zinc-500">
+          <span>{project.role}</span>
+          <span>{project.status} · {project.releaseLabel}</span>
+        </div>
       </div>
 
-      <div>
+      <div className="min-w-0">
         <p className="max-w-2xl text-lg leading-8 text-zinc-800">
           {project.summaryZh}
         </p>
 
-        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <div className="mt-7 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {project.proofPoints.map((point) => (
             <section
               key={`${project.title}-${point.label}`}
-              className="border-l-2 border-emerald-600 pl-4"
+              className="border-t-2 border-emerald-600 pt-4"
             >
               <p className="font-mono text-xs uppercase tracking-[0.14em] text-zinc-500">
                 {point.label}
@@ -49,43 +47,41 @@ export function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-7 flex flex-wrap gap-2">
           {project.stack.slice(0, 6).map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-zinc-200 px-3 py-1 text-xs font-medium text-zinc-700"
+              className="border border-zinc-200 px-3 py-1 text-xs font-medium text-zinc-700"
             >
               {tag}
             </span>
           ))}
         </div>
 
-        <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
           <a
             href={`#/projects/${project.slug}`}
-            className="inline-flex items-center justify-center rounded-md bg-zinc-950 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+            className="inline-flex min-h-11 items-center justify-center rounded-md bg-zinc-950 px-4 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
           >
-            查看系统拆解
+            查看项目详情
           </a>
-          {demoCta ? (
-            <a
-              href={`#/projects/${project.slug}`}
-              className="inline-flex items-center justify-center rounded-md border border-emerald-700 px-4 py-2 text-sm font-medium text-emerald-800 transition-colors hover:border-emerald-900 hover:text-emerald-950"
-            >
-              {demoCta}
-            </a>
-          ) : null}
-          {project.githubUrl ? (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-950 transition-colors hover:border-zinc-950"
-              aria-label={`在 GitHub 打开 ${project.title} 的源码`}
-            >
-              查看源码
-            </a>
-          ) : null}
+          <a
+            href={project.releaseUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-emerald-700 px-4 text-sm font-medium text-emerald-800 transition-colors hover:border-emerald-900 hover:text-emerald-950"
+          >
+            Release {project.releaseLabel}
+          </a>
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center justify-center rounded-md border border-zinc-300 px-4 text-sm font-medium text-zinc-950 transition-colors hover:border-zinc-950"
+            aria-label={`在 GitHub 打开 ${project.title} 的源码`}
+          >
+            GitHub
+          </a>
         </div>
       </div>
     </article>

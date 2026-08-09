@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "verify:public": "node scripts/verify-public-content.mjs",
-    "videos": "node scripts/generate-project-videos.mjs",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

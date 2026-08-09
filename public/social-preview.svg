@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Yang Tao · AI Agent Engineer</title>
+  <desc id="desc">Night Voyager, Decision Research Agent, and Multimodal Knowledge Engine</desc>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#d4d4d8" stroke-width="1" />
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#ffffff" />
+  <rect width="1200" height="630" fill="url(#grid)" opacity="0.62" />
+  <rect x="0" y="0" width="18" height="630" fill="#047857" />
+  <rect x="66" y="64" width="1068" height="502" fill="#09090b" />
+  <text x="112" y="132" fill="#a7f3d0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" letter-spacing="4">YANG TAO · AI AGENT ENGINEER</text>
+  <text x="112" y="250" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="78" font-weight="700">可验证的 Agent 工作流</text>
+  <text x="112" y="312" fill="#d4d4d8" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="28">检索、工具、状态、人工决策与可靠交付</text>
+  <line x1="112" y1="382" x2="1088" y2="382" stroke="#3f3f46" stroke-width="2" />
+  <text x="112" y="448" fill="#ffffff" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24">NIGHT VOYAGER</text>
+  <text x="466" y="448" fill="#a7f3d0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24">DRA</text>
+  <text x="610" y="448" fill="#a7f3d0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24">MKE</text>
+  <text x="112" y="506" fill="#a1a1aa" font-family="-apple-system, BlinkMacSystemFont, 'PingFang SC', sans-serif" font-size="22">Decision &amp; Action · Research &amp; Delivery · Evidence &amp; Context</text>
+</svg>
