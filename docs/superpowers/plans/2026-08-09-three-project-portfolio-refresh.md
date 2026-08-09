@@ -43,7 +43,7 @@ rg -n 'TBD|TODO|/Users/|Career|求职|模型|OpenClaw HR|v0\.1\.0|Active Develop
 
 Expected: no private path, career-only material, or stale current-status phrase; `OpenClaw HR`, `v0.1.0`, and `Active Development` may occur only in explicit forbidden-content contract statements.
 
-- [ ] **Step 3: Commit planning artifacts**
+- [x] **Step 3: Commit planning artifacts**
 
 ```bash
 git add docs/superpowers/specs/2026-08-09-three-project-portfolio-refresh-design.md docs/superpowers/plans/2026-08-09-three-project-portfolio-refresh.md
@@ -59,11 +59,11 @@ git commit -m "docs(website): plan three-project portfolio refresh"
 **Interfaces:**
 - Produces a deterministic Node.js contract command: `node scripts/verify-public-content.mjs`.
 
-- [ ] **Step 1: Replace stale assertions with the new contract**
+- [x] **Step 1: Replace stale assertions with the new contract**
 
 Read only public source files, `README.md`, `index.html`, `package.json`, and `src/data/projects.ts`; assert canonical order, URL/release fields, route compatibility, current section markers, local visual paths, forbidden stale phrases, and fail-closed sensitive patterns. Assert each referenced local file exists and each external URL uses `https://github.com/iTao-AI/`.
 
-- [ ] **Step 2: Run RED before implementation**
+- [x] **Step 2: Run RED before implementation**
 
 ```bash
 node scripts/verify-public-content.mjs
@@ -71,7 +71,7 @@ node scripts/verify-public-content.mjs
 
 Expected: non-zero exit with failures for missing NV/DRA/MKE fields, stale video contract, absent homepage sections, and/or forbidden old statuses.
 
-- [ ] **Step 3: Commit RED contract**
+- [x] **Step 3: Commit RED contract**
 
 ```bash
 git add scripts/verify-public-content.mjs
@@ -90,11 +90,11 @@ git commit -m "test(website): add red public content contract"
 - `Project` exposes `normalPath`, `failurePath`, `proofPoints`, `releaseUrl`, `githubUrl`, and `visual`.
 - `projects` is ordered `[night-voyager, decision-research-agent, multimodal-knowledge-engine]`.
 
-- [ ] **Step 1: Add the failing data assertions**
+- [x] **Step 1: Add the failing data assertions**
 
 Extend the RED contract to assert exact slug order, stable Release labels/URLs, NV visual fields, three proof paths per project, and no `videoUrl`, `videoPoster`, `demos`, or `videos/` reference in project data.
 
-- [ ] **Step 2: Run the focused RED assertion**
+- [x] **Step 2: Run the focused RED assertion**
 
 ```bash
 node scripts/verify-public-content.mjs
@@ -102,15 +102,15 @@ node scripts/verify-public-content.mjs
 
 Expected: the data contract remains red because the old project data has not changed.
 
-- [ ] **Step 3: Derive approved local images**
+- [x] **Step 3: Derive approved local images**
 
 Using the local Night Voyager checkout at the approved public commit, inspect only the three approved assets and convert them locally to deterministic WebP files. Generate a deterministic social preview from static text and the same public-safe visual language. Record source commit, dimensions, byte sizes and SHA-256 in the verification notes, not in public copy.
 
-- [ ] **Step 4: Write the minimal data implementation**
+- [x] **Step 4: Write the minimal data implementation**
 
 Replace the three old project entries with NV, DRA and MKE. Bind stable release labels and URLs, keep post-release changes out of capability claims, add normal/failure/reproducible paths, and keep current boundaries as secondary disclosure. Do not add a fourth project or a video field.
 
-- [ ] **Step 5: Run the data contract**
+- [x] **Step 5: Run the data contract**
 
 ```bash
 node scripts/verify-public-content.mjs
@@ -138,27 +138,27 @@ Expected: data-specific checks pass; homepage/component checks may remain red un
 - `App` renders homepage in the required section order and keeps detail route resolution.
 - All section ids used by navigation are unique and have visible headings.
 
-- [ ] **Step 1: Add section and CTA assertions to the RED contract**
+- [x] **Step 1: Add section and CTA assertions to the RED contract**
 
 Assert required section markers, flagship title, AI-native loop, three project titles, and absence of “观看演示”/`npm run videos`.
 
-- [ ] **Step 2: Implement navigation, hero and flagship**
+- [x] **Step 2: Implement navigation, hero and flagship**
 
 Use visible targets `#flagship`, `#projects`, and GitHub. Keep the fixed light canvas, grid, black proof block, and generous whitespace. Keep all links at or above 44px visual hit area.
 
-- [ ] **Step 3: Implement capability loop and proof**
+- [x] **Step 3: Implement capability loop and proof**
 
 Render the three consumer seams as an explicit sequence. Render normal, failure and reproducible proof paths as named states rather than generic feature cards. Keep the language useful for scanning and avoid keyword-wall repetition.
 
-- [ ] **Step 4: Implement AI-native, About, Contact and mobile navigation**
+- [x] **Step 4: Implement AI-native, About, Contact and mobile navigation**
 
 Describe the AI-assisted engineering loop without private tooling identifiers. About states only the approved education, business background and learning period. Contact retains Email, GitHub and project links.
 
-- [ ] **Step 5: Update motion and focus rules**
+- [x] **Step 5: Update motion and focus rules**
 
 Add explicit `:focus-visible`, visited-link distinction, and `prefers-reduced-motion` rules. Remove smooth scroll under reduced motion. Do not use inline styles or new dependencies.
 
-- [ ] **Step 6: Run the public contract**
+- [x] **Step 6: Run the public contract**
 
 ```bash
 node scripts/verify-public-content.mjs
@@ -181,23 +181,23 @@ Expected: homepage and route assertions pass; only any remaining detail/README a
 - Detail pages render the same project data contract as cards and expose GitHub, Release and return actions.
 - `package.json` has no `videos` script; dependencies, lockfile, Vite base and Pages workflow stay unchanged.
 
-- [ ] **Step 1: Add detail/docs assertions**
+- [x] **Step 1: Add detail/docs assertions**
 
 Assert the detail sequence, Release links, social preview, favicon, no video references in active source, and README command accuracy.
 
-- [ ] **Step 2: Implement the detail page sequence**
+- [x] **Step 2: Implement the detail page sequence**
 
 Render value plus `visual`, judgment, normal/failure, how-it-works, three proof points, stack/tags, boundary disclosure, and external actions. Keep `#/projects/<slug>` and legacy `#project/<slug>` compatibility.
 
-- [ ] **Step 3: Remove video mechanism references**
+- [x] **Step 3: Remove video mechanism references**
 
 Remove video fields and CTA fallbacks from project data/components, remove `videos` from `package.json`, update README, and delete only the generation script. Leave old binary files untouched.
 
-- [ ] **Step 4: Update metadata**
+- [x] **Step 4: Update metadata**
 
 Set title, description, Open Graph image and public project wording to match the three stable Releases. Keep `/my-website/` base path and favicon path.
 
-- [ ] **Step 5: Run the contract to GREEN**
+- [x] **Step 5: Run the contract to GREEN**
 
 ```bash
 node scripts/verify-public-content.mjs
@@ -205,7 +205,7 @@ node scripts/verify-public-content.mjs
 
 Expected: `Public content contract passed.` with exit code 0.
 
-- [ ] **Step 6: Commit implementation**
+- [x] **Step 6: Commit implementation**
 
 ```bash
 git add src public README.md index.html package.json scripts/verify-public-content.mjs
@@ -219,7 +219,7 @@ git commit -m "feat(website): refresh three-project portfolio surface"
 **Files:**
 - No intentional source changes; only local `dist/` and browser artifacts are allowed and must remain ignored.
 
-- [ ] **Step 1: Install and run static checks**
+- [x] **Step 1: Install and run static checks**
 
 ```bash
 npm ci
@@ -229,15 +229,15 @@ npm run verify:public
 git diff --check
 ```
 
-- [ ] **Step 2: Validate built assets**
+- [x] **Step 2: Validate built assets**
 
 Check `dist/my-website/` for base-prefixed assets, favicon, social preview and local WebP files. Confirm no active page bundle references `public/videos`, old CTA text or forbidden project statuses.
 
-- [ ] **Step 3: Run browser checks**
+- [x] **Step 3: Run browser checks**
 
 Use the available browser tooling against the local Vite server. Check 1440, 1024, 768, 390 and 320 widths; home, all three detail hashes, legacy hash normalization, external links, console errors, focus-visible states, touch target dimensions, contrast, reduced motion, favicon, and social preview.
 
-- [ ] **Step 4: Record evidence**
+- [x] **Step 4: Record evidence**
 
 Keep screenshots and logs outside the repository or in ignored output. Record command results, viewport sizes, route behavior, console state and any unverified hosted gates.
 
@@ -246,11 +246,11 @@ Keep screenshots and logs outside the repository or in ignored output. Record co
 **Files:**
 - Modify only in-scope website files if design review finds a real issue.
 
-- [ ] **Step 1: Run the GStack design-review preamble and audit**
+- [x] **Step 1: Run the GStack design-review preamble and audit**
 
 Review the rendered homepage and detail pages with desktop/mobile screenshots, design-system extraction, touch-target audit, console and performance checks. Apply landing-page rules while preserving this project’s fixed light canvas and black/green visual system.
 
-- [ ] **Step 2: Fix only same-scope findings**
+- [x] **Step 2: Fix only same-scope findings**
 
 For each fixable finding, change the smallest related source file set, create one atomic `style(design): FINDING-NNN ...` commit, then rerun the affected screenshot and console check. Stop if a fix would expand architecture, dependencies, or public facts.
 
@@ -268,5 +268,14 @@ git log --oneline --decorate -6
 Expected: all commands exit 0, worktree clean, current branch remains local, and no push/PR/merge/deploy has occurred.
 
 - [ ] **Step 4: Final requirement audit**
+
+### Closeout evidence
+
+- [x] RED contract was run before implementation and failed on the missing three-project/data/section/video assertions.
+- [x] GREEN contract now passes with `Public content contract passed.`; `npm ci`, `npm run lint`, `npm run build`, `git diff --check` and deterministic WebP re-conversion checks also pass.
+- [x] Fresh browser and GStack evidence covers homepage plus all three canonical detail hashes, legacy hash normalization, 1440/1024/768/390/320 responsive widths, focus-visible, 44px touch targets, no horizontal overflow, no console errors, favicon and social-preview base paths.
+- [x] GStack design-review found no fixable same-scope visual finding; no design-fix commit was needed after the link-contrast fix.
+- [x] Task-owned browser artifacts remain outside the repository; website worktree is clean after this closeout commit.
+- [ ] Hosted CI for this local branch, PR review, GitHub publication, Pages deployment and live readback remain outside this local stop gate and require the authority next gate.
 
 Compare the final diff against this plan and the approved brief. Report exact base/head/tree, branch/worktree, commits, RED/GREEN evidence, command outputs, browser/screenshots, risks, mini-retro, and the single next gate: authority review before any publication action.
