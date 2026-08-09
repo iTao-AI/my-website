@@ -254,7 +254,7 @@ Review the rendered homepage and detail pages with desktop/mobile screenshots, d
 
 For each fixable finding, change the smallest related source file set, create one atomic `style(design): FINDING-NNN ...` commit, then rerun the affected screenshot and console check. Stop if a fix would expand architecture, dependencies, or public facts.
 
-- [ ] **Step 3: Fresh final verification**
+- [x] **Step 3: Fresh final verification**
 
 ```bash
 npm run lint
@@ -267,7 +267,7 @@ git log --oneline --decorate -6
 
 Expected: all commands exit 0, worktree clean, current branch remains local, and no push/PR/merge/deploy has occurred.
 
-- [ ] **Step 4: Final requirement audit**
+- [x] **Step 4: Final requirement audit**
 
 ### Closeout evidence
 
