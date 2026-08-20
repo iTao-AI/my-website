@@ -12,7 +12,7 @@
 
 ## Global Constraints
 
-- 本阶段只修改 `/Users/mac/Developer/my-website`；三个公开项目仓库只读。
+- 本阶段只修改本仓库；三个公开项目仓库只读。
 - 不新增依赖、第三方字体、头像、人物素材、虚构界面、虚构数据或生产使用 claim。
 - 不改变 GitHub Pages `/my-website/` base、canonical / legacy hash route、GitHub / Release 链接语义。
 - 项目固定顺序为 DRA、Night Voyager、MKE；三者是互补的独立项目，不写成已生产集成的平台。
@@ -313,7 +313,7 @@ git commit -m "feat(website): build light editorial project casebook"
 
 ### Step 2: 自然表达 AI-native Engineering
 
-保留“AI 提高实现速度，判断和结果由我负责”，用三段事实说明：问题与架构、实现与审查、验证与交付。避免“技术所有权”等生硬直译。
+使用“AI 用来加速实现，判断和结果由我负责”，用三段事实说明：问题与架构、实现与审查、验证与交付。避免“技术所有权”等生硬直译。
 
 ### Step 3: 重写 About 与 Contact
 
@@ -403,7 +403,8 @@ git commit -m "fix(website): polish portfolio motion and responsive details"
 
 - Modify: `docs/superpowers/plans/2026-08-21-light-editorial-casebook-redesign.md`
 - Create: `docs/assets/portfolio-home-desktop.png`
-- Create: `docs/assets/portfolio-dra-desktop.png`
+- Create: `docs/assets/portfolio-flagship-desktop.png`
+- Create: `docs/assets/portfolio-project-detail-desktop.png`
 - Create: `docs/assets/portfolio-home-mobile.png`
 
 ### Step 1: 完整本地验证
@@ -491,3 +492,40 @@ git commit -m "docs(website): close out editorial portfolio redesign"
 - worktree clean；
 - 所有改动已经形成可独立审查和回滚的本地语义原子 commit；
 - 未 push、未创建 PR、未部署。
+
+---
+
+## Implementation Readback — 2026-08-21
+
+### 实际完成
+
+- 首页已经按浅色编辑型案例集重做，DRA 为旗舰，Night Voyager 与 MKE 为互补项目；不使用头像、人物素材、抽象 AI 装饰或虚构界面。
+- 九张产品图均从三个公开项目的 canonical showcase 原字节复制，并由 `public/images/project-showcase-manifest.json` 锁定源提交、源路径、SHA-256 和 1600×1000 尺寸。
+- 首页、三个项目详情页、canonical / legacy hash route、AI-native 工作方式、About、Contact 与 GitHub README 已同步完成。
+- 动效保持 progressive enhancement；正常环境按章节进入，`prefers-reduced-motion` 下立即显示全部内容且无位移或等待。
+- 设计复审关闭两个同范围 finding：详情页继承旧滚动位置、补充项目重复说明和微型可读性问题合并为 `FINDING-001`；移动详情画廊的隐性横向宽度问题为 `FINDING-002`。
+
+### 最终验证
+
+- `npm ci`：通过；没有修改依赖或 lockfile。
+- `npm run verify:public`：通过。
+- `npm run lint`：通过。
+- `npm run build`：通过。
+- `git diff --check`：通过。
+- 真实 Chromium 在 1440×1000、1280×900、1024×900、768×1024、390×844、320×844 六档检查首页与三个详情页：全部横向 overflow 为 0、最小可见字号 12px、交互目标均不小于 44×44、每页恰好一个 `h1`、console / page error 为 0。
+- DRA、Night Voyager、MKE 的状态切换均核对 `aria-pressed`、对应图片和失败说明；canonical route、旧 `#project/<slug>` 归一化与详情页回到顶部均通过。
+- 在 1440 和 390 两档滚动加载全部页面图片后，所有项目图均完整读取为 1600×1000；无加载失败。
+- Chromium `reducedMotion: reduce` 实测命中：全部 reveal 为 `opacity: 1`、`transform: none`，Hero 产品舞台动画为 `none`。
+- 最终设计复审无剩余同范围 P0 / P1 finding；保留的视觉选择均承担信息层级或真实产品证明职责。
+
+### 本地提交
+
+- `12fe8a9` — `feat(website): build light editorial project casebook`
+- `a297bd7` — `style(design): FINDING-001 — close portfolio QA gaps`
+- `2a2f158` — `style(design): FINDING-002 — constrain mobile project gallery`
+
+### 停止边界
+
+- 未 push、未创建 PR、未部署、未新增依赖。
+- `npm audit --omit=dev` 仍报告既有 `Vite → PostCSS → nanoid 3.3.16` 构建链告警；最终浏览器 bundle 不包含 `nanoid`、`postcss` 或 `vite`。本阶段按“无依赖变更”边界保留，后续由独立依赖维护处理。
+- 当前阶段只保留后续用户基于最终成品提出的定向微调，不再重开整体视觉方向。

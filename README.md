@@ -6,6 +6,8 @@
 2. **Night Voyager**：把长期留学咨询中的事实、路线、风险与行动放进可持续跟进的决策流程；
 3. **Multimodal Knowledge Engine**：把本地 PDF 与受控媒体处理成带来源位置、可发布和可检索的 Evidence。
 
+![个人作品集首页](docs/assets/portfolio-home-desktop.png)
+
 在线访问：[itao-ai.github.io/my-website](https://itao-ai.github.io/my-website/)
 
 ## 页面结构
