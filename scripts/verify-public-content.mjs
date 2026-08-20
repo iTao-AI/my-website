@@ -1,7 +1,13 @@
+import { createHash } from 'node:crypto'
 import { existsSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 
 const root = resolve(import.meta.dirname, '..')
+
+const read = (file) => {
+  const path = join(root, file)
+  return existsSync(path) ? readFileSync(path, 'utf8') : ''
+}
 
 const publicFiles = [
   'README.md',
@@ -10,39 +16,37 @@ const publicFiles = [
   'src/App.tsx',
   'src/index.css',
   'src/data/projects.ts',
+  'src/data/siteContent.ts',
   'src/components/NavigationBar.tsx',
   'src/components/Hero.tsx',
-  'src/components/FlagshipProject.tsx',
-  'src/components/CapabilityLoop.tsx',
-  'src/components/ProjectCard.tsx',
+  'src/components/FlagshipCaseStudy.tsx',
+  'src/components/ComplementaryProjects.tsx',
+  'src/components/CapabilityMap.tsx',
   'src/components/ProjectDetailPage.tsx',
-  'src/components/ProjectSection.tsx',
-  'src/components/EngineeringProof.tsx',
   'src/components/AINativeEngineering.tsx',
   'src/components/AboutSection.tsx',
   'src/components/ContactSection.tsx',
 ]
 
-const fileText = new Map(
-  publicFiles.map((file) => {
-    const path = join(root, file)
-    return [file, existsSync(path) ? readFileSync(path, 'utf8') : '']
-  }),
-)
-
+const fileText = new Map(publicFiles.map((file) => [file, read(file)]))
 const allPublicText = [...fileText.values()].join('\n')
 const projectsText = fileText.get('src/data/projects.ts')
+const siteContentText = fileText.get('src/data/siteContent.ts')
 const appText = fileText.get('src/App.tsx')
 const packageText = fileText.get('package.json')
+const firstLayerText = [
+  'src/components/Hero.tsx',
+  'src/components/FlagshipCaseStudy.tsx',
+  'src/components/ComplementaryProjects.tsx',
+  'src/components/CapabilityMap.tsx',
+  'src/components/AINativeEngineering.tsx',
+  'src/components/AboutSection.tsx',
+  'src/components/ContactSection.tsx',
+]
+  .map((file) => fileText.get(file))
+  .join('\n')
 
 const expectedProjects = [
-  {
-    slug: 'night-voyager',
-    title: 'Night Voyager',
-    githubUrl: 'https://github.com/iTao-AI/night-voyager',
-    releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.5',
-    releaseLabel: 'v0.1.5',
-  },
   {
     slug: 'decision-research-agent',
     title: 'Decision Research Agent',
@@ -50,6 +54,27 @@ const expectedProjects = [
     releaseUrl:
       'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.8',
     releaseLabel: 'v0.1.8',
+    captureCommit: '331ba24cc2ac8ab22bf9ea2867f6e6c7d6bc236e',
+    actions: ['拆解任务', '核对 Evidence', '审核后交付'],
+    assets: [
+      ['overview', 'images/decision-research-agent/research-workspace-overview.png'],
+      ['normal', 'images/decision-research-agent/research-evidence-review.png'],
+      ['blocked', 'images/decision-research-agent/research-blocked-recovery.png'],
+    ],
+  },
+  {
+    slug: 'night-voyager',
+    title: 'Night Voyager',
+    githubUrl: 'https://github.com/iTao-AI/night-voyager',
+    releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.5',
+    releaseLabel: 'v0.1.5',
+    captureCommit: '01de938af2faa06f129be581154cb61f51eed5e4',
+    actions: ['确认事实', '比较路线', '形成行动计划'],
+    assets: [
+      ['overview', 'images/night-voyager/advisor-workspace-overview.png'],
+      ['normal', 'images/night-voyager/advisor-normal-path.png'],
+      ['blocked', 'images/night-voyager/advisor-blocked-recovery.png'],
+    ],
   },
   {
     slug: 'multimodal-knowledge-engine',
@@ -58,12 +83,19 @@ const expectedProjects = [
     releaseUrl:
       'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.6',
     releaseLabel: 'v0.1.6',
+    captureCommit: '7880757bfdbc80fb684292ff552fddddfd858f1d',
+    actions: ['处理资料', '保留来源', '受控检索'],
+    assets: [
+      ['overview', 'images/multimodal-knowledge-engine/evidence-workspace-overview.png'],
+      ['normal', 'images/multimodal-knowledge-engine/evidence-publication-search.png'],
+      ['blocked', 'images/multimodal-knowledge-engine/evidence-insufficient-recovery.png'],
+    ],
   },
 ]
 
 const checks = [
   [
-    'canonical project order is Night Voyager, DRA, MKE',
+    'canonical project order is DRA, Night Voyager, MKE',
     () => {
       const slugs = [...projectsText.matchAll(/slug:\s*'([^']+)'/g)].map(
         ([, slug]) => slug,
@@ -71,43 +103,52 @@ const checks = [
       return JSON.stringify(slugs) === JSON.stringify(expectedProjects.map(({ slug }) => slug))
     },
   ],
+  [
+    'candidate-first hero copy exists',
+    () =>
+      ['杨涛', 'AI Agent 工程师 · 上海', '把 AI Agent 做成能推进工作的系统。', '查看旗舰项目'].every(
+        (marker) => siteContentText.includes(marker),
+      ),
+  ],
   ...expectedProjects.flatMap((project) => [
     [`${project.title} canonical title exists`, () => projectsText.includes(`title: '${project.title}'`)],
     [`${project.title} GitHub URL exists`, () => projectsText.includes(project.githubUrl)],
     [`${project.title} Release URL exists`, () => projectsText.includes(project.releaseUrl)],
     [`${project.title} stable Release label exists`, () => projectsText.includes(project.releaseLabel)],
+    [`${project.title} capture commit exists`, () => projectsText.includes(project.captureCommit)],
+    [
+      `${project.title} first-layer action language exists`,
+      () => project.actions.every((action) => projectsText.includes(action)),
+    ],
+    [
+      `${project.title} has role, problem, decisions, failure handling and personal work`,
+      () => {
+        const start = projectsText.indexOf(`slug: '${project.slug}'`)
+        const next = expectedProjects
+          .map(({ slug }) => projectsText.indexOf(`slug: '${slug}'`, start + 1))
+          .filter((index) => index > start)
+          .sort((a, b) => a - b)[0]
+        const block = projectsText.slice(start, next ?? projectsText.length)
+        return [
+          'role:',
+          'problem:',
+          'approach:',
+          'humanBoundary:',
+          'normalPath:',
+          'failurePath:',
+          'personalWork:',
+          'decisions:',
+          'keywords:',
+          'visuals:',
+        ].every((field) => block.includes(field))
+      },
+    ],
   ]),
   [
-    'all projects have first-class normal/failure/reproducible paths',
+    'homepage sections use editorial case-study components',
     () =>
-      expectedProjects.every(({ slug }) => {
-        const start = projectsText.indexOf(`slug: '${slug}'`)
-        const end = projectsText.indexOf('\n  },', start)
-        const block = projectsText.slice(start, end)
-        return ['normalPath', 'failurePath', 'reproduciblePath'].every((field) =>
-          block.includes(`${field}:`),
-        )
-      }),
-  ],
-  [
-    'Night Voyager flagship and AI-native sections exist',
-    () =>
-      ['id="flagship"', '旗舰项目', 'ai-native engineering', '目标约束', '最终交付'].every(
-        (marker) => allPublicText.toLowerCase().includes(marker.toLowerCase()),
-      ),
-  ],
-  [
-    'capability loop names duties and consumer seams',
-    () =>
-      ['Evidence & Context', 'Research & Delivery', 'Decision & Action', 'consumer seam'].every(
-        (marker) => allPublicText.includes(marker),
-      ),
-  ],
-  [
-    'engineering proof names normal, failure, reproducible',
-    () =>
-      ['normal', 'failure', 'reproducible', 'Engineering Proof'].every((marker) =>
-        allPublicText.includes(marker),
+      ['FlagshipCaseStudy', 'ComplementaryProjects', 'CapabilityMap'].every((marker) =>
+        appText.includes(marker),
       ),
   ],
   [
@@ -118,22 +159,35 @@ const checks = [
       appText.includes('history.replaceState'),
   ],
   [
+    'first-layer internal audit language is absent',
+    () =>
+      [
+        'consumer seam',
+        'synthetic fixture',
+        'projection',
+        'Engineering Proof',
+        'normal path',
+        'failure path',
+        'reproducible',
+      ].every((marker) => !firstLayerText.toLowerCase().includes(marker.toLowerCase())),
+  ],
+  [
+    'AI-native, capability and background language is natural',
+    () =>
+      [
+        'AI 提高实现速度，判断和结果由我负责。',
+        '从信息进入，到任务推进，再到人工确认。',
+        '先理解一项具体工作怎样运转',
+      ].every((marker) => allPublicText.includes(marker)),
+  ],
+  [
     'old video CTA and npm script are gone',
     () =>
       !allPublicText.includes('观看演示') &&
       !allPublicText.includes('npm run videos') &&
       !packageText.includes('"videos"') &&
       !projectsText.includes('videoUrl') &&
-      !projectsText.includes('videoPoster') &&
-      !projectsText.includes('demos'),
-  ],
-  [
-    'Night Voyager visual records exact public source commit',
-    () =>
-      projectsText.includes('54b78ebda9fea263de68b5e3f623aef31c5ffe48') &&
-      projectsText.includes('collaboration-confirmed-fact.webp') &&
-      projectsText.includes('m5-advisor-ledger.webp') &&
-      projectsText.includes('m5-family-receipt-timeline.webp'),
+      !projectsText.includes('videoPoster'),
   ],
   [
     'social preview and favicon are declared',
@@ -164,25 +218,80 @@ const forbiddenPatterns = [
 const failures = []
 
 for (const [label, check] of checks) {
-  if (!check()) {
-    failures.push(label)
-  }
+  if (!check()) failures.push(label)
 }
 
 for (const [label, pattern] of forbiddenPatterns) {
   for (const [file, text] of fileText.entries()) {
-    if (pattern.test(text)) {
-      failures.push(`${label} in ${file}`)
-    }
+    if (pattern.test(text)) failures.push(`${label} in ${file}`)
   }
 }
 
-const visualPaths = [...projectsText.matchAll(/assetUrl\('([^']+\.webp)'\)/g)].map(
-  ([, path]) => path,
-)
-for (const path of visualPaths) {
-  if (!existsSync(join(root, 'public', path))) {
-    failures.push(`missing local visual asset public/${path}`)
+const manifestPath = join(root, 'public', 'images', 'project-showcase-manifest.json')
+if (!existsSync(manifestPath)) {
+  failures.push('missing public/images/project-showcase-manifest.json')
+} else {
+  try {
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
+    const expectedAssets = expectedProjects.flatMap((project) =>
+      project.assets.map(([state, publicPath]) => ({
+        project: project.slug,
+        state,
+        publicPath,
+        sourceCommit: project.captureCommit,
+      })),
+    )
+
+    if (!Array.isArray(manifest.assets) || manifest.assets.length !== expectedAssets.length) {
+      failures.push('project showcase manifest must contain exactly nine assets')
+    } else {
+      for (const expected of expectedAssets) {
+        const asset = manifest.assets.find(
+          (candidate) =>
+            candidate.project === expected.project && candidate.state === expected.state,
+        )
+        if (!asset) {
+          failures.push(`missing manifest asset ${expected.project}/${expected.state}`)
+          continue
+        }
+        if (asset.public_path !== expected.publicPath) {
+          failures.push(`public path mismatch ${expected.project}/${expected.state}`)
+        }
+        if (asset.source_commit !== expected.sourceCommit) {
+          failures.push(`source commit mismatch ${expected.project}/${expected.state}`)
+        }
+        if (asset.width !== 1600 || asset.height !== 1000) {
+          failures.push(`unexpected PNG dimensions ${expected.project}/${expected.state}`)
+        }
+        if (typeof asset.source_path !== 'string' || asset.source_path.startsWith('/')) {
+          failures.push(`invalid source path ${expected.project}/${expected.state}`)
+        }
+        if (typeof asset.disclosure !== 'string' || asset.disclosure.length < 8) {
+          failures.push(`missing disclosure ${expected.project}/${expected.state}`)
+        }
+
+        const assetPath = join(root, 'public', asset.public_path)
+        if (!existsSync(assetPath)) {
+          failures.push(`missing local visual asset public/${asset.public_path}`)
+          continue
+        }
+        const buffer = readFileSync(assetPath)
+        const digest = createHash('sha256').update(buffer).digest('hex')
+        if (digest !== asset.sha256) {
+          failures.push(`sha256 mismatch ${expected.project}/${expected.state}`)
+        }
+        if (
+          buffer.length < 24 ||
+          buffer.toString('hex', 0, 8) !== '89504e470d0a1a0a' ||
+          buffer.readUInt32BE(16) !== 1600 ||
+          buffer.readUInt32BE(20) !== 1000
+        ) {
+          failures.push(`PNG header mismatch ${expected.project}/${expected.state}`)
+        }
+      }
+    }
+  } catch (error) {
+    failures.push(`invalid project showcase manifest: ${error.message}`)
   }
 }
 
@@ -205,9 +314,7 @@ if (!existsSync(join(root, 'public', 'social-preview.svg'))) {
 
 if (failures.length > 0) {
   console.error('Public content contract failed:')
-  for (const failure of failures) {
-    console.error(`- ${failure}`)
-  }
+  for (const failure of failures) console.error(`- ${failure}`)
   process.exit(1)
 }
 

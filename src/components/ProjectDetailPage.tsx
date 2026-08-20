@@ -1,226 +1,143 @@
-import type { Project, ProjectPath } from '../data/projects'
+import type { Project } from '../data/projects'
+import { ProjectImage } from './ProjectImage'
+import { SectionReveal } from './SectionReveal'
 
 interface ProjectDetailPageProps {
   project: Project
 }
 
-const pathFields: Array<keyof Pick<Project, 'normalPath' | 'failurePath' | 'reproduciblePath'>> = [
-  'normalPath',
-  'failurePath',
-  'reproduciblePath',
-]
-
 export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
   return (
-    <main className="overflow-x-hidden bg-white pt-24 text-zinc-950">
-      <section className="px-6 pb-16 pt-8 sm:px-12 lg:pb-24">
-        <div className="mx-auto max-w-7xl">
-          <a
-            href="#projects"
-            className="public-link inline-flex min-h-11 items-center text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-950"
-          >
-            ← 返回项目列表
+    <main className={`project-detail project-detail--${project.accent}`}>
+      <header className="project-detail__hero">
+        <div className="project-detail__hero-copy">
+          <a className="back-link" href="#home">
+            <span aria-hidden="true">←</span> 返回作品集
           </a>
-
-          <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-            <div className="min-w-0">
-              <p className="font-mono text-sm uppercase tracking-[0.2em] text-emerald-700">
-                {project.eyebrow}
-              </p>
-              <h1 className="display-heading mt-5 break-words text-5xl font-semibold leading-tight tracking-tight [overflow-wrap:anywhere] sm:text-7xl">
-                {project.title}
-              </h1>
-              <p className="mt-6 max-w-3xl break-words text-xl leading-9 text-zinc-700 [overflow-wrap:anywhere]">
-                {project.description}
-              </p>
-              <p className="mt-6 max-w-3xl break-words border-l-2 border-emerald-600 pl-5 text-lg leading-8 text-zinc-800 [overflow-wrap:anywhere]">
-                {project.summaryZh}
-              </p>
-              <div className="mt-8 flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="border border-zinc-200 px-3 py-2 text-xs font-medium text-zinc-700">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <ProjectVisual project={project} />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-y border-zinc-200 bg-zinc-50 px-6 py-16 sm:px-12">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:gap-20">
-          <NarrativeBlock eyebrow="关键判断" title="为什么这个项目值得做" body={project.problem} />
-          <NarrativeBlock eyebrow="系统如何工作" title="职责边界先于功能列表" body={project.architecture} />
-        </div>
-      </section>
-
-      <section className="px-6 py-16 sm:px-12 lg:py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl">
-            <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-700">normal / failure</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">同一系统，三种可复核路径</h2>
-            <p className="mt-5 text-lg leading-8 text-zinc-600">
-              正常交付、失败停机和再次复核不是附加说明，而是项目 contract 的一部分。
-            </p>
-          </div>
-          <div className="mt-10 grid gap-px border border-zinc-300 bg-zinc-300 lg:grid-cols-3">
-            {pathFields.map((field) => (
-              <PathBlock key={field} path={project[field]} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-zinc-200 bg-zinc-50 px-6 py-16 sm:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20">
-          <DetailList title="关键实现" items={project.built} />
-          <DetailList title="3 条最强工程证明" items={project.evidence} tone="dark" />
-        </div>
-      </section>
-
-      <section className="px-6 py-16 sm:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-          <div>
-            <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-700">stack / keywords</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">工程关键词</h2>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {project.stack.map((item) => (
-              <div key={item} className="border-t-2 border-emerald-600 pt-4 text-base font-medium text-zinc-800">
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-zinc-950 px-6 py-16 text-zinc-100 sm:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-20">
-          <div>
-            <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-300">current boundary</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-5xl">当前边界</h2>
-          </div>
-          <div>
-            <p className="max-w-3xl text-lg leading-8 text-zinc-300">{project.boundary}</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center bg-white px-5 text-sm font-medium text-zinc-950 transition-colors hover:bg-zinc-200"
-              >
-                GitHub
-              </a>
-              <a
-                href={project.releaseUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center justify-center border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:border-emerald-300 hover:text-emerald-200"
-              >
-                Release {project.releaseLabel}
-              </a>
-              <a
-                href="#projects"
-                className="inline-flex min-h-11 items-center justify-center border border-white/20 px-5 text-sm font-medium text-white transition-colors hover:border-emerald-300 hover:text-emerald-200"
-              >
-                返回项目
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  )
-}
-
-function ProjectVisual({ project }: { project: Project }) {
-  return (
-    <figure className="min-w-0 border border-zinc-200 bg-zinc-50 p-3">
-      {project.visual.src ? (
-        <img
-          src={project.visual.src}
-          alt={project.visual.alt}
-          loading="lazy"
-          width="1440"
-          height="2534"
-          className="h-auto max-h-[34rem] w-full object-cover object-top"
-        />
-      ) : (
-        <div className="border border-zinc-200 bg-white p-6 sm:p-8">
-          <p className="font-mono text-xs uppercase tracking-[0.16em] text-emerald-700">{project.visual.title}</p>
-          <div className="mt-8 divide-y divide-zinc-200 border-y border-zinc-200">
-            {project.visual.lines.map((line, index) => (
-              <div key={line} className="flex min-h-14 items-center gap-4 py-3">
-                <span className="font-mono text-xs text-zinc-400">0{index + 1}</span>
-                <span className="text-base font-medium text-zinc-800">{line}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-      <figcaption className="border-t border-zinc-200 px-2 pb-1 pt-4">
-        <p className="text-sm leading-6 text-zinc-600">{project.visual.caption}</p>
-        {project.visual.sourceCommit ? (
-          <p className="mt-3 break-all font-mono text-xs leading-5 text-zinc-400">
-            source commit · {project.visual.sourceCommit}
+          <p className="section-index">{project.eyebrow}</p>
+          <h1>{project.headline}</h1>
+          <p className="project-detail__summary">{project.summary}</p>
+          <p className="project-detail__role">
+            <strong>我的职责</strong>
+            {project.role}
           </p>
-        ) : null}
-      </figcaption>
-      {project.visual.gallery.length > 1 ? (
-        <div className="mt-3 grid grid-cols-2 gap-3 border-t border-zinc-200 pt-3 sm:grid-cols-3">
-          {project.visual.gallery.map((src) => (
-            <img
-              key={src}
-              src={src}
-              alt=""
-              loading="lazy"
-              className="h-24 w-full object-cover object-top sm:h-32"
-            />
+          <div className="project-detail__actions">
+            <a className="button button--primary" href={project.githubUrl} target="_blank" rel="noreferrer">
+              查看 GitHub
+            </a>
+            <a className="button button--secondary" href={project.releaseUrl} target="_blank" rel="noreferrer">
+              Release {project.releaseLabel}
+            </a>
+          </div>
+        </div>
+
+        <ProjectImage visual={project.visuals[0]} eager className="project-detail__hero-image" />
+      </header>
+
+      <SectionReveal className="project-detail__problem">
+        <div>
+          <p className="section-index">Problem</p>
+          <h2>这个项目要解决什么问题</h2>
+        </div>
+        <div>
+          <p>{project.problem}</p>
+          <p>{project.approach}</p>
+        </div>
+      </SectionReveal>
+
+      <SectionReveal className="project-detail__workflow">
+        <article>
+          <span>01</span>
+          <h2>工作怎样向前推进</h2>
+          <p>{project.normalPath}</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h2>失败时怎样停下来</h2>
+          <p>{project.failurePath}</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h2>人工判断在哪里</h2>
+          <p>{project.humanBoundary}</p>
+        </article>
+      </SectionReveal>
+
+      <SectionReveal className="project-detail__gallery">
+        {project.visuals.slice(1).map((visual) => (
+          <ProjectImage key={visual.src} visual={visual} />
+        ))}
+      </SectionReveal>
+
+      <section className="project-detail__decisions">
+        <SectionReveal className="section-heading section-heading--split">
+          <div>
+            <p className="section-index">Key decisions</p>
+            <h2>我做的关键取舍</h2>
+          </div>
+          <p>这些取舍决定了模型能看见什么、能做什么，以及结果在什么条件下才可以进入下一步。</p>
+        </SectionReveal>
+
+        <div className="decision-list">
+          {project.decisions.map((decision, index) => (
+            <SectionReveal key={decision.title}>
+              <article>
+                <span>0{index + 1}</span>
+                <h3>{decision.title}</h3>
+                <p>{decision.body}</p>
+              </article>
+            </SectionReveal>
           ))}
         </div>
-      ) : null}
-    </figure>
-  )
-}
+      </section>
 
-function NarrativeBlock({ eyebrow, title, body }: { eyebrow: string; title: string; body: string }) {
-  return (
-    <section className="min-w-0">
-      <p className="font-mono text-sm uppercase tracking-[0.18em] text-emerald-700">{eyebrow}</p>
-      <h2 className="mt-4 text-3xl font-semibold tracking-tight">{title}</h2>
-      <p className="mt-5 break-words text-xl leading-9 text-zinc-700 [overflow-wrap:anywhere]">{body}</p>
-    </section>
-  )
-}
+      <SectionReveal className="project-detail__built">
+        <div>
+          <p className="section-index">My work</p>
+          <h2>我实际完成的工作</h2>
+        </div>
+        <ol>
+          {project.personalWork.map((item, index) => (
+            <li key={item}>
+              <span>0{index + 1}</span>
+              {item}
+            </li>
+          ))}
+        </ol>
+      </SectionReveal>
 
-function PathBlock({ path }: { path: ProjectPath }) {
-  return (
-    <article className="min-w-0 bg-white p-6 sm:p-8">
-      <p className="font-mono text-xs uppercase tracking-[0.16em] text-emerald-700">{path.label}</p>
-      <h3 className="mt-8 break-words text-2xl font-semibold tracking-tight [overflow-wrap:anywhere]">{path.title}</h3>
-      <p className="mt-4 break-words text-base leading-7 text-zinc-600 [overflow-wrap:anywhere]">{path.description}</p>
-    </article>
-  )
-}
+      <SectionReveal className="project-detail__technical">
+        <div>
+          <p className="section-index">Engineering</p>
+          <h2>技术实现与可核验入口</h2>
+        </div>
+        <div className="technical-columns">
+          <div>
+            <h3>技术栈</h3>
+            <ul>
+              {project.stack.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </div>
+          <div>
+            <h3>Agent 工程关键词</h3>
+            <ul>
+              {project.keywords.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </div>
+          <div>
+            <h3>继续核验</h3>
+            <p>源码、README、稳定 Release 和公开展示资产都可以继续查看。</p>
+            <a href={project.githubUrl} target="_blank" rel="noreferrer">公开源码 ↗</a>
+            <a href={project.releaseUrl} target="_blank" rel="noreferrer">Release {project.releaseLabel} ↗</a>
+          </div>
+        </div>
+      </SectionReveal>
 
-function DetailList({ title, items, tone = 'light' }: { title: string; items: string[]; tone?: 'light' | 'dark' }) {
-  const dark = tone === 'dark'
-
-  return (
-    <section className={dark ? 'min-w-0 bg-zinc-950 p-6 text-zinc-100 sm:p-8' : 'min-w-0 border border-zinc-200 bg-white p-6 text-zinc-950 sm:p-8'}>
-      <h2 className={dark ? 'font-mono text-sm uppercase tracking-[0.18em] text-emerald-300' : 'font-mono text-sm uppercase tracking-[0.18em] text-emerald-700'}>
-        {title}
-      </h2>
-      <ul className="mt-6 space-y-5">
-        {items.map((item) => (
-          <li key={item} className={dark ? 'break-words border-l border-emerald-400/50 pl-4 text-base leading-7 text-zinc-300 [overflow-wrap:anywhere]' : 'break-words border-l border-emerald-600 pl-4 text-base leading-7 text-zinc-700 [overflow-wrap:anywhere]'}>
-            {item}
-          </li>
-        ))}
-      </ul>
-    </section>
+      <details className="project-detail__boundary">
+        <summary>当前展示边界</summary>
+        <p>{project.boundary}</p>
+        <p>截图来源提交：<code>{project.captureCommit}</code></p>
+      </details>
+    </main>
   )
 }

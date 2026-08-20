@@ -1,15 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { AboutSection } from './components/AboutSection'
 import { AINativeEngineering } from './components/AINativeEngineering'
-import { CapabilityLoop } from './components/CapabilityLoop'
+import { CapabilityMap } from './components/CapabilityMap'
+import { ComplementaryProjects } from './components/ComplementaryProjects'
 import { ContactSection } from './components/ContactSection'
-import { EngineeringProof } from './components/EngineeringProof'
-import { FlagshipProject } from './components/FlagshipProject'
+import { FlagshipCaseStudy } from './components/FlagshipCaseStudy'
 import { Hero } from './components/Hero'
 import { NavigationBar } from './components/NavigationBar'
 import { ProjectDetailPage } from './components/ProjectDetailPage'
-import { ProjectSection } from './components/ProjectSection'
-import { projects } from './data/projects'
+import { complementaryProjects, flagshipProject, projects } from './data/projects'
 
 function getProjectRouteFromHash() {
   const canonicalMatch = window.location.hash.match(/^#\/projects\/([^/?#]+)/)
@@ -88,10 +87,9 @@ function App() {
       <NavigationBar />
       <main>
         <Hero />
-        <FlagshipProject />
-        <CapabilityLoop />
-        <ProjectSection />
-        <EngineeringProof />
+        <FlagshipCaseStudy project={flagshipProject} />
+        <ComplementaryProjects projects={complementaryProjects} />
+        <CapabilityMap />
         <AINativeEngineering />
         <AboutSection />
         <ContactSection />

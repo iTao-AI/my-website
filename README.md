@@ -1,67 +1,63 @@
 # Yang Tao · AI Agent Engineer
 
-个人作品集网站，公开展示 Night Voyager、Decision Research Agent 和 Multimodal Knowledge Engine 三个可核验的工程项目。
+杨涛的个人工程作品集。网站以真实项目界面和自然中文说明，展示三个可以继续核验的 AI Agent 项目：
+
+1. **Decision Research Agent**：围绕研究任务组织 Context、Tools、Evidence、Evaluation 与人工复核；
+2. **Night Voyager**：把长期留学咨询中的事实、路线、风险与行动放进可持续跟进的决策流程；
+3. **Multimodal Knowledge Engine**：把本地 PDF 与受控媒体处理成带来源位置、可发布和可检索的 Evidence。
 
 在线访问：[itao-ai.github.io/my-website](https://itao-ai.github.io/my-website/)
 
-## 站点结构
+## 页面结构
 
-- Hero：上海的 AI Agent 工程师定位、应用开发方向与真实流程入口
-- 旗舰项目：Night Voyager 的多人确认、决策状态和可执行计划
-- Capability Loop：MKE、DRA、NV 的职责与 consumer seam
-- Selected Projects：三个项目的价值、normal/failure/reproducible 路径与稳定 Release
-- Engineering Proof：把正常路径、失败停止和可复现交付放在同一张图里
-- AI-native Engineering：目标约束到最终交付的 AI-assisted engineering loop
-- About / Contact：公开背景、源码、Release 与联系入口
+- 候选人定位与 DRA 真实产品舞台；
+- DRA 旗舰案例：任务拆解、Evidence 复核与受阻恢复；
+- Night Voyager / MKE 两个互补案例；
+- Evidence、研究推进与人工确认三层能力关系；
+- AI-native 工作方式、个人背景和公开联系入口；
+- 三个项目各自的完整案例页、源码和稳定 Release。
+
+## 真实展示资产
+
+页面中的项目界面来自三个公开仓库各自的 canonical showcase manifest，没有重新生成或改写项目 UI。
+网站使用 [`public/images/project-showcase-manifest.json`](public/images/project-showcase-manifest.json)
+记录源项目、源提交、源路径、SHA-256、尺寸、页面用途和公开披露，并由内容验证脚本逐项核对。
+
+这些图片是确定性演示界面，用于说明产品结构和失败边界；它们不代表真实客户、生产部署或业务结果。
 
 ## 技术栈
 
 - React 19
 - TypeScript 6
 - Vite 8
-- Tailwind CSS 4
+- CSS / Tailwind CSS 4
 - GitHub Pages
 
-站点使用固定浅色画布。页面路由使用 URL hash，GitHub Pages base path 为 `/my-website/`。
+站点保持固定浅色画布，不依赖境外字体 CDN，不新增运行时 UI 依赖。页面路由使用 URL hash；canonical
+路径为 `#/projects/<slug>`，旧 `#project/<slug>` 链接会继续归一化，GitHub Pages base 为
+`/my-website/`。
 
-## 本地开发
+## 本地运行与验证
 
 ```bash
 npm ci
 npm run dev
 ```
 
-常用检查：
+完整静态检查：
 
 ```bash
+npm run verify:public
 npm run lint
 npm run build
-npm run verify:public
-npm run preview
 ```
 
-`npm run verify:public` 会核对三个项目的 canonical identity、Release、公开边界、hash route、本地资源和敏感信息模式。`npm run preview` 需要先完成 build。
+`npm run verify:public` 会检查项目顺序、公开文案、GitHub / Release 链接、hash route、九张展示图片的
+provenance 与 SHA-256、PNG 尺寸、旧身份残留和敏感信息模式。
 
-## 目录
+## 内容边界
 
-```text
-src/components/  页面区块与项目详情组件
-src/data/        公开项目内容与工程记录
-src/assets/      当前站点使用的本地资源
-public/          GitHub Pages 静态资源
-public/images/   Night Voyager 确定性视觉证据与 social preview
-scripts/         public-content contract
-```
-
-## 部署
-
-`vite.config.ts` 将 base 设置为 `/my-website/`。推荐部署路径是 GitHub Actions Pages workflow：push 到 `main` 或手动触发 `Deploy GitHub Pages` workflow 后，CI 会执行 `npm ci`、`npm run build`、`npm run verify:public`，并将 `dist/` 作为 Pages artifact 发布。
-
-仓库仍保留 `npm run deploy` / `gh-pages` 作为 legacy/manual fallback，但不属于本次本地验证范围。切换 GitHub Pages source 或执行发布都属于显式发布动作，需要单独授权和验证。
-
-## 内容维护原则
-
-- 项目事实、Release、能力和验证结果必须来自公开仓库、稳定 Release 或可复验的机器报告。
-- 稳定项目事实绑定 immutable Release；post-release maintenance 不自动形成能力 claim。
-- 当前边界必须与能力一起公开，不能把计划、截图、固定样本或本地实验写成真实用户结果。
-- 不提交 secret、token、cookie、私有路径、未公开材料或未验证指标。
+- 个人经历和项目能力只使用已确认事实与公开项目证据；
+- 稳定项目事实绑定公开 Release，后续维护不自动变成新的产品 claim；
+- 三个项目是互补的独立实践，不表述为已经生产集成的平台；
+- 不提交 secret、token、cookie、私有路径、真实客户资料或未验证指标。
