@@ -60,6 +60,13 @@ function App() {
   )
 
   useEffect(() => {
+    if (!selectedProject) return
+
+    const frame = window.requestAnimationFrame(() => window.scrollTo(0, 0))
+    return () => window.cancelAnimationFrame(frame)
+  }, [selectedProject])
+
+  useEffect(() => {
     if (
       selectedProject ||
       !window.location.hash.startsWith('#') ||

@@ -159,6 +159,14 @@ const checks = [
       appText.includes('history.replaceState'),
   ],
   [
+    'project detail navigation resets inherited page scroll',
+    () => appText.includes('window.scrollTo(0, 0)'),
+  ],
+  [
+    'complementary project visuals render one caption layer',
+    () => fileText.get('src/components/ComplementaryProjects.tsx').includes('showCaption={false}'),
+  ],
+  [
     'first-layer internal audit language is absent',
     () =>
       [
@@ -175,7 +183,7 @@ const checks = [
     'AI-native, capability and background language is natural',
     () =>
       [
-        'AI 提高实现速度，判断和结果由我负责。',
+        'AI 用来加速实现，判断和结果由我负责。',
         '从信息进入，到任务推进，再到人工确认。',
         '先理解一项具体工作怎样运转',
       ].every((marker) => allPublicText.includes(marker)),

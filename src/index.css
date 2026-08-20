@@ -204,6 +204,7 @@ h3 {
 }
 
 .site-identity {
+  min-width: 44px;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -228,9 +229,11 @@ h3 {
 }
 
 .site-nav__links a {
+  min-width: 44px;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   color: var(--ink-soft);
   font-size: 14px;
   font-weight: 550;
@@ -379,7 +382,7 @@ h3 {
   justify-content: space-between;
   gap: 20px;
   color: #4c5b63;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -613,7 +616,7 @@ h3 {
 
 .flagship-stage__controls button span {
   color: #73828a;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .flagship-stage__controls button[aria-pressed="true"] {
@@ -742,7 +745,7 @@ h3 {
 
 .project-actions button span {
   color: var(--case-accent);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .project-actions button[aria-pressed="true"] {
@@ -1022,7 +1025,7 @@ h3 {
 
 .contact-projects span {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .site-footer-note {
@@ -1552,7 +1555,8 @@ h3 {
     top: 20px;
     left: 18px;
     right: 18px;
-    font-size: 10px;
+    font-size: 12px;
+    letter-spacing: 0.05em;
   }
 
   .hero-product-stage__meta span:last-child {

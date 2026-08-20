@@ -53,7 +53,7 @@ export const siteContent = {
   },
   aiNative: {
     eyebrow: 'AI-native Engineering',
-    title: 'AI 提高实现速度，判断和结果由我负责。',
+    title: 'AI 用来加速实现，判断和结果由我负责。',
     description:
       '我长期使用 Codex、Claude Code 参与方案探索、代码实现和验证；问题定义、架构取舍、边界设计、代码审查、故障定位和最终验收由我负责。',
     principles: [

@@ -42,7 +42,7 @@ function ComplementaryCase({ project, index }: { project: Project; index: number
       </div>
 
       <div className="complementary-case__stage" aria-live="polite">
-        <ProjectImage key={activeVisual.src} visual={activeVisual} />
+        <ProjectImage key={activeVisual.src} visual={activeVisual} showCaption={false} />
         <p className="complementary-case__state">
           <span>{project.actions[activeIndex]}</span>
           {activeVisual.caption}
