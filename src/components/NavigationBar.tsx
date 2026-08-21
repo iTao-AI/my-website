@@ -1,41 +1,25 @@
-const NAV_LINKS = [
-  { label: '旗舰', href: '#flagship', mobile: false },
-  { label: '项目', href: '#projects', mobile: true },
-  { label: '关于', href: '#about', mobile: true },
-  { label: '联系', href: '#contact', mobile: false },
-]
+import { siteContent } from '../data/siteContent'
 
 export function NavigationBar() {
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50
-                 bg-white/85 backdrop-blur-md
-                 border-b border-zinc-200/70
-                 transition-colors duration-300"
-    >
-      <div className="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-8">
-        <a
-          href="#home"
-          className="inline-flex min-h-11 shrink-0 items-center text-xl font-semibold tracking-tight text-zinc-950 transition-opacity hover:opacity-70 sm:text-2xl"
-        >
-          Yang Tao
+    <nav className="site-nav" aria-label="主导航">
+      <div className="site-nav__inner">
+        <a className="site-identity" href="#home" aria-label="杨涛的作品集首页">
+          <strong>杨涛</strong>
+          <span>AI Agent Engineer</span>
         </a>
 
-        <div className="flex items-center gap-1 sm:gap-2">
-          {NAV_LINKS.map(({ label, href, mobile }) => (
-            <a
-              key={href}
-              href={href}
-              className={`public-link ${mobile ? 'inline-flex' : 'hidden sm:inline-flex'} min-h-11 items-center px-2 text-sm font-medium text-zinc-600 transition-colors hover:text-zinc-950 sm:px-3`}
-            >
-              {label}
+        <div className="site-nav__links">
+          {siteContent.navigation.map((item) => (
+            <a key={item.href} href={item.href}>
+              {item.label}
             </a>
           ))}
           <a
-            href="https://github.com/iTao-AI"
+            className="site-nav__github"
+            href={siteContent.contact.github}
             target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center rounded-md bg-zinc-950 px-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+            rel="noreferrer"
           >
             GitHub
           </a>
