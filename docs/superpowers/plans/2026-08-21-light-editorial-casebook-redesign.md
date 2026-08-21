@@ -149,9 +149,9 @@ git commit -m "feat(website): establish editorial portfolio content"
 
 核对三个项目 manifest 中的 capture commit、文件名、尺寸和 SHA-256：
 
-- DRA: `331ba24cc2ac8ab22bf9ea2867f6e6c7d6bc236e`
-- Night Voyager: `01de938af2faa06f129be581154cb61f51eed5e4`
-- MKE: `7880757bfdbc80fb684292ff552fddddfd858f1d`
+- DRA: `868dc2fc621f02e40cb341547dc65c5311a78f54`
+- Night Voyager: `e4a13ebe2c3e49b222bbfca593eb75db309b6451`
+- MKE: `3a24370df064add49286b3474f20a5f86c32cae9`
 
 任何文件或 hash 不匹配时停止该资产复制，不用重新截图或自行生成替代图。
 
@@ -168,6 +168,8 @@ git commit -m "feat(website): establish editorial portfolio content"
   "project": "decision-research-agent",
   "source_commit": "...",
   "source_path": "...",
+  "source_url": "https://github.com/.../blob/<commit>/<path>",
+  "git_blob_sha1": "...",
   "public_path": "...",
   "sha256": "...",
   "width": 1600,
@@ -183,6 +185,8 @@ git commit -m "feat(website): establish editorial portfolio content"
 
 - manifest 精确包含九项；
 - 项目顺序、state 和 public path 唯一；
+- source URL 必须由公开仓库、实际 capture commit 和 source path 精确组成；
+- 本地 PNG 的 Git blob SHA-1 必须与来源 blob identity 一致；
 - public 文件存在；
 - SHA-256 与 manifest 一致；
 - PNG IHDR 尺寸为 1600×1000；

@@ -284,11 +284,11 @@ DRA 使用全宽编辑式案例。桌面端可以采用左侧短叙事、右侧�
 
 网站只使用三个公开项目已经冻结的原生展示资产：
 
-- DRA capture commit `331ba24cc2ac8ab22bf9ea2867f6e6c7d6bc236e`：
+- DRA capture commit `868dc2fc621f02e40cb341547dc65c5311a78f54`：
   `research-workspace-overview`、`research-evidence-review`、`research-blocked-recovery`；
-- Night Voyager capture commit `01de938af2faa06f129be581154cb61f51eed5e4`：
+- Night Voyager capture commit `e4a13ebe2c3e49b222bbfca593eb75db309b6451`：
   `advisor-workspace-overview`、`advisor-normal-path`、`advisor-blocked-recovery`，以及移动端 overview；
-- MKE capture commit `7880757bfdbc80fb684292ff552fddddfd858f1d`：
+- MKE capture commit `3a24370df064add49286b3474f20a5f86c32cae9`：
   `evidence-workspace-overview`、`evidence-publication-search`、`evidence-insufficient-recovery`。
 
 实现时从公开 manifest 读取文件、尺寸、状态和 SHA-256，生成网站自己的 public-neutral asset manifest。网站不根据项目 later `main` 自动替换截图。

@@ -169,7 +169,7 @@
 - Night Voyager：`advisor-workspace-overview`、`advisor-normal-path`、`advisor-blocked-recovery`，并保留移动端图用于响应式核验，不作为桌面画廊第四主图。
 - MKE：`evidence-workspace-overview`、`evidence-publication-search`、`evidence-insufficient-recovery`。
 
-实现时固定读取现有公开 manifest 中的来源身份：DRA capture commit `331ba24cc2ac8ab22bf9ea2867f6e6c7d6bc236e`，Night Voyager capture commit `01de938af2faa06f129be581154cb61f51eed5e4`，MKE capture commit `7880757bfdbc80fb684292ff552fddddfd858f1d`。若源仓库 later main 已前进，不自动把截图来源改写成 later HEAD。
+实现时固定读取现有公开 manifest 中的来源身份：DRA capture commit `868dc2fc621f02e40cb341547dc65c5311a78f54`，Night Voyager capture commit `e4a13ebe2c3e49b222bbfca593eb75db309b6451`，MKE capture commit `3a24370df064add49286b3474f20a5f86c32cae9`。若源仓库 later main 已前进，不自动把截图来源改写成 later HEAD。
 
 新增一个 public-neutral 资产 manifest，记录项目、上述源仓库公开 commit、源路径、原始尺寸、派生尺寸与 SHA-256。网页只消费本地资源，不跨仓库运行时读取，也不把截图写成生产结果。
 

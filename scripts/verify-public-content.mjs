@@ -54,12 +54,24 @@ const expectedProjects = [
     releaseUrl:
       'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.8',
     releaseLabel: 'v0.1.8',
-    captureCommit: '331ba24cc2ac8ab22bf9ea2867f6e6c7d6bc236e',
+    captureCommit: '868dc2fc621f02e40cb341547dc65c5311a78f54',
     actions: ['拆解任务', '核对 Evidence', '审核后交付'],
     assets: [
-      ['overview', 'images/decision-research-agent/research-workspace-overview.png'],
-      ['normal', 'images/decision-research-agent/research-evidence-review.png'],
-      ['blocked', 'images/decision-research-agent/research-blocked-recovery.png'],
+      [
+        'overview',
+        'images/decision-research-agent/research-workspace-overview.png',
+        'docs/assets/console-showcase/research-workspace-overview.png',
+      ],
+      [
+        'normal',
+        'images/decision-research-agent/research-evidence-review.png',
+        'docs/assets/console-showcase/research-evidence-review.png',
+      ],
+      [
+        'blocked',
+        'images/decision-research-agent/research-blocked-recovery.png',
+        'docs/assets/console-showcase/research-blocked-recovery.png',
+      ],
     ],
   },
   {
@@ -68,12 +80,24 @@ const expectedProjects = [
     githubUrl: 'https://github.com/iTao-AI/night-voyager',
     releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.5',
     releaseLabel: 'v0.1.5',
-    captureCommit: '01de938af2faa06f129be581154cb61f51eed5e4',
+    captureCommit: 'e4a13ebe2c3e49b222bbfca593eb75db309b6451',
     actions: ['确认事实', '比较路线', '形成行动计划'],
     assets: [
-      ['overview', 'images/night-voyager/advisor-workspace-overview.png'],
-      ['normal', 'images/night-voyager/advisor-normal-path.png'],
-      ['blocked', 'images/night-voyager/advisor-blocked-recovery.png'],
+      [
+        'overview',
+        'images/night-voyager/advisor-workspace-overview.png',
+        'docs/assets/advisor-workspace-overview.png',
+      ],
+      [
+        'normal',
+        'images/night-voyager/advisor-normal-path.png',
+        'docs/assets/advisor-normal-path.png',
+      ],
+      [
+        'blocked',
+        'images/night-voyager/advisor-blocked-recovery.png',
+        'docs/assets/advisor-blocked-recovery.png',
+      ],
     ],
   },
   {
@@ -83,12 +107,24 @@ const expectedProjects = [
     releaseUrl:
       'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.6',
     releaseLabel: 'v0.1.6',
-    captureCommit: '7880757bfdbc80fb684292ff552fddddfd858f1d',
+    captureCommit: '3a24370df064add49286b3474f20a5f86c32cae9',
     actions: ['处理资料', '保留来源', '受控检索'],
     assets: [
-      ['overview', 'images/multimodal-knowledge-engine/evidence-workspace-overview.png'],
-      ['normal', 'images/multimodal-knowledge-engine/evidence-publication-search.png'],
-      ['blocked', 'images/multimodal-knowledge-engine/evidence-insufficient-recovery.png'],
+      [
+        'overview',
+        'images/multimodal-knowledge-engine/evidence-workspace-overview.png',
+        'docs/evidence-workspace/evidence-workspace-overview.png',
+      ],
+      [
+        'normal',
+        'images/multimodal-knowledge-engine/evidence-publication-search.png',
+        'docs/evidence-workspace/evidence-publication-search.png',
+      ],
+      [
+        'blocked',
+        'images/multimodal-knowledge-engine/evidence-insufficient-recovery.png',
+        'docs/evidence-workspace/evidence-insufficient-recovery.png',
+      ],
     ],
   },
 ]
@@ -242,11 +278,13 @@ if (!existsSync(manifestPath)) {
   try {
     const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
     const expectedAssets = expectedProjects.flatMap((project) =>
-      project.assets.map(([state, publicPath]) => ({
+      project.assets.map(([state, publicPath, sourcePath]) => ({
         project: project.slug,
         state,
         publicPath,
+        sourcePath,
         sourceCommit: project.captureCommit,
+        sourceUrl: `${project.githubUrl}/blob/${project.captureCommit}/${sourcePath}`,
       })),
     )
 
@@ -268,6 +306,12 @@ if (!existsSync(manifestPath)) {
         if (asset.source_commit !== expected.sourceCommit) {
           failures.push(`source commit mismatch ${expected.project}/${expected.state}`)
         }
+        if (asset.source_path !== expected.sourcePath) {
+          failures.push(`source path mismatch ${expected.project}/${expected.state}`)
+        }
+        if (asset.source_url !== expected.sourceUrl) {
+          failures.push(`source URL mismatch ${expected.project}/${expected.state}`)
+        }
         if (asset.width !== 1600 || asset.height !== 1000) {
           failures.push(`unexpected PNG dimensions ${expected.project}/${expected.state}`)
         }
@@ -287,6 +331,13 @@ if (!existsSync(manifestPath)) {
         const digest = createHash('sha256').update(buffer).digest('hex')
         if (digest !== asset.sha256) {
           failures.push(`sha256 mismatch ${expected.project}/${expected.state}`)
+        }
+        const gitBlobDigest = createHash('sha1')
+          .update(`blob ${buffer.length}\0`)
+          .update(buffer)
+          .digest('hex')
+        if (gitBlobDigest !== asset.git_blob_sha1) {
+          failures.push(`git blob sha1 mismatch ${expected.project}/${expected.state}`)
         }
         if (
           buffer.length < 24 ||
