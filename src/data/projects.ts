@@ -111,8 +111,8 @@ export const projects: Project[] = [
     ],
     githubUrl: 'https://github.com/iTao-AI/decision-research-agent',
     releaseUrl:
-      'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.8',
-    releaseLabel: 'v0.1.8',
+      'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.9',
+    releaseLabel: 'v0.1.9',
     captureCommit: '868dc2fc621f02e40cb341547dc65c5311a78f54',
     boundary:
       '页面展示来自公开仓库内的确定性演示，不代表线上服务、真实客户研究或市场准确率。',
@@ -186,8 +186,8 @@ export const projects: Project[] = [
       },
     ],
     githubUrl: 'https://github.com/iTao-AI/night-voyager',
-    releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.5',
-    releaseLabel: 'v0.1.5',
+    releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.6',
+    releaseLabel: 'v0.1.6',
     captureCommit: 'e4a13ebe2c3e49b222bbfca593eb75db309b6451',
     boundary:
       '页面展示使用本地确定性咨询场景，不代表真实客户、院校建议、录取结果或正式商业服务。',
@@ -262,8 +262,8 @@ export const projects: Project[] = [
     ],
     githubUrl: 'https://github.com/iTao-AI/multimodal-knowledge-engine',
     releaseUrl:
-      'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.6',
-    releaseLabel: 'v0.1.6',
+      'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.7',
+    releaseLabel: 'v0.1.7',
     captureCommit: '3a24370df064add49286b3474f20a5f86c32cae9',
     boundary:
       '页面展示来自公开仓库内的确定性资料场景，不代表托管服务、任意媒体支持或生产数据处理。',
