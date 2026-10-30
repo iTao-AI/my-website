@@ -33,12 +33,19 @@ export interface Project {
   githubUrl: string
   releaseUrl: string
   releaseLabel: string
+  publicSource: {
+    commit: string
+    guidePath: string
+    summary: string
+  }
   captureCommit: string
   boundary: string
   accent: 'blue' | 'green' | 'rust'
 }
 
 const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path}`
+
+export const publicFactsCheckedOn = '2026-10-30'
 
 export const projects: Project[] = [
   {
@@ -55,7 +62,7 @@ export const projects: Project[] = [
     approach:
       '我把一次研究拆成有状态的循环：围绕目标组织 Context，按需调用 Tools，把来源编译为 Evidence，再通过 Evaluation 与人工审核决定能否交付。',
     humanBoundary:
-      '模型可以提出研究方向和工具请求，但工具执行、证据是否足够、结果是否进入交付，都由 Harness 中的规则和人工复核共同控制。',
+      '模型可以提出研究方向和工具请求；应用服务负责执行与记录，证据、审核和交付状态以服务端规则与台账为准，控制台不替代人工复核。',
     normalPath:
       '问题被拆成研究步骤，工具返回的材料进入 Evidence；完成引用核对和交付前审核后，研究结果才进入已交付状态。',
     failurePath:
@@ -76,7 +83,7 @@ export const projects: Project[] = [
       },
       {
         title: '交付是独立状态，不等于回答已经生成',
-        body: '只有 Evidence、引用和审核条件都满足时才允许交付；否则保留问题并等待人工处理。',
+        body: '应用服务根据 Evidence、引用和对应审核条件决定能否交付，控制台只读取这些状态；条件未满足时保留问题并等待处理。',
       },
     ],
     stack: ['Python', 'FastAPI', 'LangGraph', 'React', 'SQL', 'Docker'],
@@ -113,6 +120,12 @@ export const projects: Project[] = [
     releaseUrl:
       'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.9',
     releaseLabel: 'v0.1.9',
+    publicSource: {
+      commit: 'd5e230135a72a08fe0ebc09d2f238644748f9067',
+      guidePath: 'docs/demo-console.md',
+      summary:
+        '支持 1–5 个问题的结构化研究，逐题核对研究发现与原文片段；未解决问题可先形成独立草稿，再经确认发起新研究，不继承原报告的证据或审核状态。',
+    },
     captureCommit: '868dc2fc621f02e40cb341547dc65c5311a78f54',
     boundary:
       '页面展示来自公开仓库内的确定性演示，不代表线上服务、真实客户研究或市场准确率。',
@@ -134,7 +147,7 @@ export const projects: Project[] = [
     humanBoundary:
       'Agent 可以整理材料、发现矛盾并提出方案，但不会替顾问决定路线，也不会在客户确认前推进关键行动。',
     normalPath:
-      '顾问核对客户条件后形成事实版本，系统据此比较路线；审核通过的判断进入客户确认，随后生成行动时间线。',
+      '顾问核对客户条件后形成事实版本，系统据此比较路线；审核通过的判断进入客户确认，生成回执和行动时间线，再把同一客户案例交给执行流程。',
     failurePath:
       '预算变化、事实冲突或必要依据不足时，原方案停止推进，页面保留受阻原因并回到重新评估。',
     personalWork: [
@@ -188,6 +201,12 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/iTao-AI/night-voyager',
     releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.6',
     releaseLabel: 'v0.1.6',
+    publicSource: {
+      commit: '2b3c516eef634ee77ec6886b5715abc96fff2cf5',
+      guidePath: 'README.md',
+      summary:
+        '在合成场景中调整同一客户案例的已确认预算，重新规划并取得新的顾问审核与家长同意；执行受阻后，可读取和复制已保存的重新评估交接摘要，原执行保持停止。',
+    },
     captureCommit: 'e4a13ebe2c3e49b222bbfca593eb75db309b6451',
     boundary:
       '页面展示使用本地确定性咨询场景，不代表真实客户、院校建议、录取结果或正式商业服务。',
@@ -211,7 +230,7 @@ export const projects: Project[] = [
     normalPath:
       'PDF 或受控媒体完成处理后生成带页码或时间戳的 Evidence；成功发布的版本进入搜索，并可通过 MCP 提供给外部 Agent。',
     failurePath:
-      '解析失败、来源不完整或结果超过可交付边界时，当前有效版本保持不变，失败结果留在隔离状态等待处理。',
+      '处理失败不替换当前有效版本；Ask 无匹配时返回证据不足，检索截断标明不完整，过期 Evidence 则提示重新搜索当前有效内容。',
     personalWork: [
       '设计 intake、Evidence、Publication 与 active search 之间的状态边界',
       '实现 PDF 与受控媒体处理、来源定位、检索、导出和 MCP 接口',
@@ -264,6 +283,12 @@ export const projects: Project[] = [
     releaseUrl:
       'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.7',
     releaseLabel: 'v0.1.7',
+    publicSource: {
+      commit: '161b1d9976c3c23c23680468745f37c1f62cc3d9',
+      guidePath: 'README.md',
+      summary:
+        '先选择一份资料，再在该来源内查找 Evidence、读取完整文本并核对引用；无匹配时不借用其他来源补齐结果。已验证的导出快照还可生成单文件 HTML 阅读器。',
+    },
     captureCommit: '3a24370df064add49286b3474f20a5f86c32cae9',
     boundary:
       '页面展示来自公开仓库内的确定性资料场景，不代表托管服务、任意媒体支持或生产数据处理。',

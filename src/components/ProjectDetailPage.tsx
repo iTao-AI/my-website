@@ -1,4 +1,4 @@
-import type { Project } from '../data/projects'
+import { publicFactsCheckedOn, type Project } from '../data/projects'
 import { ProjectImage } from './ProjectImage'
 import { SectionReveal } from './SectionReveal'
 
@@ -125,10 +125,12 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
             </ul>
           </div>
           <div>
-            <h3>继续核验</h3>
-            <p>源码、README、稳定 Release 和公开展示资产都可以继续查看。</p>
+            <h3>公开源码的新流程</h3>
+            <p>以下流程来自 {project.releaseLabel} 之后的公开源码。</p>
+            <p>{project.publicSource.summary}</p>
             <a href={project.githubUrl} target="_blank" rel="noreferrer">公开源码 ↗</a>
-            <a href={project.releaseUrl} target="_blank" rel="noreferrer">Release {project.releaseLabel} ↗</a>
+            <a href={`${project.githubUrl}/blob/${project.publicSource.commit}/${project.publicSource.guidePath}`} target="_blank" rel="noreferrer">阅读当前流程指南 ↗</a>
+            <a href={project.releaseUrl} target="_blank" rel="noreferrer">稳定 Release {project.releaseLabel} ↗</a>
           </div>
         </div>
       </SectionReveal>
@@ -136,7 +138,9 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
       <details className="project-detail__boundary">
         <summary>当前展示边界</summary>
         <p>{project.boundary}</p>
+        <p>截图用于说明基础流程；Release 之后的源码新流程请以上方指南为准。</p>
         <p>截图来源提交：<code>{project.captureCommit}</code></p>
+        <p>公开内容核对：{publicFactsCheckedOn}；源码提交：<code>{project.publicSource.commit}</code></p>
       </details>
     </main>
   )

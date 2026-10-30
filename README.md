@@ -17,7 +17,21 @@
 - Night Voyager / MKE 两个互补案例；
 - Evidence、研究推进与人工确认三层能力关系；
 - AI-native 工作方式、个人背景和公开联系入口；
-- 三个项目各自的完整案例页、源码和稳定 Release。
+- 三个项目各自的完整案例页、源码、稳定 Release 与固定提交的当前流程指南。
+
+## 版本与当前公开源码
+
+公开内容核对日期：**2026-10-30**。稳定 Release 和后续已公开源码分别展示；详情页的“公开源码的新流程”
+不表示该流程已包含在对应 Release，也不表示已部署服务。
+
+| 项目 | 稳定 Release | Release 之后的公开源码入口 |
+| --- | --- | --- |
+| Decision Research Agent | [v0.1.9](https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.9) | [结构化研究、逐题阅读与独立后续草稿](https://github.com/iTao-AI/decision-research-agent/blob/d5e230135a72a08fe0ebc09d2f238644748f9067/docs/demo-console.md) |
+| Night Voyager | [v0.1.6](https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.6) | [预算变更、重新确认与受阻交接](https://github.com/iTao-AI/night-voyager/blob/2b3c516eef634ee77ec6886b5715abc96fff2cf5/README.md) |
+| Multimodal Knowledge Engine | [v0.1.7](https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.7) | [单来源资料读取、引用核对与离线阅读器](https://github.com/iTao-AI/multimodal-knowledge-engine/blob/161b1d9976c3c23c23680468745f37c1f62cc3d9/README.md) |
+
+项目事实集中维护于 [`src/data/projects.ts`](src/data/projects.ts)。指南链接绑定本次核对的公开提交；
+GitHub 入口继续指向各项目的最新源码。历史截图单独记录来源，不作为后续源码新流程的界面证明。
 
 ## 真实展示资产
 
@@ -60,6 +74,6 @@ provenance 与 SHA-256、PNG 尺寸、旧身份残留和敏感信息模式。
 ## 内容边界
 
 - 个人经历和项目能力只使用已确认事实与公开项目证据；
-- 稳定项目事实绑定公开 Release，后续维护不自动变成新的产品 claim；
+- 基础流程绑定公开 Release；后续公开源码流程单独标识并链接到固定提交，不改写历史 Release；
 - 三个项目是互补的独立实践，不表述为已经生产集成的平台；
 - 不提交 secret、token、cookie、私有路径、真实客户资料或未验证指标。
