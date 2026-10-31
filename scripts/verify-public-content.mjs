@@ -52,8 +52,8 @@ const expectedProjects = [
     title: 'Decision Research Agent',
     githubUrl: 'https://github.com/iTao-AI/decision-research-agent',
     releaseUrl:
-      'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.8',
-    releaseLabel: 'v0.1.8',
+      'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.9',
+    releaseLabel: 'v0.1.9',
     captureCommit: '868dc2fc621f02e40cb341547dc65c5311a78f54',
     actions: ['拆解任务', '核对 Evidence', '审核后交付'],
     assets: [
@@ -78,8 +78,8 @@ const expectedProjects = [
     slug: 'night-voyager',
     title: 'Night Voyager',
     githubUrl: 'https://github.com/iTao-AI/night-voyager',
-    releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.5',
-    releaseLabel: 'v0.1.5',
+    releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.6',
+    releaseLabel: 'v0.1.6',
     captureCommit: 'e4a13ebe2c3e49b222bbfca593eb75db309b6451',
     actions: ['确认事实', '比较路线', '形成行动计划'],
     assets: [
@@ -105,8 +105,8 @@ const expectedProjects = [
     title: 'Multimodal Knowledge Engine',
     githubUrl: 'https://github.com/iTao-AI/multimodal-knowledge-engine',
     releaseUrl:
-      'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.6',
-    releaseLabel: 'v0.1.6',
+      'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.7',
+    releaseLabel: 'v0.1.7',
     captureCommit: '3a24370df064add49286b3474f20a5f86c32cae9',
     actions: ['处理资料', '保留来源', '受控检索'],
     assets: [

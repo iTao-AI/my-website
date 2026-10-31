@@ -38,6 +38,9 @@ function ComplementaryCase({ project, index }: { project: Project; index: number
           <a href={project.githubUrl} target="_blank" rel="noreferrer">
             GitHub
           </a>
+          <a href={project.releaseUrl} target="_blank" rel="noreferrer">
+            Release {project.releaseLabel}
+          </a>
         </div>
       </div>
 
