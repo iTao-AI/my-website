@@ -64,7 +64,7 @@ export function FlagshipCaseStudy({ project }: FlagshipCaseStudyProps) {
             <ProjectImage key={activeVisual.src} visual={activeVisual} eager={activeIndex === 0} />
             {activeVisual.state === 'blocked' ? (
               <p className="flagship-stage__note flagship-stage__note--blocked">
-                <strong>证据不足时，交付停在人工复核。</strong>
+                <strong>本次报告暂不交付。</strong>
                 <span>缺口仍然可见，不用完整语气掩盖不确定性。</span>
               </p>
             ) : null}

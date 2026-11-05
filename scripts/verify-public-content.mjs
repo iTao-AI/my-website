@@ -55,7 +55,7 @@ const expectedProjects = [
       'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.9',
     releaseLabel: 'v0.1.9',
     captureCommit: '868dc2fc621f02e40cb341547dc65c5311a78f54',
-    actions: ['拆解任务', '核对 Evidence', '审核后交付'],
+    actions: ['拆解任务', '核对 Evidence', '判断能否交付'],
     assets: [
       [
         'overview',
