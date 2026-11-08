@@ -45,28 +45,28 @@ export interface Project {
 
 const assetUrl = (path: string) => `${import.meta.env.BASE_URL}${path}`
 
-export const publicFactsCheckedOn = '2026-10-30'
+export const publicFactsCheckedOn = '2026-11-08'
 
 export const projects: Project[] = [
   {
     slug: 'decision-research-agent',
     title: 'Decision Research Agent',
     eyebrow: '旗舰工程项目 · 研究与交付',
-    headline: '让复杂研究不只给出答案，也留下证据和判断过程。',
+    headline: '把研究问题，整理成能回查来源的方案比较与报告。',
     summary:
-      '系统把开放问题拆成可执行的研究步骤，通过工具收集资料，保留结论、引用和运行状态，方便回查依据。服务端判断结果能否交付。',
-    role: '独立完成研究编排、Evidence 模型、人工复核和交付边界的设计与实现。',
-    actions: ['拆解任务', '核对 Evidence', '判断能否交付'],
+      '面向多轮、多来源研究，组织资料收集、方案比较与报告交付。以客服试点选型为例，既能看到推荐方案，也能打开关键结论对应的支持资料与完整报告。',
+    role: '独立设计并实现研究编排、工具接入、来源引用、后端接口与报告阅读界面。',
+    actions: ['比较方案', '回查来源', '查看待确认项'],
     problem:
-      '开放式研究往往跨越检索、工具调用、判断和交付。只保留最终回答，很难解释结论从哪里来，也无法在证据不足时可靠地停下来。',
+      '做方案比较时，读者既要知道推荐什么，也要知道依据是什么、还有哪些条件未确认。只保留最后一段回答，难以逐项核对或继续研究。',
     approach:
-      '我把一次研究组织成有状态的循环。系统围绕目标组织 Context，按需调用 Tools，将来源记录为 Evidence，并按当前模式检查交付条件。',
+      '先围绕研究目标确定比较维度，再调用工具收集资料，把来源片段与候选结论关联。报告阅读、来源核对与研究状态通过同一任务串起。',
     humanBoundary:
       '模型提出研究方向和工具请求，应用服务负责执行与记录。需要复核时，由人工决定是否允许交付。引用绑定用于回查原文片段，证据是否经人工核实另行记录。',
     normalPath:
-      '服务端根据运行状态和当前模式的审核要求判断能否交付。结果就绪且无需人工审核时可直接交付，需要复核时则等待人工处理。',
+      '从问题形成研究计划，经工具收集资料并整理结论；读者从报告打开对应来源，按当前审核模式确认可交付结果。',
     failurePath:
-      '交付条件未满足时，系统暂不交付报告，并保留当前状态和已有依据，方便后续处理。',
+      '资料访问未确认或依据不足时，显示缺口并保留研究状态和已有资料，等待进一步核对。',
     personalWork: [
       '设计研究任务、Evidence、审核与交付之间的状态关系',
       '实现工具调用、来源引用、失败恢复和人工复核流程',
@@ -86,7 +86,7 @@ export const projects: Project[] = [
         body: '应用服务根据 Evidence、引用和对应审核条件决定能否交付，控制台只读取这些状态；条件未满足时保留问题并等待处理。',
       },
     ],
-    stack: ['Python', 'FastAPI', 'LangGraph', 'React', 'SQL', 'Docker'],
+    stack: ['Python', 'FastAPI', 'LangChain', 'DeepAgents', 'LangGraph', 'React', 'SQL', 'Docker'],
     keywords: [
       'Agent Harness',
       'Agent Loop',
@@ -99,20 +99,20 @@ export const projects: Project[] = [
     visuals: [
       {
         src: assetUrl('images/decision-research-agent/research-workspace-overview.png'),
-        alt: 'Decision Research Agent 研究工作台总览，显示任务状态、研究进度和交付区域',
-        caption: '研究工作台：任务、Evidence 与交付状态位于同一条可复核流程中。',
+        alt: 'DRA合成客服选型案例，展示知识助手与自动退款的方案比较、研究结论及支持资料',
+        caption: '内置合成案例：先看客服试点推荐，再比较两种方案并阅读完整报告。',
         state: 'overview',
       },
       {
         src: assetUrl('images/decision-research-agent/research-evidence-review.png'),
-        alt: 'Decision Research Agent Evidence 审查界面，显示来源引用与人工复核',
-        caption: 'Evidence 审查：结论与来源一起进入交付前复核。',
+        alt: 'DRA结论与支持资料并排的来源阅读界面',
+        caption: '来源阅读：从一条研究结论打开对应资料，核对摘要与全文。',
         state: 'normal',
       },
       {
         src: assetUrl('images/decision-research-agent/research-blocked-recovery.png'),
-        alt: 'Decision Research Agent 受阻恢复界面，显示证据不足时停止交付',
-        caption: '受阻恢复：证据不够时保留缺口并停止交付。',
+        alt: 'DRA合成案例显示资料权限未确认，本次报告暂不交付',
+        caption: '待确认事项：政策资料权限未确认，保留已有资料并说明下一步。',
         state: 'blocked',
       },
     ],
@@ -121,12 +121,12 @@ export const projects: Project[] = [
       'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.9',
     releaseLabel: 'v0.1.9',
     publicSource: {
-      commit: 'd5e230135a72a08fe0ebc09d2f238644748f9067',
-      guidePath: 'docs/demo-console.md',
+      commit: 'f40cde0be00bf55cf32c4eadbd2e62123f9e4035',
+      guidePath: 'README_CN.md',
       summary:
-        '支持 1–5 个问题的结构化研究，逐题核对研究发现与原文片段；未解决问题可先形成独立草稿，再经确认发起新研究，不继承原报告的证据或审核状态。',
+        '当前源码提供客服试点选型的静态演示：比较方案、打开已关联资料并阅读完整报告。真实研究通过CLI或API发起；展示图片不证明该合成结论由实时模型生成。',
     },
-    captureCommit: '868dc2fc621f02e40cb341547dc65c5311a78f54',
+    captureCommit: 'f40cde0be00bf55cf32c4eadbd2e62123f9e4035',
     boundary:
       '页面展示来自公开仓库内的确定性演示，不代表线上服务、真实客户研究或市场准确率。',
     accent: 'blue',
@@ -137,13 +137,13 @@ export const projects: Project[] = [
     eyebrow: '业务协作项目 · 长期留学决策',
     headline: '把一次咨询，变成可以持续跟进的留学决策流程。',
     summary:
-      '学生、家长和顾问关心的条件并不总是一致。Night Voyager 把已确认的信息、路线比较、风险和下一步放进同一条流程，让 Agent 负责整理与推进，关键判断仍由顾问和客户确认。',
+      '围绕预算变化等咨询场景，保存顾问已确认的客户条件，比较留学路线并修订方案。顾问复核后，由学生或家长确认选择，形成决策回执与行动时间线。',
     role: '独立完成长期咨询流程、状态权限、记忆边界和顾问审核工作台的产品与工程实现。',
     actions: ['确认事实', '比较路线', '形成行动计划'],
     problem:
       '留学规划会持续数月甚至更久，条件会变化，参与者也不止一个。一次聊天很难分清哪些只是讨论、哪些已经确认、下一步由谁负责。',
     approach:
-      '系统把对话中的有效信息整理为可更新的客户事实，再围绕预算、方向和风险比较路线。顾问审核后，确认结果转成后续任务和时间线。',
+      '同一客户案例保留事实与方案版本。预算变化后，显式启动新一轮规划，再经过顾问审核和客户确认，把新的选择交给后续执行流程。',
     humanBoundary:
       'Agent 可以整理材料、发现矛盾并提出方案，但不会替顾问决定路线，也不会在客户确认前推进关键行动。',
     normalPath:
@@ -169,7 +169,7 @@ export const projects: Project[] = [
         body: '预算或条件变化时，系统停止原计划并重新评估，不在旧前提上继续生成看似完整的下一步。',
       },
     ],
-    stack: ['Python', 'FastAPI', 'PostgreSQL', 'React', 'SSE', 'Docker'],
+    stack: ['Python', 'FastAPI', 'PostgreSQL', 'Next.js', 'React', 'SSE', 'Docker'],
     keywords: [
       'State Management',
       'Long-term Memory',
@@ -202,12 +202,12 @@ export const projects: Project[] = [
     releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.6',
     releaseLabel: 'v0.1.6',
     publicSource: {
-      commit: '2b3c516eef634ee77ec6886b5715abc96fff2cf5',
-      guidePath: 'README.md',
+      commit: 'd11d31808e5a5c7d16d55350d6e6e4cd98c89422',
+      guidePath: 'docs/operations/customer-revision-recovery.md',
       summary:
         '在合成场景中调整同一客户案例的已确认预算，重新规划并取得新的顾问审核与家长同意；执行受阻后，可读取和复制已保存的重新评估交接摘要，原执行保持停止。',
     },
-    captureCommit: 'e4a13ebe2c3e49b222bbfca593eb75db309b6451',
+    captureCommit: 'd11d31808e5a5c7d16d55350d6e6e4cd98c89422',
     boundary:
       '页面展示使用本地确定性咨询场景，不代表真实客户、院校建议、录取结果或正式商业服务。',
     accent: 'green',
@@ -215,20 +215,20 @@ export const projects: Project[] = [
   {
     slug: 'multimodal-knowledge-engine',
     title: 'Multimodal Knowledge Engine',
-    eyebrow: '多模态 Evidence · 本地知识入口',
-    headline: '让本地资料先变成可引用的证据，再交给 Agent 使用。',
+    eyebrow: '多模态资料工具 · 检索、读取与引用',
+    headline: '让Agent找到资料、读取完整文本，并核对引用。',
     summary:
-      'MKE 处理 PDF、音频和受控短视频，把内容连同页码、时间戳和来源信息编译为可检索的 Evidence。只有成功发布的内容进入检索和调用范围，失败或不完整的结果会被隔离。',
-    role: '独立完成多模态资料处理、Publication、检索引用和 MCP 调用边界的设计与实现。',
-    actions: ['处理资料', '保留来源', '受控检索'],
+      '把本地PDF、音频和受控短视频整理成可检索、可精确读取的资料，保留页码、时间戳与来源版本。通过CLI／MCP供Agent调用，也能导出离线查看器供人阅读和复制引用。',
+    role: '独立设计并实现多模态资料处理、版本发布、检索与精确读取、MCP接口和离线资料查看器。',
+    actions: ['阅读与引用', '查看检索', '查看恢复'],
     problem:
-      'Agent 能找到一段文字并不等于这段内容可以被相信。PDF 页码、音频时间戳、来源版本和处理状态一旦丢失，检索结果就很难被复核。',
+      '找到一小段资料后，调用方往往还要读完整文本、确认页码和版本。预览被截断或资料重新处理时，也需要明确哪些内容仍然可用。',
     approach:
-      '资料进入系统后先完成解析与定位，再编译为带来源信息的 Evidence。只有通过校验并成功发布的版本，才会出现在 Search、Ask、Export 和 MCP 的调用结果中。',
+      '解析资料并保留来源位置，校验后发布可用版本；调用方先选资料，再检索与精确读取。已验证的导出快照可以生成独立HTML查看器。',
     humanBoundary:
       '调用方能够看到来源、位置和当前缺口；处理失败或信息不足时，系统返回明确边界，不用一段补写内容掩盖缺失。',
     normalPath:
-      'PDF 或受控媒体完成处理后生成带页码或时间戳的 Evidence；成功发布的版本进入搜索，并可通过 MCP 提供给外部 Agent。',
+      '导入并发布资料后，先发现和选择来源，再检索、精确读取与核对引用。离线查看器阅读导出快照中的文本，不重新打开原始PDF或媒体文件。',
     failurePath:
       '处理失败不替换当前有效版本；Ask 无匹配时返回证据不足，检索截断标明不完整，过期 Evidence 则提示重新搜索当前有效内容。',
     personalWork: [
@@ -261,21 +261,21 @@ export const projects: Project[] = [
     ],
     visuals: [
       {
-        src: assetUrl('images/multimodal-knowledge-engine/evidence-workspace-overview.png'),
-        alt: 'Multimodal Knowledge Engine Evidence 工作区总览',
-        caption: 'Evidence 工作区：资料处理、发布状态与来源信息在同一入口可见。',
+        src: assetUrl('images/multimodal-knowledge-engine/compiled-library-viewer.png'),
+        alt: 'MKE离线资料查看器，显示资料列表、已提取文本、页码与可复制引用',
+        caption: '仓库测试资料生成的离线查看器：选资料、读完整存储文本、复制带来源的引用。',
         state: 'overview',
       },
       {
         src: assetUrl('images/multimodal-knowledge-engine/evidence-publication-search.png'),
         alt: 'Multimodal Knowledge Engine Publication 检索结果，显示来源与定位信息',
-        caption: '受控检索：只有成功发布的内容进入结果，并保留来源与位置。',
+        caption: '检索与发布的独立技术演示帧：只有成功发布的内容进入结果，并保留来源与位置。',
         state: 'normal',
       },
       {
         src: assetUrl('images/multimodal-knowledge-engine/evidence-insufficient-recovery.png'),
         alt: 'Multimodal Knowledge Engine 资料不足时的恢复界面',
-        caption: '失败隔离：不完整结果不会替换当前有效内容。',
+        caption: '失败隔离的独立技术演示帧：不完整结果不会替换当前有效内容。',
         state: 'blocked',
       },
     ],
@@ -284,14 +284,14 @@ export const projects: Project[] = [
       'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.7',
     releaseLabel: 'v0.1.7',
     publicSource: {
-      commit: '161b1d9976c3c23c23680468745f37c1f62cc3d9',
-      guidePath: 'README.md',
+      commit: 'a7112a41727f27d6908191c63d5e1fe6f86f0510',
+      guidePath: 'docs/how-to/view-compiled-library.md',
       summary:
         '先选择一份资料，再在该来源内查找 Evidence、读取完整文本并核对引用；无匹配时不借用其他来源补齐结果。已验证的导出快照还可生成单文件 HTML 阅读器。',
     },
-    captureCommit: '3a24370df064add49286b3474f20a5f86c32cae9',
+    captureCommit: 'a7112a41727f27d6908191c63d5e1fe6f86f0510',
     boundary:
-      '页面展示来自公开仓库内的确定性资料场景，不代表托管服务、任意媒体支持或生产数据处理。',
+      '首图为用仓库测试资料生成的离线查看器；另两图为独立的检索／恢复演示帧，不能视为同一界面的连续操作。查看器只阅读已导出文本，不回读原始PDF或媒体，也不代表托管服务或真实客户部署。',
     accent: 'rust',
   },
 ]

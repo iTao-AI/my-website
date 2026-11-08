@@ -50,20 +50,24 @@ export function Hero() {
             <span>旗舰工程项目</span>
           </div>
           <figure className="hero-product-stage__main">
-            <img
-              src={overview.src}
-              alt={overview.alt}
-              width="1600"
-              height="1000"
-              fetchPriority="high"
-            />
+            <a href={overview.src} target="_blank" rel="noreferrer" aria-label={`${overview.alt}，打开原图`} title="打开原图">
+              <img
+                src={overview.src}
+                alt={overview.alt}
+                width="1600"
+                height="1000"
+                fetchPriority="high"
+              />
+            </a>
           </figure>
           <figure className="hero-product-stage__detail">
-            <img src={evidence.src} alt={evidence.alt} width="1600" height="1000" />
+            <a href={evidence.src} target="_blank" rel="noreferrer" aria-label={`${evidence.alt}，打开原图`} title="打开原图">
+              <img src={evidence.src} alt={evidence.alt} width="1600" height="1000" loading="lazy" />
+            </a>
           </figure>
           <div className="hero-product-stage__caption">
-            <strong>从研究问题到可审查交付</strong>
-            <span>任务、Evidence 与人工判断保留在同一条工作路径中。</span>
+            <strong>从研究问题到方案比较与报告</strong>
+            <span>看推荐方案，读支持资料，继续核对每条结论。</span>
           </div>
         </div>
       </div>

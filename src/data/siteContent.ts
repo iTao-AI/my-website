@@ -9,19 +9,19 @@ export const siteContent = {
     role: 'AI Agent 工程师 · 上海',
     title: '把 AI Agent 做成能推进工作的系统。',
     description:
-      '围绕研究交付、长期决策和多模态资料处理，我独立完成了三个项目：让模型获得合适的上下文和工具，也让过程、证据与人工判断有清楚的边界。',
+      '独立设计并维护三个开源项目：多源研究报告、带来源引用的资料工具，以及留学顾问协作工作台。用Python、FastAPI和React把模型、工具、数据与页面接成完整应用。',
     primaryAction: '查看旗舰项目',
     secondaryAction: 'GitHub',
     proof: [
       {
         label: '旗舰项目',
         value: 'Decision Research Agent',
-        detail: '研究任务、Evidence 与人工复核',
+        detail: '方案比较、来源回查与报告阅读',
       },
       {
         label: '三个公开项目',
         value: '源码与稳定 Release',
-        detail: '正常流程和失败边界均可继续核验',
+        detail: '研究交付、资料工具与业务协作',
       },
     ],
   },
@@ -29,7 +29,7 @@ export const siteContent = {
     eyebrow: '三类问题，一套工程判断',
     title: '从信息进入，到任务推进，再到人工确认。',
     description:
-      '三个项目分别处理知识入口、研究交付和长期决策。它们不是已经联通上线的平台，而是我围绕 Agent 工程中三个关键问题完成的独立实践。',
+      '三个独立项目分别聚焦资料读取、研究报告与咨询协作，展示从问题定义、接口与页面实现，到验证和版本交付的完整实践。',
     layers: [
       {
         index: '01',
