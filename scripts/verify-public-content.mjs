@@ -54,8 +54,8 @@ const expectedProjects = [
     releaseUrl:
       'https://github.com/iTao-AI/decision-research-agent/releases/tag/v0.1.9',
     releaseLabel: 'v0.1.9',
-    captureCommit: '868dc2fc621f02e40cb341547dc65c5311a78f54',
-    actions: ['拆解任务', '核对 Evidence', '判断能否交付'],
+    captureCommit: 'f40cde0be00bf55cf32c4eadbd2e62123f9e4035',
+    actions: ['比较方案', '回查来源', '查看待确认项'],
     assets: [
       [
         'overview',
@@ -80,7 +80,7 @@ const expectedProjects = [
     githubUrl: 'https://github.com/iTao-AI/night-voyager',
     releaseUrl: 'https://github.com/iTao-AI/night-voyager/releases/tag/v0.1.6',
     releaseLabel: 'v0.1.6',
-    captureCommit: 'e4a13ebe2c3e49b222bbfca593eb75db309b6451',
+    captureCommit: 'd11d31808e5a5c7d16d55350d6e6e4cd98c89422',
     actions: ['确认事实', '比较路线', '形成行动计划'],
     assets: [
       [
@@ -107,13 +107,13 @@ const expectedProjects = [
     releaseUrl:
       'https://github.com/iTao-AI/multimodal-knowledge-engine/releases/tag/v0.1.7',
     releaseLabel: 'v0.1.7',
-    captureCommit: '3a24370df064add49286b3474f20a5f86c32cae9',
-    actions: ['处理资料', '保留来源', '受控检索'],
+    captureCommit: 'a7112a41727f27d6908191c63d5e1fe6f86f0510',
+    actions: ['阅读与引用', '查看检索', '查看恢复'],
     assets: [
       [
         'overview',
-        'images/multimodal-knowledge-engine/evidence-workspace-overview.png',
-        'docs/evidence-workspace/evidence-workspace-overview.png',
+        'images/multimodal-knowledge-engine/compiled-library-viewer.png',
+        'docs/how-to/assets/compiled-library-viewer-repository-samples.png',
       ],
       [
         'normal',
@@ -284,6 +284,8 @@ if (!existsSync(manifestPath)) {
         publicPath,
         sourcePath,
         sourceCommit: project.captureCommit,
+        width: project.slug === 'multimodal-knowledge-engine' && state === 'overview' ? 2880 : 1600,
+        height: project.slug === 'multimodal-knowledge-engine' && state === 'overview' ? 1800 : 1000,
         sourceUrl: `${project.githubUrl}/blob/${project.captureCommit}/${sourcePath}`,
       })),
     )
@@ -312,7 +314,7 @@ if (!existsSync(manifestPath)) {
         if (asset.source_url !== expected.sourceUrl) {
           failures.push(`source URL mismatch ${expected.project}/${expected.state}`)
         }
-        if (asset.width !== 1600 || asset.height !== 1000) {
+        if (asset.width !== expected.width || asset.height !== expected.height) {
           failures.push(`unexpected PNG dimensions ${expected.project}/${expected.state}`)
         }
         if (typeof asset.source_path !== 'string' || asset.source_path.startsWith('/')) {
@@ -342,8 +344,8 @@ if (!existsSync(manifestPath)) {
         if (
           buffer.length < 24 ||
           buffer.toString('hex', 0, 8) !== '89504e470d0a1a0a' ||
-          buffer.readUInt32BE(16) !== 1600 ||
-          buffer.readUInt32BE(20) !== 1000
+          buffer.readUInt32BE(16) !== expected.width ||
+          buffer.readUInt32BE(20) !== expected.height
         ) {
           failures.push(`PNG header mismatch ${expected.project}/${expected.state}`)
         }

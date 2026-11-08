@@ -413,8 +413,16 @@ h3 {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
-  object-position: 50% 42%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.hero-product-stage__main a,
+.hero-product-stage__detail a,
+.project-image__viewport a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-product-stage__detail {
@@ -428,10 +436,10 @@ h3 {
 
 .hero-product-stage__detail img {
   position: absolute;
-  width: 720px;
+  width: 1080px;
   max-width: none;
-  left: -122px;
-  top: -110px;
+  right: 0;
+  top: -100px;
 }
 
 .hero-product-stage__caption {
@@ -1572,10 +1580,9 @@ h3 {
   }
 
   .hero-product-stage__main img {
-    width: 640px;
-    max-width: none;
-    object-fit: cover;
-    transform: translateX(-72px);
+    width: 100%;
+    max-width: 100%;
+    object-fit: contain;
   }
 
   .hero-product-stage__detail {
@@ -1586,8 +1593,7 @@ h3 {
   }
 
   .hero-product-stage__detail img {
-    width: 430px;
-    left: -94px;
+    width: 720px;
     top: -68px;
   }
 
@@ -1665,17 +1671,17 @@ h3 {
   .complementary-case__stage .project-image__viewport,
   .project-detail__hero-image .project-image__viewport,
   .project-detail__gallery .project-image__viewport {
-    aspect-ratio: 1 / 0.78;
+    aspect-ratio: 16 / 10;
   }
 
   .flagship-stage__surface .project-image img,
   .complementary-case__stage .project-image img,
   .project-detail__hero-image .project-image img,
   .project-detail__gallery .project-image img {
-    width: 640px;
-    max-width: none;
+    width: 100%;
+    max-width: 100%;
+    object-fit: contain;
     object-position: center;
-    transform: translateX(-94px);
   }
 
   .flagship-stage__note {

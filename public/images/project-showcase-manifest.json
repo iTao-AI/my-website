@@ -3,120 +3,121 @@
   "assets": [
     {
       "project": "decision-research-agent",
-      "source_commit": "868dc2fc621f02e40cb341547dc65c5311a78f54",
+      "source_commit": "f40cde0be00bf55cf32c4eadbd2e62123f9e4035",
       "source_path": "docs/assets/console-showcase/research-workspace-overview.png",
-      "source_url": "https://github.com/iTao-AI/decision-research-agent/blob/868dc2fc621f02e40cb341547dc65c5311a78f54/docs/assets/console-showcase/research-workspace-overview.png",
-      "git_blob_sha1": "9ea7212937fee8d78ba64826ff0a5915e05e991f",
+      "source_url": "https://github.com/iTao-AI/decision-research-agent/blob/f40cde0be00bf55cf32c4eadbd2e62123f9e4035/docs/assets/console-showcase/research-workspace-overview.png",
+      "git_blob_sha1": "8b5ba5f78025c54b6264fd7cdd388ca27989f66f",
       "public_path": "images/decision-research-agent/research-workspace-overview.png",
-      "sha256": "56ba7185a2d921e6cfa36eb4d3efc70fb83a09bf2337259280d0ac63eaf094d0",
+      "sha256": "d61586280b7799a537686f14b7a5614f57300967e145364f6f6afa3040ed38cd",
       "width": 1600,
       "height": 1000,
       "state": "overview",
-      "disclosure": "公开仓库内的确定性演示界面，不代表真实客户、生产部署或业务结果。"
+      "disclosure": "公开仓库内置的合成客服试点选型；用于比较方案、阅读报告与核对来源，不代表真实客户试点或业务收益。"
     },
     {
       "project": "decision-research-agent",
-      "source_commit": "868dc2fc621f02e40cb341547dc65c5311a78f54",
+      "source_commit": "f40cde0be00bf55cf32c4eadbd2e62123f9e4035",
       "source_path": "docs/assets/console-showcase/research-evidence-review.png",
-      "source_url": "https://github.com/iTao-AI/decision-research-agent/blob/868dc2fc621f02e40cb341547dc65c5311a78f54/docs/assets/console-showcase/research-evidence-review.png",
-      "git_blob_sha1": "a4c168e8b0d11c28a9a7e06833cadc2084e0a5a2",
+      "source_url": "https://github.com/iTao-AI/decision-research-agent/blob/f40cde0be00bf55cf32c4eadbd2e62123f9e4035/docs/assets/console-showcase/research-evidence-review.png",
+      "git_blob_sha1": "9b9d7709ec3e79d22556be29a846b10594d6e2dd",
       "public_path": "images/decision-research-agent/research-evidence-review.png",
-      "sha256": "0dcfc5652188036fe1fd4c5193fbb635d604c119ef024d95033356d244509582",
+      "sha256": "f8192ff16044ce2fd3f7c36ae1e4e516aec152c69922a07b87a5810ee50de771",
       "width": 1600,
       "height": 1000,
       "state": "normal",
-      "disclosure": "公开仓库内的确定性演示界面，不代表真实客户、生产部署或业务结果。"
+      "disclosure": "公开仓库内置的合成客服试点选型；用于比较方案、阅读报告与核对来源，不代表真实客户试点或业务收益。"
     },
     {
       "project": "decision-research-agent",
-      "source_commit": "868dc2fc621f02e40cb341547dc65c5311a78f54",
+      "source_commit": "f40cde0be00bf55cf32c4eadbd2e62123f9e4035",
       "source_path": "docs/assets/console-showcase/research-blocked-recovery.png",
-      "source_url": "https://github.com/iTao-AI/decision-research-agent/blob/868dc2fc621f02e40cb341547dc65c5311a78f54/docs/assets/console-showcase/research-blocked-recovery.png",
-      "git_blob_sha1": "55d1b18c7c1dabdbce890e70629029770222857e",
+      "source_url": "https://github.com/iTao-AI/decision-research-agent/blob/f40cde0be00bf55cf32c4eadbd2e62123f9e4035/docs/assets/console-showcase/research-blocked-recovery.png",
+      "git_blob_sha1": "0c0ba1fd0723a4151768311a409db3f751ad9113",
       "public_path": "images/decision-research-agent/research-blocked-recovery.png",
-      "sha256": "ba3614a7ebcee7d201118160aa55cdb0392fbe9809e7646d6e5b43e83194076c",
+      "sha256": "ba35388176d56c6d187be21589fada3bafb1e3250ef8f86069dc8a61459e12ba",
       "width": 1600,
       "height": 1000,
       "state": "blocked",
-      "disclosure": "公开仓库内的确定性演示界面，不代表真实客户、生产部署或业务结果。"
+      "disclosure": "公开仓库内置的合成客服试点选型；用于比较方案、阅读报告与核对来源，不代表真实客户试点或业务收益。"
     },
     {
       "project": "night-voyager",
-      "source_commit": "e4a13ebe2c3e49b222bbfca593eb75db309b6451",
+      "source_commit": "d11d31808e5a5c7d16d55350d6e6e4cd98c89422",
       "source_path": "docs/assets/advisor-workspace-overview.png",
-      "source_url": "https://github.com/iTao-AI/night-voyager/blob/e4a13ebe2c3e49b222bbfca593eb75db309b6451/docs/assets/advisor-workspace-overview.png",
+      "source_url": "https://github.com/iTao-AI/night-voyager/blob/d11d31808e5a5c7d16d55350d6e6e4cd98c89422/docs/assets/advisor-workspace-overview.png",
       "git_blob_sha1": "618d68ca3eb08f552d81f22764d9fb83152d18fc",
       "public_path": "images/night-voyager/advisor-workspace-overview.png",
       "sha256": "5c59f4e082e814f0c3476ac211ff36d85ac094fed40c29aa78662958e6390ec4",
       "width": 1600,
       "height": 1000,
       "state": "overview",
-      "disclosure": "公开仓库内的确定性演示界面，不代表真实客户、生产部署或留学结果。"
+      "disclosure": "公开仓库的本地合成咨询场景与确定性适配器截图；受阻执行是独立场景，不代表真实客户、院校建议或录取结果。"
     },
     {
       "project": "night-voyager",
-      "source_commit": "e4a13ebe2c3e49b222bbfca593eb75db309b6451",
+      "source_commit": "d11d31808e5a5c7d16d55350d6e6e4cd98c89422",
       "source_path": "docs/assets/advisor-normal-path.png",
-      "source_url": "https://github.com/iTao-AI/night-voyager/blob/e4a13ebe2c3e49b222bbfca593eb75db309b6451/docs/assets/advisor-normal-path.png",
+      "source_url": "https://github.com/iTao-AI/night-voyager/blob/d11d31808e5a5c7d16d55350d6e6e4cd98c89422/docs/assets/advisor-normal-path.png",
       "git_blob_sha1": "421bcce301d79d19d3b694def20b577ac4d36664",
       "public_path": "images/night-voyager/advisor-normal-path.png",
       "sha256": "8c1eb874cbce3cf43d9cfd3a4a65f0217bb9929ee95135860ad31025bcfba319",
       "width": 1600,
       "height": 1000,
       "state": "normal",
-      "disclosure": "公开仓库内的确定性演示界面，不代表真实客户、生产部署或留学结果。"
+      "disclosure": "公开仓库的本地合成咨询场景与确定性适配器截图；受阻执行是独立场景，不代表真实客户、院校建议或录取结果。"
     },
     {
       "project": "night-voyager",
-      "source_commit": "e4a13ebe2c3e49b222bbfca593eb75db309b6451",
+      "source_commit": "d11d31808e5a5c7d16d55350d6e6e4cd98c89422",
       "source_path": "docs/assets/advisor-blocked-recovery.png",
-      "source_url": "https://github.com/iTao-AI/night-voyager/blob/e4a13ebe2c3e49b222bbfca593eb75db309b6451/docs/assets/advisor-blocked-recovery.png",
+      "source_url": "https://github.com/iTao-AI/night-voyager/blob/d11d31808e5a5c7d16d55350d6e6e4cd98c89422/docs/assets/advisor-blocked-recovery.png",
       "git_blob_sha1": "b98d29d5951647f9fd10f63e05935b042b8bf098",
       "public_path": "images/night-voyager/advisor-blocked-recovery.png",
       "sha256": "e66c65f4b2b16e801d64034c794ec0b7b9f5415467ca8cbedf154b1435d0793c",
       "width": 1600,
       "height": 1000,
       "state": "blocked",
-      "disclosure": "公开仓库内的确定性演示界面，不代表真实客户、生产部署或留学结果。"
+      "disclosure": "公开仓库的本地合成咨询场景与确定性适配器截图；受阻执行是独立场景，不代表真实客户、院校建议或录取结果。"
     },
     {
       "project": "multimodal-knowledge-engine",
-      "source_commit": "3a24370df064add49286b3474f20a5f86c32cae9",
-      "source_path": "docs/evidence-workspace/evidence-workspace-overview.png",
-      "source_url": "https://github.com/iTao-AI/multimodal-knowledge-engine/blob/3a24370df064add49286b3474f20a5f86c32cae9/docs/evidence-workspace/evidence-workspace-overview.png",
-      "git_blob_sha1": "e893073b3d7acad921ce1dadcb9f0ee4ebb1b187",
-      "public_path": "images/multimodal-knowledge-engine/evidence-workspace-overview.png",
-      "sha256": "69d5fc83e626af3381fa600236fc308dda04f76877cebdbecc683d9e2ca11147",
-      "width": 1600,
-      "height": 1000,
+      "source_commit": "a7112a41727f27d6908191c63d5e1fe6f86f0510",
+      "source_path": "docs/how-to/assets/compiled-library-viewer-repository-samples.png",
+      "source_url": "https://github.com/iTao-AI/multimodal-knowledge-engine/blob/a7112a41727f27d6908191c63d5e1fe6f86f0510/docs/how-to/assets/compiled-library-viewer-repository-samples.png",
+      "git_blob_sha1": "4c1db05a82ff0f85db3889a816e57d84bee506d5",
+      "public_path": "images/multimodal-knowledge-engine/compiled-library-viewer.png",
+      "sha256": "d217be20245e75ff2292e461f27f381635f6662ead0550515977a43291aa4820",
+      "width": 2880,
+      "height": 1800,
       "state": "overview",
-      "disclosure": "公开仓库内的确定性演示界面，不代表真实客户、生产部署或处理结果。"
+      "disclosure": "使用仓库测试资料实际生成的离线查看器；仅展示导出快照内的已提取文本和引用，不回读原文件。"
     },
     {
       "project": "multimodal-knowledge-engine",
-      "source_commit": "3a24370df064add49286b3474f20a5f86c32cae9",
+      "source_commit": "a7112a41727f27d6908191c63d5e1fe6f86f0510",
       "source_path": "docs/evidence-workspace/evidence-publication-search.png",
-      "source_url": "https://github.com/iTao-AI/multimodal-knowledge-engine/blob/3a24370df064add49286b3474f20a5f86c32cae9/docs/evidence-workspace/evidence-publication-search.png",
+      "source_url": "https://github.com/iTao-AI/multimodal-knowledge-engine/blob/a7112a41727f27d6908191c63d5e1fe6f86f0510/docs/evidence-workspace/evidence-publication-search.png",
       "git_blob_sha1": "9aeed176a0431ddb556ec86c5b95a86f463df038",
       "public_path": "images/multimodal-knowledge-engine/evidence-publication-search.png",
       "sha256": "99ec0963aabe68dc9ce93821533b714985bf086e14cfebefa33c3fcf1ffa36a2",
       "width": 1600,
       "height": 1000,
       "state": "normal",
-      "disclosure": "公开仓库内的确定性演示界面，不代表真实客户、生产部署或处理结果。"
+      "disclosure": "公开仓库的确定性发布／检索／恢复技术演示帧，独立于离线查看器，不代表同一界面的连续操作。"
     },
     {
       "project": "multimodal-knowledge-engine",
-      "source_commit": "3a24370df064add49286b3474f20a5f86c32cae9",
+      "source_commit": "a7112a41727f27d6908191c63d5e1fe6f86f0510",
       "source_path": "docs/evidence-workspace/evidence-insufficient-recovery.png",
-      "source_url": "https://github.com/iTao-AI/multimodal-knowledge-engine/blob/3a24370df064add49286b3474f20a5f86c32cae9/docs/evidence-workspace/evidence-insufficient-recovery.png",
-      "git_blob_sha1": "780021c2bb94c318cdea8f99270c496d1299a1c7",
+      "source_url": "https://github.com/iTao-AI/multimodal-knowledge-engine/blob/a7112a41727f27d6908191c63d5e1fe6f86f0510/docs/evidence-workspace/evidence-insufficient-recovery.png",
+      "git_blob_sha1": "76725f371d97b04b1c4f5f14b128eabe45aeee8f",
       "public_path": "images/multimodal-knowledge-engine/evidence-insufficient-recovery.png",
-      "sha256": "b2a8c3b7e3d30d2cb51f261467ed7ff424d482a264ae897f5666a0596ef696e0",
+      "sha256": "2b6717716e6dcc293d0700fe191818cbe9ff35b2c2a82a8e2b69a432c98c6128",
       "width": 1600,
       "height": 1000,
       "state": "blocked",
-      "disclosure": "公开仓库内的确定性演示界面，不代表真实客户、生产部署或处理结果。"
+      "disclosure": "公开仓库的确定性发布／检索／恢复技术演示帧，独立于离线查看器，不代表同一界面的连续操作。"
     }
-  ]
+  ],
+  "reviewed_on": "2026-11-08"
 }

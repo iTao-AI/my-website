@@ -138,8 +138,8 @@ export function ProjectDetailPage({ project }: ProjectDetailPageProps) {
       <details className="project-detail__boundary">
         <summary>当前展示边界</summary>
         <p>{project.boundary}</p>
-        <p>截图用于说明基础流程；Release 之后的源码新流程请以上方指南为准。</p>
-        <p>截图来源提交：<code>{project.captureCommit}</code></p>
+        <p>图片来自已核对的公开源码；当前流程与稳定Release分别通过上方链接查看。</p>
+        <p>图片公开来源提交：<code>{project.captureCommit}</code></p>
         <p>公开内容核对：{publicFactsCheckedOn}；源码提交：<code>{project.publicSource.commit}</code></p>
       </details>
     </main>
