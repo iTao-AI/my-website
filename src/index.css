@@ -425,6 +425,12 @@ h3 {
   height: 100%;
 }
 
+.hero-product-stage__main a:focus-visible,
+.hero-product-stage__detail a:focus-visible,
+.project-image__viewport a:focus-visible {
+  outline-offset: -4px;
+}
+
 .hero-product-stage__detail {
   right: 22px;
   bottom: 28px;

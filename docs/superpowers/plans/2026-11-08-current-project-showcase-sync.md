@@ -35,29 +35,29 @@
 
 **Interfaces:** Preserve `Project`, `ProjectVisual`, project slugs, visual states and hash routes. New asset dimensions affect manifest validation only; the responsive 8:5 layout stays.
 
-- [ ] Confirm clean base and run `npm run verify:public`, `npm run lint`, `npm run build`.
+- [x] Confirm clean base and run `npm run verify:public`, `npm run lint`, `npm run build`.
   Expected: all pass before product edits.
-- [ ] Update verification expectations for the three reviewed public commits, changed actions,
+- [x] Update verification expectations for the three reviewed public commits, changed actions,
   MKE Viewer source path and per-asset dimensions. Run `npm run verify:public`.
   Expected: fail on old content/provenance, proving the new contract is exercised.
-- [ ] Copy the nine source files from those exact Git objects; refresh hashes, dimensions and
+- [x] Copy the nine source files from those exact Git objects; refresh hashes, dimensions and
   per-image scope. Update business-first copy, pinned guides and captions.
-- [ ] Explain source-checkout versus stable-release and mixed MKE illustration scope in detail;
+- [x] Explain source-checkout versus stable-release and mixed MKE illustration scope in detail;
   keep the fixed light design and no new backend or UI workflow.
-- [ ] Run `npm run verify:public`, lint and build.
+- [x] Run `npm run verify:public`, lint and build.
   Expected: all pass; nine asset identities and privacy checks remain effective.
-- [ ] On an isolated local preview, check desktop/mobile home and all detail routes, visual
+- [x] On an isolated local preview, check desktop/mobile home and all detail routes, visual
   controls, loaded images, scroll bounds, public links and the legacy hash route.
   Expected: no failed image, route regression, page overflow or misleading continuous-frame claim.
-- [ ] Review the actual diff; commit the bounded update locally. Record verification in README.
-- [ ] Obtain one fresh Max review of the complete change. Fix Important/Critical findings in
+- [x] Review the actual diff; commit the bounded update locally. Record verification in README.
+- [x] Obtain one fresh Max review of the complete change. Fix Important/Critical findings in
   scope, verify the affected behavior and retain other findings as explicit decisions.
 
 ## Execution notes
 
 Use a dedicated short-lived branch and preserve the original main branch.
 
-This is a content/image update, not a new application behavior. Verification reuses the existing
+This is a content/image-reading update, not new project or backend behavior. Verification reuses the existing
 asset/privacy contract and browser checks rather than adding tests that repeat paragraph text.
 Browser verification also reproduces the missing original-image action before implementing it,
 then checks complete primary frames and an actual original-image popup after the change.
